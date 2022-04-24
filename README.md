@@ -16,3 +16,4 @@ An online store maintained by a single vendor.
     SESS_SECRET=
     SESS_LIFETIME=
     NODE_ENV=
+5. To start the server, run `npm run dev`.
