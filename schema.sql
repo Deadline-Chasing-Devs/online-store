@@ -112,12 +112,6 @@ ALTER TABLE `order_item`
   ADD KEY `item_id` (`item_id`);
 
 --
--- Indexes for table `sessions`
---
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`session_id`);
-
---
 -- Indexes for table `vendor`
 --
 ALTER TABLE `vendor`
