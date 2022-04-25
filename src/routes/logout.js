@@ -8,7 +8,6 @@ const handler = () => {
         try {
             const user = session.user;
             if (user) {
-                session.user;
                 if (user) {
                     session.destroy((err) => {
                         if (err) throw err;
