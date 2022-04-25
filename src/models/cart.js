@@ -1,13 +1,18 @@
 class Cart {
-    constructor() {
-        this.items = {};
-        this.totalPrice = 0;
-        this.itemQty = 0;
+    constructor(initCart) {
+        this.items = initCart.items || {};
+        this.totalPrice = initCart.totalPrice || 0;
+        this.itemQty = initCart.itemQty || 0;
     }
 
     addItem(item, qty) {
         if (!(item.itemId in this.items)) {
-            this.items[item.itemId] = { ...item, qty };
+            this.items[item.itemId] = {
+                itemId: item.itemId,
+                name: item.name,
+                price: item.price,
+                qty,
+            };
             this.itemQty++;
         } else {
             this.items[item.itemId].qty += qty;
