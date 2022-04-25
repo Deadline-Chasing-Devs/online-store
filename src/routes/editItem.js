@@ -6,7 +6,7 @@ const handler = () => {
     // handle route
     // added for testing purposes
     editItemRouter.get("", (req, res) => {
-        res.render("orders");
+        res.render("editItem");
     });
 
     return editItemRouter;

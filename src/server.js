@@ -94,7 +94,7 @@ const {
 app.use("/cart", cartRouter);
 app.use("/checkout", checkoutRouter);
 app.use("/dashboard", dashboardRouter);
-app.use("/edit-item", editItemRouter);
+app.use("/editItem", editItemRouter);
 app.use("/item", itemRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
