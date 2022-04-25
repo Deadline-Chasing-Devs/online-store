@@ -72,13 +72,6 @@ const session = expressSession({
 });
 app.use(session);
 
-// Check session
-app.use((req, res, next) => {
-    if (!req.session.user) {
-        res.clearCookie(SESS_NAME);
-    }
-    next();
-});
 
 app.listen(PORT, () => console.log(`App running at http://localhost:${PORT}`));
 
