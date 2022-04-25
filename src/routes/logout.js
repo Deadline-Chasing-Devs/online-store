@@ -8,16 +8,14 @@ const handler = () => {
         try {
             const user = session.user;
             if (user) {
-                if (user) {
-                    session.destroy((err) => {
-                        if (err) throw err;
+                session.destroy((err) => {
+                    if (err) throw err;
 
-                        res.clearCookie(SESS_NAME);
-                        res.redirect("/login");
-                    });
-                } else {
+                    res.clearCookie(SESS_NAME);
                     res.redirect("/login");
-                }
+                });
+            } else {
+                res.redirect("/login");
             }
         } catch (err) {
             res.redirect("/login");
