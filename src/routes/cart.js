@@ -9,7 +9,8 @@ const handler = (pool) => {
     // Get cart page
     cartRouter.get("", (req, res) => {
         console.log("GET SESSION OBJ", req.session);
-        res.json(req.session);
+        res.render("cart", { cart: req.session.cart });
+        // res.json(req.session);
         // res.render("cart", { cart: req.session.cart || {} });
     });
 
