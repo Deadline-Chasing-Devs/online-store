@@ -1,3 +1,4 @@
+import Item from "../models/item.js";
 import Vendor from "../models/vendor.js";
 
 // database query function
@@ -30,4 +31,27 @@ const getUserByUsername = async (pool, username) => {
     return null;
 };
 
-export { getUserByUsername };
+// Get item by itemId
+const getItemById = async (pool, itemId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT * FROM item WHERE item_id=?",
+            [itemId]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+
+    if (results.length) {
+        return new Item(
+            results[0].item_id,
+            results[0].name,
+            results[0].description,
+            results[0].price
+        );
+    }
+};
+
+export { getUserByUsername, getItemById };
