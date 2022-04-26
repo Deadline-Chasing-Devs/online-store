@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import expressMysqlSession from "express-mysql-session";
 import expressSession from "express-session";
+import logger from "morgan";
 import {
     PORT,
     MYSQL_DATABASE,
@@ -51,6 +52,7 @@ app.disable("x-powered-by");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(logger("dev"));
 
 // Session store
 const MySQLStore = expressMysqlSession(expressSession);
@@ -71,7 +73,6 @@ const session = expressSession({
     },
 });
 app.use(session);
-
 
 app.listen(PORT, () => console.log(`App running at http://localhost:${PORT}`));
 
