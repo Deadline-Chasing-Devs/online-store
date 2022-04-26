@@ -99,7 +99,7 @@ const getItemsByOrderId = async (pool,orderId) => {
         items[i] = getItemById(results[i]);
     }
     return items;
-}
+};
 
 // Get image_ids of an item by itemId
 const getImageIdsByItemId = async (pool,itemId) => {
@@ -115,6 +115,6 @@ const getImageIdsByItemId = async (pool,itemId) => {
     }
 
     return results;
-}
+};
 
-export { getUserByUsername, getItemById };
+export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById };
