@@ -10,7 +10,7 @@ const handler = (pool) => {
         const item = await getItemById(pool, itemId);
 
         if (!item) res.redirect("/dashboard");
-        res.render("editItem", { item: { ...item } });
+        else res.render("editItem", { item });
     });
 
     return editItemRouter;
