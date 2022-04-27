@@ -60,4 +60,19 @@ const getItemById = async (pool, itemId) => {
 
 // Get image_ids of an item by itemId
 
-export { getUserByUsername, getItemById };
+// Add new item to the database
+const addItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `INSERT INTO item 
+            (item_id, name, description, price)
+            VALUES (?, ?, ?, ?)`,
+            [itemId, name, description, price]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+};
+
+export { getUserByUsername, getItemById, addItem };
