@@ -557,25 +557,6 @@ input[type="number"] {
 	bottom: 40px;
 }
 
-/*star ratings start*/
-
-span.stars,
-span.stars span {
-	display: block;
-	background: url(../img/white-star.svg) 0 0 repeat-x;
-	width: 100px;
-	/* width of a star multiplied by 5 */
-	height: 20px;
-	/* the height of the star */
-	background-size: 20px 20px;
-}
-
-span.stars span {
-	background-position: 0 0;
-	background-image: url(../img/yellow-star.svg);
-}
-/*star ratings end*/
-
 /*slider start*/
 .slider {
     margin-top: 50px;
