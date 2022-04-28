@@ -541,7 +541,7 @@ section #text span {
 }
 
 .product .popup-card .info .quantity {
-	bottom: 42px;
+	bottom: 44px;
 	font-size: 15px;
 	position: absolute;
 }
@@ -551,7 +551,7 @@ input[type="number"] {
 	height: 30px;
 	font-size: 15px;
 	text-align: center;
-	margin-left: 90px;
+	margin-left: 100px;
 	margin-top: 404px;
 	position: absolute;
 	bottom: 40px;
