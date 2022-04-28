@@ -7,6 +7,8 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 </head>
 <header id="header">
     <a href="#" class="logo">Website name</a>
@@ -97,10 +99,10 @@
       
                       <p>Description</p>
                       <span class="price">Price per unit</span>
-                      <span class="quantity">Quantity :</span>
+                      <span class="quantity">Quantity </span>
+                      <input type="number" name="pqty" value="1" id="quantity" name="quantity" min="1">
       
-                      <!--     <a href="#" class="add-cart-btn" name="addTocart">Add to cart</a>-->
-                      <button id="addTocart">
+                      <button id="addTocart" class="btn btn-info btn-block addItemBtn add-cart-btn">
                       <i class="fas fa-cart-plus">
                         </i>&nbsp;&nbsp;Add tocart
                         <span class="cart-item2"></span>
