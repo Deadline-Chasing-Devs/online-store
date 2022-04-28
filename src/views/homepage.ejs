@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Homepage</title>
-    </head>
-    <body>
-        <h1>Homepage</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/popup.css">
+</head>
+<header id="header">
+    <a href="#" class="logo">Website name</a>
+     <div class="search-box">
+       <input class="search-txt" id="pinput" type="text" name="" placeholder="Search for products" onkeyup="searchElement()">
+       <a class="search-btn" href="#">
+         <i class="fas fa-search"></i>
+       </a>
+     </div>
+     <ul>
+               <li><a href="#" class="active">Home</a></li>
+         <li><a href="#"><i class="fas fa-cart-plus"></i> Cart</a></li>
+               <li><a href="#">About us</a></li>
+           </ul>
+   </header>
+<body>
+    <div class="slidediv">
+        <!-- slideshow start -->
+        <div class="slider">
+          <div class="slides">
+            <!-- radio buttons start -->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <!-- radio buttons end -->
+            <!-- slide images start -->
+            <div class="slide first">
+              <img src="/img/1.jpg" alt="" style="width:1000px;height:500px;">
+            </div>
+            <div class="slide">
+              <img src="/img/2.jpg" alt="" style="width:1000px;height:500px;">
+            </div>
+            <div class="slide">
+              <img src="/img/3.jpg" alt="" style="width:1000px;height:500px;">
+            </div>
+            <div class="slide">
+              <img src="/img/4.jpg" alt="" style="width:1000px;height:500px;">
+            </div>
+            <!-- slide images end -->
+            <!-- automatic navigation start -->
+            <div class="navigation-auto">
+              <div class="auto-btn1"></div>
+              <div class="auto-btn2"></div>
+              <div class="auto-btn3"></div>
+              <div class="auto-btn4"></div>
+            </div>
+            <!-- automatic navigation end -->
+          </div>
+          <!-- manual navigation start -->
+          <div class="navigation-manual">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+          </div>
+          <!-- manual navigation end -->
+        </div>
+        <!-- slideshow end -->
+        <div class="slidewords">
+          <h2 id="txt"><span style="font-family:Segoe UI;text-shadow: 0 0 3px black, 0 0 10px #ffff00;">SHOP</span></h2>
+          <h2 id="txt"><span style="font-family:Segoe UI;text-shadow: 0 0 3px black, 0 0 10px #ffff00;">FOR</span></h2>
+          <h2 id="txt"><span style="font-family:Segoe UI;text-shadow: 0 0 3px black, 0 0 10px #ffff00;">YOUR</span></h2>
+          <h2 id="txt"><span style="font-family:Segoe UI;text-shadow: 0 0 3px black, 0 0 10px #ffff00;">GROCERIES</span></h2>
+        </div>
+      </div>
+      
+      <div class="sec" id="products">
+        <h2 style="color:white;">Featured products</h2>
+        <div class="container">
+      
+            <div class="product">
+              <div class="product-card">
+                <h3 class="name">Product name</h3>
+                <span class="price">Price</span>
+                <a class="popup-btn">View item</a>
+                <img src="/img/kottu_mee.png" class="product-img" alt="">
+              </div>
+              <div class="popup-view">
+      
+                  <div class="popup-card">
+                    <a><i class="fas fa-times close-btn"></i></a>
+                    <div class="product-img">
+                      <img src="/img/kottu_mee.png" alt="">
+                    </div>
+                    <div class="info">
+                      <h2>Name<br>
+      
+                      <p>Description</p>
+                      <span class="price">Price per unit</span>
+                      <span class="quantity">Quantity :</span>
+      
+                      <!--     <a href="#" class="add-cart-btn" name="addTocart">Add to cart</a>-->
+                      <button id="addTocart">
+                      <i class="fas fa-cart-plus">
+                        </i>&nbsp;&nbsp;Add tocart
+                        <span class="cart-item2"></span>
+                      </button>
+                    </div>
+                  </div>
+              </div>
+                       </div>
+                </div>
+                  </div>
+      
+              </div>
+</body>
+    <script src="/javascript/homepage.js"></script>
+    <script src="/javascript/slideshow.js"></script>
 </html>
