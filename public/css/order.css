@@ -1,0 +1,75 @@
+/*login page styles */
+.order-container{
+    width:100%;
+  }
+  
+  .order-id{
+    font-size: 1.5em;
+    /* margin-left:2%; */
+  }
+  
+  .order-searchBar{
+    display: flex;
+    float: right;
+    /* margin-left:2%; */
+  }
+  
+  .order-header{
+    border-bottom: black 1px solid;
+  }
+  
+  .order-item{
+    /* margin:2% 0 0 2%; */
+    padding:1.5%;
+    background-color: black;
+    box-shadow: 1px 1px 10px #e0dfe7;
+    border-radius: 10px;
+  }
+  
+  .order-details{
+    color: white;
+    align-items: center;
+    font-size: 1.2em;
+  }
+  
+  .order-item-image{
+    width: 50px;
+    height:50px;
+    
+  }
+  
+  .order-items{
+    margin-top:50px;
+  }
+  
+  .order-items{
+    padding:10px;
+    font-size: 1.3em;
+  }
+  
+  .order-credentiatls{
+    margin-top:20px;
+  }
+  
+  .order-credential{
+    margin:5px 0 5px 5px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-right: 0;
+    font-size: 1.2em;
+  }
+  
+  .order-left{
+    padding-left: 35%;
+  }
+  
+  .order-accept-btn,.order-reject-btn{
+    position:relative;
+    float: right;
+    margin:5px;
+    font-size: 1.1em;
+  }
+  
+  .order-search{
+    position:relative;
+    float: right;
+  }
