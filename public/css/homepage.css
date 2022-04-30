@@ -9,6 +9,8 @@ nav{
     background-color: #7e9c57;
     line-height: 75px;
     padding: 0px 80px;
+    display: flex;
+    justify-content: space-between;
 }
 nav .logo{
     float: left;
@@ -32,7 +34,6 @@ nav .logo p{
 	align-items: center;
   float: left;
   top: 18px;
-  margin-left: 60px;
 }
 
 .search-box a {
@@ -87,7 +88,7 @@ nav ul .active{
     cursor: pointer;
     float: right;
     display: none;
-    top: 30px;
+    top: 24px;
     position: relative;
 }
 #check{
@@ -117,6 +118,9 @@ nav ul .active{
         display: block;
         margin: 60px 0px;
         line-height: 5px;
+    }
+    .search-txt {
+    	width: 240px;
     }
     #check:checked ~ ul{
         left: 0;
@@ -148,17 +152,24 @@ nav ul .active{
         margin: 60px 0px;
         line-height: 5px;
     }
-    .search-box{
-      left: -100%;
+    .search{
+      left: -200%;
       position: fixed;
-      top: 80px;
+      top: 60px;
       transition: 0.5s ease;
+      justify-content: center;
+      display: flex;
+    }
+    .search-txt {
+      width: 200px;
     }
     #check:checked ~ ul{
         left: 0;
     }
-    #check:checked ~ .search-box{
+    #check:checked ~ .search{
         left: 0;
+        width: 100%;
+        margin: auto;
     }
 
 }
