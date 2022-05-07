@@ -54,6 +54,12 @@ const getItemById = async (pool, itemId) => {
     }
 };
 
+// Get order by orderId
+
+// Get items in an order by orderId
+
+// Get image_ids of an item by itemId
+
 // Add new item to the database
 const addItem = async (pool, itemId, name, description, price) => {
     try {
