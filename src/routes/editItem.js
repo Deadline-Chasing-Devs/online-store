@@ -4,6 +4,10 @@ const handler = () => {
     const editItemRouter = express.Router();
 
     // handle route
+    // added for testing purposes
+    editItemRouter.get("", (req, res) => {
+        res.render("editItem");
+    });
 
     return editItemRouter;
 };

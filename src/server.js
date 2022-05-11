@@ -72,13 +72,6 @@ const session = expressSession({
 });
 app.use(session);
 
-// Check session
-app.use((req, res, next) => {
-    if (!req.session.user) {
-        res.clearCookie(SESS_NAME);
-    }
-    next();
-});
 
 app.listen(PORT, () => console.log(`App running at http://localhost:${PORT}`));
 
@@ -101,7 +94,7 @@ const {
 app.use("/cart", cartRouter);
 app.use("/checkout", checkoutRouter);
 app.use("/dashboard", dashboardRouter);
-app.use("/edit-item", editItemRouter);
+app.use("/editItem", editItemRouter);
 app.use("/item", itemRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
