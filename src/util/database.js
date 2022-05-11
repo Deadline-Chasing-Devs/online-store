@@ -1,5 +1,6 @@
 import Item from "../models/item.js";
 import Vendor from "../models/vendor.js";
+import Order from "../models/order.js";
 
 // database query function
 const queryPromise = (pool, sql, values) =>
@@ -10,6 +11,7 @@ const queryPromise = (pool, sql, values) =>
             resolve(results);
         });
     });
+
 
 // getUserByUsername
 // get vendor object given username
@@ -60,7 +62,7 @@ const getOrderById = async (pool,orderId) => {
     try{
         results = await queryPromise(
             pool,
-            "SELECT * FROM order WHERE order_id=?",
+            "SELECT * FROM `order` WHERE order_id=?",
             [orderId]
         );
     }catch (error){
@@ -117,4 +119,19 @@ const getImageIdsByItemId = async (pool,itemId) => {
     return results;
 };
 
-export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById };
+const getAllOrders = async (pool) => {
+    let results;
+    try{
+        results = await queryPromise(
+            pool,
+            "SELECT * FROM `order`",[]
+        );
+    }catch (error){
+        console.log(error.message);
+        throw "Database Error";
+    }
+
+    return results;
+};
+
+export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById, getAllOrders};
