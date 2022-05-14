@@ -7,7 +7,13 @@ const handler = (pool) => {
     // handle route
     searchRouter.get("", async (req, res) => {
         const name = req.query.name;
-        const results = await searchItemByName(pool, name);
+        let results = await searchItemByName(pool, name);
+        results = results.map((item) => {
+            return {
+                name: item.name,
+                price: item.price
+            };
+        });
         // console.log(results);
         res.json(results);
     });
