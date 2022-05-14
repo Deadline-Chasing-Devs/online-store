@@ -75,4 +75,20 @@ const addItem = async (pool, itemId, name, description, price) => {
     }
 };
 
-export { getUserByUsername, getItemById, addItem };
+// Edit item
+const editItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `UPDATE item
+            SET name=?, description=?, price=?
+            WHERE item_id=?`,
+            [name, description, price, itemId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+export { getUserByUsername, getItemById, addItem, editItem };
