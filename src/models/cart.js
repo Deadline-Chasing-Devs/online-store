@@ -22,7 +22,9 @@ class Cart {
 
     removeItem(itemId) {
         if (itemId in this.items) {
-            delete this.items.itemId;
+            this.totalPrice -= this.items[itemId].price * this.items[itemId].qty;
+            this.itemQty--;
+            delete this.items[itemId];
         }
     }
 }
