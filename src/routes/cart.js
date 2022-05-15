@@ -49,6 +49,40 @@ const handler = (pool) => {
         });
     });
 
+    // Remove item from cart
+    const removeItemSchema = {
+        itemId: {
+            custom: {
+                options: (value, { req }) => {
+                    console.log(req.session.cart.items);
+                    // eslint-disable-next-line no-prototype-builtins
+                    if (!req.session.cart || !req.session.cart.items.hasOwnProperty(value)) {
+                        return Promise.reject("Invalid item id.");
+                    }
+                    return true;
+                },
+            },
+        },
+    };
+    cartRouter.post(
+        "/remove-item",
+        checkSchema(removeItemSchema),
+        (req, res) => {
+            const errors = validationResult(req);
+
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    errors: errors.array(),
+                });
+            }
+            req.session.cart = new Cart(req.session.cart);
+            req.session.cart.removeItem(req.body.itemId);
+            res.status(200).json({
+                success: true,
+                message: "Removed item from cart.",
+            });
+        }
+    );
     return cartRouter;
 };
 
