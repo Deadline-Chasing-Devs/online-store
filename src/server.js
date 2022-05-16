@@ -89,6 +89,7 @@ const {
     newItemRouter,
     orderRouter,
     ordersRouter,
+    productsRouter,
     searchRouter,
 } = router(pool);
 
@@ -102,5 +103,6 @@ app.use("/logout", logoutRouter);
 app.use("/new-item", newItemRouter);
 app.use("/order", orderRouter);
 app.use("/orders", ordersRouter);
+app.use("/products", productsRouter);
 app.use("searchRouter", searchRouter);
 app.use("/", homepageRouter);
