@@ -4,21 +4,93 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products</title>
+
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
       rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"
     />
-    <link href="css/vendor.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/vendorLayout.css" />
+    <link rel="stylesheet" href="css/orders.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- <link href="css/vendor.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="css/vendorLayout.css" />
   </head>
   <body>
-    <%- include('partials/navbar.ejs', {activeTab: "products"}) %>
-    <div class="container-fluid">
-      <div class="row">
-        <%- include('partials/sidebar.ejs') %>
+    <%- include('partials/navbar.ejs', {activeTab: "products"}) %> 
+    <%-include('partials/sidebar.ejs') %>
 
+    <div id="second" class="sub-division">
+      <div class="order-container">
+
+        <div style="width: 100%; background-color:rgb(117, 112, 112); height: 100px;">
+           --- search bar area ---
+        </div>
+
+        <!-- <div class="order-credentiatls">
+          <div class="row">
+            <div class="order-credential col">Customer name: Poorna</div>
+            <div class="order-credential left col">No. of items: n</div>
+            <div class="w-100"></div>
+            <div class="order-credential col">Date: 2022/05/01</div>
+            <div class="order-credential left col">Status: Accepted</div>
+          </div>
+        </div> -->
+        <div class="table-responsive table-all">
+          <table class="table table-striped table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Product #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%for(i=0; i<50; i++){%>
+              <tr>
+                <th scope="row">#P0110005<%=i %></th>
+                <td>Name</td>
+                <td>
+                  <a
+                    class="vendor-td"
+                    href="#"
+                    title="<%=i %> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                  >
+                    <%=i %> Lorem Ipsum is...
+                  </a>
+                </td>
+                <td>$399.00</td>
+                <td>In Stock</td>
+                <td>
+                  <button type="button" class="btn btn-primary">View</button>
+                </td>
+              </tr>
+              <%}%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="container-fluid">
+      <div class="row">
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div
             class="vendor-heading d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3"
@@ -35,44 +107,11 @@
             </div>
           </div>
           <div class="table-responsive top-space">
-            <table class="table table-striped table-sm table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Product #</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Availability</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%for(i=0; i<50; i++){%>
-                <tr>
-                  <th scope="row">#P0110005<%=i %></th>
-                  <td>Name</td>
-                  <td>
-                    <a
-                      class="vendor-td"
-                      href="#"
-                      title="<%=i %> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                    >
-                    <%=i %> Lorem Ipsum is...
-                    </a>
-                  </td>
-                  <td>$399.00</td>
-                  <td>In Stock</td>
-                  <td>
-                    <button type="button" class="btn btn-primary">View</button>
-                  </td>
-                </tr>
-                <%}%>
-              </tbody>
-            </table>
+            
           </div>
         </main>
       </div>
-    </div>
+    </div> -->
 
     <%- include('partials/scripts.ejs') %>
   </body>

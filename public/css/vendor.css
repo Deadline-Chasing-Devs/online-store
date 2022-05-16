@@ -114,6 +114,11 @@ body {
   background-color: white;
   padding-right: 100%; 
  }
+
+ .vendor-heading-2{
+  position:fixed;
+  background-color: white;
+ }
  
  .vendor-b{
    background-color: transparent;
@@ -151,4 +156,10 @@ body {
 	color:#FFF;
 	border-radius:0px;
 	text-align:center;
+}
+
+.vendor-form{
+  background-color: rgb(221, 218, 218);
+  border-radius: 5%;
+  
 }

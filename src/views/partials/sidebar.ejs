@@ -1,48 +1,88 @@
-<nav
-  id="sidebarMenu"
-  class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
->
-  <div class="position-sticky pt-3">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="#">
-          <span data-feather="home"></span>
-          Dashboard
+<div id="first" class="dashboard-container">
+  <div class="dashboard-sidebar-container">
+    <div class="dashboard-banner">
+      <span class="dashboard-toggle-icon"><i class="bx bx-menu"></i></span>
+      <span class="dashboard-text">Dashboard</span>
+    </div>
+    <ul class="dashboard-side-bar">
+      <div class="dashboard-account-details">
+        <div class="dashboard-icon">
+          <i class="bx bxs-store" style="color: rgb(0, 0, 0)"></i>
+        </div>
+        <div class="dashboard-user-credentials">
+          <div
+            class="hospital-name dashboard-credential-label"
+            style="font-size: 13.5pt"
+          >
+            Online Store
+          </div>
+          <div class="user-name dashboard-credential-label">Vendor</div>
+        </div>
+      </div>
+      <li
+        class="dashboard-list"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Home"
+      >
+        <a href="#" class="option">
+          <span class="dashboard-link-icon"><i class="bx bxs-home"></i></span>
+          <span class="text">Home</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="#">
-          <span data-feather="archive"></span>
-          Orders
+      <li
+        class="dashboard-list"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Orders"
+      >
+        <a href="#" class="option">
+          <span class="dashboard-link-icon"
+            ><img src="images/order.png" alt=""
+          /></span>
+          <span class="text">Orders</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="gift"></span>
-          Products
+      <li
+        class="dashboard-list"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Products"
+      >
+        <a
+          href="#"
+          class="option"
+          data-bs-toggle="modal"
+          data-bs-target="#modalfordata"
+        >
+          <span class="dashboard-link-icon"><img src="images/item.png" alt="" /></span>
+          <span class="text">Products</span>
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="gift"></span>
-          Link 1
+      <li
+        class="dashboard-list admin-settings"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Settings"
+      >
+        <a href="#" class="option">
+          <span class="dashboard-link-icon"><i class="bx bx-cog"></i></span>
+          <span class="text">Settings</span>
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="gift"></span>
-          Link 2
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="gift"></span>
-          Link 3
+      <li
+        class="dashboard-list"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Log Out"
+      >
+        <a href="#" class="option">
+          <span class="dashboard-link-icon"
+            ><i class="bx bx-log-out-circle bx-flip-horizontal"></i
+          ></span>
+          <span class="text">Log Out</span>
         </a>
       </li>
     </ul>
   </div>
-</nav>
+</div>
