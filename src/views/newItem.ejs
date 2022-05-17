@@ -8,139 +8,129 @@
     <%-include('partials/vendorUILinks.ejs') %>
     <link href="css/vendor.css" rel="stylesheet" />
     <title>new-Item</title>
-
   </head>
   <body>
-    <%- include('partials/navbar.ejs', {activeTab: "New Item"}) %>
-    <%- include('partials/sidebar.ejs') %>
+    <%- include('partials/navbar.ejs', {activeTab: "New Item"}) %> <%-
+    include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
-      <div class="order-container">
-        <div class="search-bar-area">
-          <div class="input-group">
-            <div class="form-outline">
-              <input type="search" id="form1" class="form-control" />
-              <label class="form-label" for="form1">Search Product</label>
+      <div class="container">
+
+        <form action="">
+
+          <div class="">
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label">ID</label> -->
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="colFormLabel"
+                  placeholder="Item ID"
+                />
+              </div>
             </div>
-            <button type="button" class="btn btn-primary">
-              <i class="fas fa-search"></i>
-            </button>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Name</label
+              > -->
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="colFormLabel"
+                  placeholder="Item Name"
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Description</label
+              > -->
+              <div class="col-sm-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="Item Description"
+                ></textarea>
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Price</label
+              > -->
+              <div class="col-sm-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="colFormLabel"
+                  placeholder="Item Price"
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Images</label
+              > -->
+              <div class="col-sm-10">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="formFileMultiple"
+                  multiple
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Availability</label
+              > -->
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios1"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="exampleRadios1">
+                    In Stock
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="exampleRadios2">
+                    Out Of Stock
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-dark">Add Item</button>
+                <button type="button" class="btn btn-dark">Discard</button>
+              </div>
+            </div>
           </div>
-        </div>
+
+        </form>
+        
       </div>
-
-      <div class="">
-
-        <div class="row mb-3">
-          <label for="colFormLabel" class="col-sm-2 col-form-label">ID</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              class="form-control"
-              id="colFormLabel"
-              placeholder="Item ID"
-            />
-          </div>
-        </div>
-  
-        <div class="row mb-3">
-          <label for="colFormLabel" class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              class="form-control"
-              id="colFormLabel"
-              placeholder="Item Name"
-            />
-          </div>
-        </div>
-  
-        <div class="row mb-3">
-          <label for="colFormLabel" class="col-sm-2 col-form-label"
-            >Description</label
-          >
-          <div class="col-sm-10">
-            <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              placeholder="Item Description"
-            ></textarea>
-          </div>
-        </div>
-  
-        <div class="row mb-3">
-          <label for="colFormLabel" class="col-sm-2 col-form-label">Price</label>
-          <div class="col-sm-10">
-            <input
-              type="number"
-              class="form-control"
-              id="colFormLabel"
-              placeholder="Item Price"
-            />
-          </div>
-        </div>
-  
-        <div class="row mb-3">
-          <label for="colFormLabel" class="col-sm-2 col-form-label"
-            >Images</label
-          >
-          <div class="col-sm-10">
-            <input
-              class="form-control"
-              type="file"
-              id="formFileMultiple"
-              multiple
-            />
-          </div>
-        </div>
-  
-        <div class="row mb-3">
-          <label for="colFormLabel" class="col-sm-2 col-form-label"
-            >Availability</label
-          >
-          <div class="col-sm-10">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios1"
-                value="option1"
-                checked
-              />
-              <label class="form-check-label" for="exampleRadios1">
-                In Stock
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios2"
-                value="option2"
-              />
-              <label class="form-check-label" for="exampleRadios2">
-                Out Of Stock
-              </label>
-            </div>
-          </div>
-        </div>
-  
-        <div class="row mb-3"></div>
-  
-        <div class="row mb-3">
-          <button class="btn btn-primary" type="submit">Add New Item</button>
-        </div>
-  
-        <div class="row mb-3">
-          <button class="btn btn-primary" type="submit">Discard</button>
-        </div>
-      </div>
-
     </div>
-
 
     <%- include('partials/scripts.ejs') %>
   </body>
