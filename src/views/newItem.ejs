@@ -7,6 +7,8 @@
 
     <%-include('partials/vendorUILinks.ejs') %>
     <link href="css/vendor.css" rel="stylesheet" />
+    <link href="css/newItem.css" rel="stylesheet" />
+
     <title>new-Item</title>
   </head>
   <body>
@@ -15,12 +17,12 @@
 
     <div id="second" class="sub-division">
       <div class="container">
-
         <form action="">
-
           <div class="">
             <div class="row mb-3">
-              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label">ID</label> -->
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >ID</label
+              >
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -30,11 +32,11 @@
                 />
               </div>
             </div>
-  
+
             <div class="row mb-3">
-              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
                 >Name</label
-              > -->
+              >
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -44,11 +46,11 @@
                 />
               </div>
             </div>
-  
+
             <div class="row mb-3">
-              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
                 >Description</label
-              > -->
+              >
               <div class="col-sm-10">
                 <textarea
                   class="form-control"
@@ -58,11 +60,11 @@
                 ></textarea>
               </div>
             </div>
-  
+
             <div class="row mb-3">
-              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
                 >Price</label
-              > -->
+              >
               <div class="col-sm-10">
                 <input
                   type="number"
@@ -72,25 +74,11 @@
                 />
               </div>
             </div>
-  
+
             <div class="row mb-3">
-              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >Images</label
-              > -->
-              <div class="col-sm-10">
-                <input
-                  class="form-control"
-                  type="file"
-                  id="formFileMultiple"
-                  multiple
-                />
-              </div>
-            </div>
-  
-            <div class="row mb-3">
-              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
                 >Availability</label
-              > -->
+              >
               <div class="col-sm-10">
                 <div class="form-check">
                   <input
@@ -118,20 +106,40 @@
                 </div>
               </div>
             </div>
-            <div class="">
-              
+
+            <div class="row mb-3">
+              <div class="col-sm-12">
+                <article>
+                  <label class="form-check-label" for="files"
+                    >Select multiple files</label
+                  >
+                  <input class="form-control" id="files" type="file" multiple />
+                </article>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-12">
+                <article>
+                  <div class="overflow-auto" style="height:300px;border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ;">
+                    <output id="result" />
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="mb-3">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-dark">Add Item</button>
-                <button type="button" class="btn btn-dark">Discard</button>
+                <button type="button" class="btn btn-success">Submit</button>
+                <button type="button" class="btn btn-danger">Clear</button>
               </div>
             </div>
           </div>
-
         </form>
-        
       </div>
     </div>
 
     <%- include('partials/scripts.ejs') %>
+    <script src="javascript/vendorNewItem.js"></script>
   </body>
 </html>

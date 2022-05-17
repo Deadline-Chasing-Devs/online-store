@@ -127,6 +127,7 @@
   display: block;
   display: flex;
   color: white;
+  background-color: #3a88fd;
 }
 .dashboard-side-bar li a .text {
   font-size: 14px;
@@ -160,6 +161,7 @@
   min-width: 50px;
   font-size: 20px;
   margin-right: 25px;
+  /* background-color:#3a88fd; */
 }
 
 /* .dashboard-side-bar li:nth-child(8) {
