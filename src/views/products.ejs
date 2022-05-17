@@ -5,43 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/vendorLayout.css" />
+    <%-include('partials/vendorUILinks.ejs') %>
+
     <link rel="stylesheet" href="css/orders.css" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <!-- <link href="css/vendor.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="css/vendorLayout.css" />
+    <link rel="stylesheet" href="css/vendorProducts.css" />
   </head>
+
   <body>
-    <%- include('partials/navbar.ejs', {activeTab: "products"}) %> 
+    <%- include('partials/navbar.ejs', {activeTab: "Products"}) %>
     <%-include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
       <div class="order-container">
-
-        <div style="width: 100%; background-color:rgb(117, 112, 112); height: 100px;">
-           --- search bar area ---
+        <div class="search-bar-area">
+          <div class="input-group">
+            <div class="form-outline">
+              <input type="search" id="form1" class="form-control" />
+              <label class="form-label" for="form1">Search Product</label>
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
         </div>
-
-        <!-- <div class="order-credentiatls">
+<!-- 
+        <div class="order-credentiatls">
           <div class="row">
             <div class="order-credential col">Customer name: Poorna</div>
             <div class="order-credential left col">No. of items: n</div>

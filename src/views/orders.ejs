@@ -5,30 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/vendorLayout.css" />
-    <link rel="stylesheet" href="css/orders.css" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <%-include('partials/vendorUILinks.ejs') %>
 
     <!-- <link rel="stylesheet" href="css/order.css"> -->
+    <link rel="stylesheet" href="css/vendorLayout.css" />
+    <link rel="stylesheet" href="css/orders.css" />
+
     <title>Orders</title>
   </head>
   <body>
@@ -36,48 +18,74 @@
     <%-include('partials/sidebar.ejs');%>
 
     <div id="second" class="sub-division">
-      <div class="order-container">
-        <!-- <div class="order-credentiatls">
-          <div class="row">
-            <div class="order-credential col">Customer name: Poorna</div>
-            <div class="order-credential left col">No. of items: n</div>
-            <div class="w-100"></div>
-            <div class="order-credential col">Date: 2022/05/01</div>
-            <div class="order-credential left col">Status: Accepted</div>
+      <div class="container">
+        <div class="search-bar-area row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+                <label class="form-label" for="form1">Search Order</label>
+              </div>
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
           </div>
-        </div> -->
-        <div class="table-responsive table-all">
-          <table class="table table-striped table-sm table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Order #</th>
-                <th scope="col">Purchased On</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Subtotal</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%for(i=0; i<50; i++){%><tr>
-                <th scope="row">#00110005</th>
-                <td>2022-04-26 22:30:56</td>
-                <td>Mr. Place Holder</td>
-                <td>$399.00</td>
-                <td>Pending</td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="console.log('click')"
-                  >
-                    View
-                  </button>
-                </td>
-              </tr> <%}%>
-            </tbody>
-          </table>
         </div>
+
+        
+
+        <div class="row">
+
+          <div class="order-container col-md-12">
+            <!-- <div class="order-credentiatls">
+              <div class="row">
+                <div class="order-credential col">Customer name: Poorna</div>
+                <div class="order-credential left col">No. of items: n</div>
+                <div class="w-100"></div>
+                <div class="order-credential col">Date: 2022/05/01</div>
+                <div class="order-credential left col">Status: Accepted</div>
+              </div>
+            </div> -->
+            <div class="table-responsive table-all">
+              <table class="table table-striped table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Order #</th>
+                    <th scope="col">Purchased On</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for(i=0; i<50; i++){%>
+                  <tr>
+                    <th scope="row">#00110005</th>
+                    <td>2022-04-26 22:30:56</td>
+                    <td>Mr. Place Holder</td>
+                    <td>$399.00</td>
+                    <td>Pending</td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="console.log('click')"
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                  <%}%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        
       </div>
     </div>
 
