@@ -9,6 +9,7 @@ import logoutRouter from "./logout.js";
 import newItemRouter from "./newItem.js";
 import orderRouter from "./order.js";
 import ordersRouter from "./orders.js";
+import productsRouter from "./products.js";
 import searchRouter from "./search.js";
 
 const handler = (pool) => {
@@ -24,6 +25,7 @@ const handler = (pool) => {
         newItemRouter: newItemRouter(pool),
         orderRouter: orderRouter(pool),
         ordersRouter: ordersRouter(pool),
+        productsRouter: productsRouter(pool),
         searchRouter: searchRouter(pool),
     };
 };

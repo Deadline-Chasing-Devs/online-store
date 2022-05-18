@@ -134,4 +134,53 @@ const getAllOrders = async (pool) => {
     return results;
 };
 
-export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById, getAllOrders};
+// Add new item to the database
+const addItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `INSERT INTO item 
+            (item_id, name, description, price)
+            VALUES (?, ?, ?, ?)`,
+            [itemId, name, description, price]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+};
+
+// Edit item
+const editItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `UPDATE item
+            SET name=?, description=?, price=?
+            WHERE item_id=?`,
+            [name, description, price, itemId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+// Search item by name
+const searchItemByName = async (pool, name) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT * FROM item
+            WHERE LOWER(name) LIKE LOWER(?)`,
+            ["%" + name + "%"]
+        );
+
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById, getAllOrders, addItem, editItem, searchItemByName};

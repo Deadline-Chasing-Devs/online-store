@@ -7,26 +7,23 @@
 
     <%-include('partials/vendorUILinks.ejs') %>
 
-    <!-- <link rel="stylesheet" href="css/order.css"> -->
-    
     <link rel="stylesheet" href="css/orders.css" />
-
-    <title>Orders</title>
+    <link rel="stylesheet" href="css/vendorLayout.css" />
+    <link rel="stylesheet" href="css/vendorProducts.css" />
   </head>
+
   <body>
-    <%- include('partials/navbar.ejs', {activeTab: "Orders"}) %>
-    <%-include('partials/sidebar.ejs');%>
+    <%- include('partials/navbar.ejs', {activeTab: "Products"}) %>
+    <%-include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
       <div class="container">
-        <!-- Insert Page Content here -->
-        
         <div class="search-bar-area row">
           <div class="col-md-12">
             <div class="input-group">
               <div class="form-outline">
                 <input type="search" id="form1" class="form-control" />
-                <label class="form-label" for="form1">Search Order</label>
+                <label class="form-label" for="form1">Search Product</label>
               </div>
               <button type="button" class="btn btn-primary">
                 <i class="fas fa-search"></i>
@@ -35,10 +32,7 @@
           </div>
         </div>
 
-        
-
         <div class="row">
-
           <div class="order-container col-md-12">
             <!-- <div class="order-credentiatls">
               <div class="row">
@@ -53,28 +47,32 @@
               <table class="table table-striped table-sm table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">Order #</th>
-                    <th scope="col">Purchased On</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Subtotal</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Product #</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Availability</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <%for(i=0; i<50; i++){%>
                   <tr>
-                    <th scope="row">#00110005</th>
-                    <td>2022-04-26 22:30:56</td>
-                    <td>Mr. Place Holder</td>
-                    <td>$399.00</td>
-                    <td>Pending</td>
+                    <th scope="row">#P0110005<%=i %></th>
+                    <td>Name</td>
                     <td>
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="console.log('click')"
+                      <a
+                        class="vendor-td"
+                        href="#"
+                        title="<%=i %> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                       >
+                        <%=i %> Lorem Ipsum is...
+                      </a>
+                    </td>
+                    <td>$399.00</td>
+                    <td>In Stock</td>
+                    <td>
+                      <button type="button" class="btn btn-primary">
                         View
                       </button>
                     </td>
@@ -84,12 +82,9 @@
               </table>
             </div>
           </div>
-
         </div>
-
-        
       </div>
     </div>
-    <%- include('partials/scripts.ejs', {activeTab: "products"}) %>
+    <%- include('partials/scripts.ejs') %>
   </body>
 </html>
