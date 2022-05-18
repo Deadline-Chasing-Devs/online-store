@@ -104,5 +104,5 @@ app.use("/new-item", newItemRouter);
 app.use("/order", orderRouter);
 app.use("/orders", ordersRouter);
 app.use("/products", productsRouter);
-app.use("searchRouter", searchRouter);
+app.use("/search", searchRouter);
 app.use("/", homepageRouter);

@@ -1,9 +1,22 @@
 import express from "express";
+import { searchItemByName } from "../util/database.js";
 
-const handler = () => {
+const handler = (pool) => {
     const searchRouter = express.Router();
 
     // handle route
+    searchRouter.get("", async (req, res) => {
+        const name = req.query.name;
+        let results = await searchItemByName(pool, name);
+        results = results.map((item) => {
+            return {
+                name: item.name,
+                price: item.price
+            };
+        });
+        // console.log(results);
+        res.json(results);
+    });
 
     return searchRouter;
 };

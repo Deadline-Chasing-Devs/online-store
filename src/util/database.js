@@ -12,7 +12,6 @@ const queryPromise = (pool, sql, values) =>
         });
     });
 
-
 // getUserByUsername
 // get vendor object given username
 const getUserByUsername = async (pool, username) => {
@@ -57,19 +56,19 @@ const getItemById = async (pool, itemId) => {
 };
 
 // Get order by orderId
-const getOrderById = async (pool,orderId) => {
+const getOrderById = async (pool, orderId) => {
     let results;
-    try{
+    try {
         results = await queryPromise(
             pool,
             "SELECT * FROM `order` WHERE order_id=?",
             [orderId]
         );
-    }catch (error){
+    } catch (error) {
         throw "Database Error";
     }
 
-    if(results.length){
+    if (results.length) {
         return new Order(
             results[0].order_id,
             results[0].customer_name,
@@ -83,7 +82,7 @@ const getOrderById = async (pool,orderId) => {
 };
 
 // Get items in an order by orderId
-const getItemsByOrderId = async (pool,orderId) => {
+const getItemsByOrderId = async (pool, orderId) => {
     let results;
     try {
         results = await queryPromise(
@@ -91,20 +90,20 @@ const getItemsByOrderId = async (pool,orderId) => {
             "SELECT item_id FROM order_item WHERE order_id=?",
             [orderId]
         );
-    }catch (error){
+    } catch (error) {
         throw "Database Error";
     }
 
     let i = 0;
     const items = [];
-    while (i < results.length){
+    while (i < results.length) {
         items[i] = getItemById(results[i]);
     }
     return items;
 };
 
 // Get image_ids of an item by itemId
-const getImageIdsByItemId = async (pool,itemId) => {
+const getImageIdsByItemId = async (pool, itemId) => {
     let results;
     try {
         results = await queryPromise(
@@ -112,7 +111,7 @@ const getImageIdsByItemId = async (pool,itemId) => {
             "SELECT image_id FROM item_image WHERE item_id = ?",
             [itemId]
         );
-    }catch (error){
+    } catch (error) {
         throw "Database Error";
     }
 
@@ -121,12 +120,9 @@ const getImageIdsByItemId = async (pool,itemId) => {
 
 const getAllOrders = async (pool) => {
     let results;
-    try{
-        results = await queryPromise(
-            pool,
-            "SELECT * FROM `order`",[]
-        );
-    }catch (error){
+    try {
+        results = await queryPromise(pool, "SELECT * FROM `order`", []);
+    } catch (error) {
         console.log(error.message);
         throw "Database Error";
     }
@@ -134,4 +130,30 @@ const getAllOrders = async (pool) => {
     return results;
 };
 
-export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById, getAllOrders};
+// Search item by name
+const searchItemByName = async (pool, name) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT * FROM item
+            WHERE LOWER(name) LIKE LOWER(?)`,
+            ["%" + name + "%"]
+        );
+
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+export {
+    getUserByUsername,
+    getItemById,
+    getItemsByOrderId,
+    getImageIdsByItemId,
+    getOrderById,
+    getAllOrders,
+    searchItemByName
+};
