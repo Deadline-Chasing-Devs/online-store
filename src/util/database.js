@@ -91,4 +91,22 @@ const editItem = async (pool, itemId, name, description, price) => {
     }
 };
 
-export { getUserByUsername, getItemById, addItem, editItem };
+// Search item by name
+const searchItemByName = async (pool, name) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT * FROM item
+            WHERE LOWER(name) LIKE LOWER(?)`,
+            ["%" + name + "%"]
+        );
+
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+export { getUserByUsername, getItemById, addItem, editItem, searchItemByName};
