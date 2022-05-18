@@ -1,0 +1,338 @@
+/*SideBar Styles ------------------------------------*/
+.dashboard-container {
+  height: 100%;
+  /* width: 100%; */
+}
+.dashboard-banner {
+  /* background-color: #0d6dfd60; */
+  background-color: #0d6dfdd0;
+  backdrop-filter: blur(50px);
+
+  margin: 0;
+  position: relative;
+  bottom: 0px;
+  padding: 0;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+.dashboard-user-credentials {
+  padding: 0;
+  width: 80%;
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 20px;
+  letter-spacing: 2px;
+
+  color: rgb(0, 0, 0);
+
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-user-credentials-shrink {
+  font-size: 0px;
+  line-height: 5px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-account-details {
+  border-bottom: 2px solid white;
+  display: flex;
+  flex-direction: row;
+
+  height: auto;
+}
+
+.dashboard-credential-label {
+  padding: 6px 0;
+}
+
+.dashboard-icon,
+.dashboard-toggle-icon {
+  margin: 0;
+  position: relative;
+  text-align: center;
+  font-size: 35px;
+  top: 5px;
+  padding-left: 0;
+  margin-right: 15px;
+  float: left;
+  min-width: 55px;
+  color: rgb(255, 255, 255);
+}
+.dashboard-sidebar-container {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 20%;
+  min-width: 60px;
+  box-sizing: border-box;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-side-bar {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding-left: 0px;
+  background-color: #0d6dfdd0;
+
+  backdrop-filter: blur(50px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.side-minimized {
+  width: 60px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-side-bar li {
+  list-style: none;
+  line-height: 55px;
+  max-height: 55px;
+  position: relative;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+.dashboard-text {
+  position: relative;
+  margin-top: 10px;
+  line-height: 35px;
+  font-size: 15px;
+  font-weight: bold;
+
+  letter-spacing: 6px;
+}
+
+.dashboard-side-bar li a {
+  text-decoration: none;
+  width: 100%;
+  position: relative;
+  font-size: 18px;
+  display: block;
+  display: flex;
+  color: white;
+  background-color: #3a88fd;
+}
+.dashboard-side-bar li a .text {
+  font-size: 14px;
+}
+.dashboard-side-bar li .option.active {
+  color: black;
+  background-color: white;
+}
+.dashboard-side-bar li:hover a {
+  background-color: white;
+  color: black;
+}
+.dashboard-side-bar li:hover a img {
+  filter: brightness(0);
+  -webkit-filter: brightness(0);
+}
+.dashboard-side-bar li:hover a .link-icon i {
+  color: black;
+}
+.dashboard-link-icon-img {
+  position: relative;
+  width: 20px;
+  height: 25px;
+  min-width: 25px;
+  border-collapse: collapse;
+}
+.dashboard-img-active {
+  filter: brightness(0);
+}
+.dashboard-link-icon {
+  min-width: 50px;
+  font-size: 20px;
+  margin-right: 25px;
+  /* background-color:#3a88fd; */
+}
+
+/* .dashboard-side-bar li:nth-child(8) {
+    margin-bottom: 120px;
+  } */
+
+.dashboard-side-bar li:last-child {
+  position: absolute;
+  bottom: 53px;
+}
+
+.admin-settings {
+  margin-bottom: 280px;
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboard-sidebar-container {
+    width: 60px;
+  }
+  .dashboard-side-bar {
+    width: 60px;
+  }
+}
+
+/*sub divisions styles--------------------------*/
+.sub-division {
+  margin: 0;
+  float: right;
+  right: 0;
+  height: 100%;
+  width: 79%;
+  transition: all 0.2s ease-in-out;
+}
+
+.sub-division-user {
+  width: 81%;
+}
+
+@media screen and (max-width: 1200px) {
+  .sub-division {
+    width: 95%;
+    position: relative;
+    left: 70px;
+  }
+}
+
+.division-maximized {
+  width: 90%;
+
+  transition: all 0.2s ease-in-out;
+}
+
+/* Side bar */
+#first {
+  position: fixed;
+  z-index: 2;
+}
+
+/* Main block with content */
+#second {
+  z-index: 1;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  padding-right: 5vw;
+  margin-right: 70px;
+  padding-left: 8vw;
+}
+
+.order-header {
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  height: 52.5px;
+  background-color: #000000;
+  left: 60px;
+}
+
+.Page-heading {
+  position: fixed;
+  left: 75px;
+  margin-top: 10px;
+  font-size: 3rem !important;
+}
+
+.nav-infoblock {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  right: 1%;
+  margin-right: 1vw;
+}
+
+.user-image {
+  width: 40px;
+  float: left;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.nav-dropdown {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.user-name {
+  color: #000000;
+  font-size: large;
+}
+
+.user-name:hover {
+  color: black;
+}
+.user-name::after {
+  color: #000;
+}
+
+@media screen and (max-width: 1200px) {
+  .nav-dropdown > a > span {
+    display: none;
+  }
+
+  .nav-infoblock {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    margin-right: 1vw;
+  }
+}
+
+.logout-icon {
+  position: absolute;
+  top: 75%;
+  right: 49%;
+  font-size: medium !important;
+}
+
+.vendor-heading-text {
+  position: fixed;
+  left: 40vw;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* footer css if needed */
+/* .footer {
+  z-index: 4;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  text-align: center;
+} */
+
+.nav-bar-size {
+  height: 56px;
+  width: 98%;
+}
+
+body {
+  /* background-image: url("https://wallpapercave.com/wp/wp3537552.jpg"); */
+  /* background-repeat: no-repeat; */
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.search-bar-area {
+  margin-top: 32px;
+  width: 100%;
+  
+  height: 60px;
+  border: #000;
+}
