@@ -1,5 +1,6 @@
 import Item from "../models/item.js";
 import Vendor from "../models/vendor.js";
+import Order from "../models/order.js";
 
 // database query function
 const queryPromise = (pool, sql, values) =>
@@ -10,6 +11,7 @@ const queryPromise = (pool, sql, values) =>
             resolve(results);
         });
     });
+
 
 // getUserByUsername
 // get vendor object given username
@@ -55,40 +57,81 @@ const getItemById = async (pool, itemId) => {
 };
 
 // Get order by orderId
-
-// Get items in an order by orderId
-
-// Get image_ids of an item by itemId
-
-// Add new item to the database
-const addItem = async (pool, itemId, name, description, price) => {
-    try {
-        await queryPromise(
+const getOrderById = async (pool,orderId) => {
+    let results;
+    try{
+        results = await queryPromise(
             pool,
-            `INSERT INTO item 
-            (item_id, name, description, price)
-            VALUES (?, ?, ?, ?)`,
-            [itemId, name, description, price]
+            "SELECT * FROM `order` WHERE order_id=?",
+            [orderId]
         );
-    } catch (error) {
+    }catch (error){
         throw "Database Error";
+    }
+
+    if(results.length){
+        return new Order(
+            results[0].order_id,
+            results[0].customer_name,
+            results[0].customer_email,
+            results[0].customer_address,
+            results[0].customer_contact_num,
+            results[0].status,
+            results[0].date_time
+        );
     }
 };
 
-// Edit item
-const editItem = async (pool, itemId, name, description, price) => {
+// Get items in an order by orderId
+const getItemsByOrderId = async (pool,orderId) => {
+    let results;
     try {
-        await queryPromise(
+        results = await queryPromise(
             pool,
-            `UPDATE item
-            SET name=?, description=?, price=?
-            WHERE item_id=?`,
-            [name, description, price, itemId]
+            "SELECT item_id FROM order_item WHERE order_id=?",
+            [orderId]
         );
-    } catch (error) {
+    }catch (error){
+        throw "Database Error";
+    }
+
+    let i = 0;
+    const items = [];
+    while (i < results.length){
+        items[i] = getItemById(results[i]);
+    }
+    return items;
+};
+
+// Get image_ids of an item by itemId
+const getImageIdsByItemId = async (pool,itemId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT image_id FROM item_image WHERE item_id = ?",
+            [itemId]
+        );
+    }catch (error){
+        throw "Database Error";
+    }
+
+    return results;
+};
+
+const getAllOrders = async (pool) => {
+    let results;
+    try{
+        results = await queryPromise(
+            pool,
+            "SELECT * FROM `order`",[]
+        );
+    }catch (error){
         console.log(error.message);
         throw "Database Error";
     }
+
+    return results;
 };
 
-export { getUserByUsername, getItemById, addItem, editItem };
+export { getUserByUsername, getItemById, getItemsByOrderId, getImageIdsByItemId, getOrderById, getAllOrders};
