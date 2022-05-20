@@ -93,7 +93,7 @@ nav ul .active{
     cursor: pointer;
     float: right;
     display: none;
-    top: 24px;
+    top: 2px;
     position: relative;
 }
 #check{
@@ -185,3 +185,74 @@ nav ul .active{
 
 }
 /*nav bar end*/
+
+/*cart items start*/
+.cart-page{
+    font-family: sans-serif;
+    margin: 80px 10%;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+th{
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #167b01;
+    font-weight: normal;
+
+}
+td{
+    padding: 10px 5px;
+}
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+td a{
+     color: #ff523b;
+     font-size: 12px;
+}
+td img{
+    width: 100px;
+    margin-right: 10px;
+}
+.total-price{
+    display: flex;
+    justify-content: flex-end;
+}
+.total-price table{
+    border-top: 3px solid #167b01;
+    width: 100%;
+    max-width: 400px ;
+}
+td:last-child{
+    text-align: right;
+}
+th:last-child{
+    text-align: right;
+}
+.total-price td a{
+    color: #fff;
+    background: #009DD2;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 50px;
+    border-radius: 20px;
+    display: flex;
+}
+.total-price .addtocart{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  
+}
+/*cart items end*/
