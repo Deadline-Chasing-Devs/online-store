@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import expressMysqlSession from "express-mysql-session";
 import expressSession from "express-session";
+import logger from "morgan";
 import {
     PORT,
     MYSQL_DATABASE,
@@ -51,6 +52,7 @@ app.disable("x-powered-by");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(logger("dev"));
 
 // Session store
 const MySQLStore = expressMysqlSession(expressSession);
@@ -72,14 +74,6 @@ const session = expressSession({
 });
 app.use(session);
 
-// Check session
-app.use((req, res, next) => {
-    if (!req.session.user) {
-        res.clearCookie(SESS_NAME);
-    }
-    next();
-});
-
 app.listen(PORT, () => console.log(`App running at http://localhost:${PORT}`));
 
 // Routing
@@ -95,6 +89,7 @@ const {
     newItemRouter,
     orderRouter,
     ordersRouter,
+    productsRouter,
     searchRouter,
 } = router(pool);
 
@@ -108,5 +103,6 @@ app.use("/logout", logoutRouter);
 app.use("/new-item", newItemRouter);
 app.use("/order", orderRouter);
 app.use("/orders", ordersRouter);
-app.use("searchRouter", searchRouter);
+app.use("/products", productsRouter);
+app.use("/search", searchRouter);
 app.use("/", homepageRouter);

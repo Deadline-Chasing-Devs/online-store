@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `item` (
-  `item_id` varchar(20) NOT NULL,
+  `item_id` varchar(36) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` text DEFAULT NULL,
   `price` decimal(10,0) NOT NULL
@@ -36,8 +36,8 @@ CREATE TABLE `item` (
 --
 
 CREATE TABLE `item_image` (
-  `item_id` varchar(20) NOT NULL,
-  `image_id` varchar(20) NOT NULL
+  `item_id` varchar(36) NOT NULL,
+  `image_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -47,7 +47,7 @@ CREATE TABLE `item_image` (
 --
 
 CREATE TABLE `order` (
-  `order_id` varchar(20) NOT NULL,
+  `order_id` varchar(36) NOT NULL,
   `customer_name` varchar(50) NOT NULL,
   `customer_address` varchar(100) NOT NULL,
   `customer_contact_num` varchar(15) NOT NULL,
@@ -63,8 +63,8 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `order_item` (
-  `order_id` varchar(20) NOT NULL,
-  `item_id` varchar(20) NOT NULL,
+  `order_id` varchar(36) NOT NULL,
+  `item_id` varchar(36) NOT NULL,
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -77,7 +77,7 @@ CREATE TABLE `order_item` (
 
 CREATE TABLE `vendor` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(128) NOT NULL
+  `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

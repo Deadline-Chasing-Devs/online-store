@@ -1,4 +1,6 @@
+import Item from "../models/item.js";
 import Vendor from "../models/vendor.js";
+import Order from "../models/order.js";
 
 // database query function
 const queryPromise = (pool, sql, values) =>
@@ -30,4 +32,128 @@ const getUserByUsername = async (pool, username) => {
     return null;
 };
 
-export { getUserByUsername };
+// Get item by itemId
+const getItemById = async (pool, itemId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT * FROM item WHERE item_id=?",
+            [itemId]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+
+    if (results.length) {
+        return new Item(
+            results[0].item_id,
+            results[0].name,
+            results[0].description,
+            results[0].price
+        );
+    }
+};
+
+// Get order by orderId
+const getOrderById = async (pool, orderId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT * FROM `order` WHERE order_id=?",
+            [orderId]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+
+    if (results.length) {
+        return new Order(
+            results[0].order_id,
+            results[0].customer_name,
+            results[0].customer_email,
+            results[0].customer_address,
+            results[0].customer_contact_num,
+            results[0].status,
+            results[0].date_time
+        );
+    }
+};
+
+// Get items in an order by orderId
+const getItemsByOrderId = async (pool, orderId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT item_id FROM order_item WHERE order_id=?",
+            [orderId]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+
+    let i = 0;
+    const items = [];
+    while (i < results.length) {
+        items[i] = getItemById(results[i]);
+    }
+    return items;
+};
+
+// Get image_ids of an item by itemId
+const getImageIdsByItemId = async (pool, itemId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT image_id FROM item_image WHERE item_id = ?",
+            [itemId]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+
+    return results;
+};
+
+const getAllOrders = async (pool) => {
+    let results;
+    try {
+        results = await queryPromise(pool, "SELECT * FROM `order`", []);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+
+    return results;
+};
+
+// Search item by name
+const searchItemByName = async (pool, name) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT * FROM item
+            WHERE LOWER(name) LIKE LOWER(?)`,
+            ["%" + name + "%"]
+        );
+
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+export {
+    getUserByUsername,
+    getItemById,
+    getItemsByOrderId,
+    getImageIdsByItemId,
+    getOrderById,
+    getAllOrders,
+    searchItemByName
+};

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cart</title>
+    </head>
+    <script>
+        function addItemOne() {
+            fetch(
+                "http://localhost:3000/cart/add-item",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            itemId: "bf2d2630-a453-4315-849d-b8badc63b6a7",
+                            quantity: 1
+                        }
+                    )
+                }).then(res => res.json()).then(data => console.log(data));
+        }
+        function removeItemOne() {
+            fetch(
+                "http://localhost:3000/cart/remove-item",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            itemId: "bf2d2630-a453-4315-849d-b8badc63b6a7",
+                        }
+                    )
+                }).then(res => res.json()).then(data => console.log(data));
+        }
+    </script>
+    <body>
+        <h1>Cart</h1>
+        <button onclick="addItemOne()">Add item 01</button>
+        <button onclick="removeItemOne()">Remove item 01</button>
+        <%- JSON.stringify(cart) %>
+    </body>
+</html>
