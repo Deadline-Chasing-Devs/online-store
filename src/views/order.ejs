@@ -14,19 +14,51 @@
       <%- include('partials/navbar.ejs', {activeTab: "Order"}) %>
       <%-include('partials/sidebar.ejs');%>
         <div id = "second" class="sub-division">
-            <div class="order-container">
-              
-              <div class="order-credentiatls">
-                <div class="row">
-                  <div class="order-credential col">Customer name: Poorna</div>
-                  <div class="order-credential left col">No. of items: n</div>
-                  <div class="w-100"></div>
-                  <div class="order-credential  col">Date: 2022/05/01</div>
-                  <div class="order-credential left col">Status: Accepted</div>
+          <div class="order-container">
+            <div class="order-view">
+              Order ID : 123456789OD
+            </div>
+            <div class="order-details-content">
+              <div class="order-shipping-details">
+                Shipping Details
+                <hr>
+                <div class="order-shipping">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <div class="order-field form-control">
+                      Poorna
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <div class="order-field form-control">
+                      Cooray
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <div class="order-field form-control">
+                      Poorna.19@cse.mrt.ac.lk
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Contact No</label>
+                    <div class="order-field form-control">
+                      0761234567
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <div class="order-field form-control">
+                      12/A, bla bla rd, Bla bla
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="order-items table-responsive">
-                <table class="table">
+              <div class="order-detail">
+                Order Details
+                <hr>
+                <table class="table table-responsive table-all table-striped table-sm table-hover">
                   <thead>
                     <tr class="order">
                       <th scope="col">#</th>
@@ -56,13 +88,30 @@
                     </tr>
                   </tbody>
                 </table>
+                  <div class="order-total">
+                    <div class="order-total-label">
+                      Grand Total :
+                    </div>
+                    <div class="order-total-value">
+                      Rs. 12000.00
+                    </div>
+                  </div>
+                  <div class="order-status form-group">
+                    <label>
+                      Order Status :
+                    </label>
+                    <form action="">
+                      <select class="order-status-select form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">Dispatched</option>
+                        <option value="2">Rejected</option>
+                      </select>
+                  </div>
               </div>
-               <form action="post">
-                <button type="button" class="order-accept-btn btn btn-outline-primary">Approve</button>
-                <button type="button" class="order-reject-btn btn btn-outline-primary">Reject</button>
-               </form> 
             </div>
-        </div>
+          </div>
+          <button type="submit" class="order-accept-btn btn btn-primary">Update Status</button>
+        </form>
     </div>
     <script src="js/sideBar.js"></script>
 </body>
