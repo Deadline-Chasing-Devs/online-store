@@ -130,6 +130,37 @@ const getAllOrders = async (pool) => {
     return results;
 };
 
+// Add new item to the database
+const addItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `INSERT INTO item 
+            (item_id, name, description, price)
+            VALUES (?, ?, ?, ?)`,
+            [itemId, name, description, price]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+};
+
+// Edit item
+const editItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `UPDATE item
+            SET name=?, description=?, price=?
+            WHERE item_id=?`,
+            [name, description, price, itemId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 // Search item by name
 const searchItemByName = async (pool, name) => {
     let results;
@@ -155,5 +186,7 @@ export {
     getImageIdsByItemId,
     getOrderById,
     getAllOrders,
-    searchItemByName
+    addItem,
+    editItem,
+    searchItemByName,
 };
