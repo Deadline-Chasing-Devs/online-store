@@ -13,7 +13,6 @@ const handler = (pool) => {
         res.render("order",{order: order});
 
     });
-
     return orderRouter;
 };
 
