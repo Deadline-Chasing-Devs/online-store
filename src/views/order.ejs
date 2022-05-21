@@ -6,19 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <%-include('partials/vendorUILinks.ejs') %>
-    <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="/css/order.css">
     <title>Order</title>
 </head>
 <body>
     <div class="dashboard-container">
-      <h1><%= JSON.stringify(order)%></h1>
       <%- include('partials/navbar.ejs', {activeTab: "Order"}) %>
       <%-include('partials/sidebar.ejs');%>
         <div id = "second" class="sub-division">
           <div class="order-container">
             <div class="order-view">
               Order ID : 123456789OD
+              <div class="order-date">
+                Created on : 21 / 05 / 2022
+              </div>
             </div>
+            
             <div class="order-details-content">
               <div class="order-shipping-details">
                 Shipping Details
@@ -114,6 +117,6 @@
           <button type="submit" class="order-accept-btn btn btn-primary">Update Status</button>
         </form>
     </div>
-    <script src="js/sideBar.js"></script>
+    <script src="/javascript/sideBar.js"></script>
 </body>
 </html>
