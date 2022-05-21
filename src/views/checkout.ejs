@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/checkout.css">
+        <title>Checkout</title>
+    </head>
+
+    <body>
+        <!--navbar start-->
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+            </label>
+            <div class="logo">
+            <p>Website</p>
+            </div>
+            <div class="search">
+            <div class="search-box">
+            <input class="search-txt" id="pinput" type="text" name="" placeholder="Search here" onkeyup="searchElement()">
+            <a class="search-btn" href="#">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+        </div>
+            <ul>
+            <li><a class="active" href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <!--navbar end-->
+
+        <!--customer details start-->
+        <div class="customer_info">
+            <h1 style="font-family: Montserrat;font-weight:800;color:rgb(30, 149, 0);">Checkout</h1>
+            <form class="form-inline" action="/action_page.php">
+                <h2>Customer Details</h2>
+                <label for="name" style="margin-top: 40px;">Name:</label>
+                <input id="name" placeholder="Enter Name" name="name">
+                <label for="no">Contact Number:</label>
+                <input type="tel" id="no" placeholder="Enter number" name="no">
+                <label for="address">Delivery Address:</label>
+                <input type="text" id="address" placeholder="Enter address" name="address">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter email" name="email">
+              </form>
+        </div>
+        <!--customer details end-->
+
+        <!--cart items start-->
+
+        <div class="small-container cart-page">
+            <h2>Shopping cart</h2>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="img/kottu_mee.png">
+                            <div>
+                                <p>Kottu Mee - 80g</p>
+                                <small>Price: Rs. 80.00</small>
+                                <br>
+                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <td>Rs. 80.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="img/kottu_mee.png">
+                            <div>
+                                <p>Kottu Mee - 80g</p>
+                                <small>Price: Rs. 80.00</small>
+                                <br>
+                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <td>Rs. 80.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="img/kottu_mee.png">
+                            <div>
+                                <p>Kottu Mee - 80g</p>
+                                <small>Price: Rs. 80.00</small>
+                                <br>
+                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <td>Rs. 80.00</td>
+                </tr>
+            </table>
+
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>Rs. 240.00</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery</td>
+                        <td>Rs. 200.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>Rs. 440.00</td>
+                    </tr>
+                    <tr>
+                        <td id="buttons" class="clearcart"><a href="#" class="clear-cart-btn">Cancel</a></td>
+                        <td id="buttons" class="addtocart"><a href="#" class="add-cart-btn">Order now</a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <!--cart items end-->
+
+    </body>
+</html>
