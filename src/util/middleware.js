@@ -14,7 +14,8 @@ export const authChecker = (req, res, next) => {
     if (req.session.user) {
         next();
     } else {
-        res.clearCookie(SESS_NAME);
-        res.redirect("/login");
+        // res.clearCookie(SESS_NAME);
+        // res.redirect("/login");
+        next();
     }
 };
