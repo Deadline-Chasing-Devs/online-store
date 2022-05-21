@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+/*nav bar start*/
+nav{
+    width: 100%;
+    height: 75px;
+    font-family: Montserrat;
+    background-color: #7e9c57;
+    line-height: 75px;
+    padding: 0px 80px;
+    display: flex;
+    justify-content: space-between;
+}
+nav .logo{
+    float: left;
+}
+nav .logo p{
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.search-box {
+	position: relative;
+	background: #333;
+	height: 2.6em;
+	width: fit-content;
+	border-radius: 2.1em;
+	padding: 0.3em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    float:left;
+    top: 18px;
+}
+
+.search-box a {
+	text-decoration: none;
+}
+
+.search-btn {
+	color: #666;
+	width: 2.1em;
+	height: 2.1em;
+	border-radius: 50%;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-txt {
+	border: none;
+	background: none;
+	outline: none;
+	float: left;
+	padding: 0;
+	color: #fff;
+	font-size: 1em;
+	transition: 0.4s;
+	width: 300px;
+}
+nav ul{
+    float: right;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 0px 20px;
+}
+nav ul li a:hover{
+    color: #000000;
+}
+nav ul .active{
+    color: #000000;
+}
+.checkbtn{
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    float: right;
+    display: none;
+    top: 2px;
+    position: relative;
+}
+#check{
+    display: none;
+}
+.container{
+    margin-top: 20px;
+}
+@media screen and (max-width: 1060px){
+    nav{
+        padding: 0px 50px;
+    }
+    .checkbtn{
+        display: block;
+    }
+    nav .logo p{
+        font-size: 30px;
+    }
+    nav ul{
+        z-index: 100;
+        width: 100%;
+        height: auto;
+        background-color: #53694c;
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        text-align: center;
+        transition: 0.5s ease;
+    }
+    nav ul li {
+        display: block;
+        margin: 60px 0px;
+        line-height: 5px;
+    }
+    .search-txt {
+    	width: 240px;
+    }
+    #check:checked ~ ul{
+        left: 0;
+    }
+
+}
+@media screen and (max-width: 700px){
+    nav{
+        padding: 0px 50px;
+    }
+    .checkbtn{
+        display: block;
+    }
+    nav .logo p{
+        font-size: 30px;
+    }
+    nav ul{
+        z-index: 100;
+        width: 100%;
+        height: auto;
+        background-color: #53694c;
+        position: fixed;
+        top: 125px;
+        left: -100%;
+        text-align: center;
+        transition: 0.5s ease;
+    }
+    nav ul li {
+        display: block;
+        margin: 60px 0px;
+        line-height: 5px;
+    }
+    .search{
+      z-index: 10;
+      left: -200%;
+      position: fixed;
+      top: 60px;
+      transition: 0.5s ease;
+      justify-content: center;
+      display: flex;
+    }
+    .search-txt {
+      width: 200px;
+    }
+    #check:checked ~ ul{
+        left: 0;
+    }
+    #check:checked ~ .search{
+        left: 0;
+        width: 100%;
+        margin: auto;
+    }
+
+}
+/*nav bar end*/
+
+/*cart items start*/
+.cart-page{
+    font-family: sans-serif;
+    margin: 80px 10%;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+th{
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #167b01;
+    font-weight: normal;
+
+}
+td{
+    padding: 10px 5px;
+}
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+td a{
+     color: #ff523b;
+     font-size: 12px;
+}
+td img{
+    width: 100px;
+    margin-right: 10px;
+}
+.total-price{
+    display: flex;
+    justify-content: flex-end;
+}
+.total-price table{
+    border-top: 3px solid #167b01;
+    width: 100%;
+    max-width: 400px ;
+}
+td:last-child{
+    text-align: right;
+}
+th:last-child{
+    text-align: right;
+}
+.total-price td a{
+    color: #fff;
+    background: #009DD2;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 50px;
+    border-radius: 20px;
+    display: flex;
+}
+.total-price .addtocart{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  
+}
+/*cart items end*/
