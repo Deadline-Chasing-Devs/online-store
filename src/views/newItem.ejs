@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <%-include('partials/vendorUILinks.ejs') %>
-    <link href="css/vendor.css" rel="stylesheet" />
+    <!-- <link href="css/vendor.css" rel="stylesheet" /> -->
     <link href="css/newItem.css" rel="stylesheet" />
 
     <title>new-Item</title>
@@ -18,7 +18,7 @@
     <div id="second" class="sub-division">
       <div class="container">
         <form action="">
-          <div class="">
+          <div class="vendor-form">
             <div class="row mb-3">
               <label for="colFormLabel" class="col-sm-2 col-form-label"
                 >ID</label
@@ -67,7 +67,7 @@
               >
               <div class="col-sm-10">
                 <input
-                  type="number"
+                  type="number" min="0"
                   class="form-control"
                   id="colFormLabel"
                   placeholder="Item Price"
@@ -121,7 +121,7 @@
             <div class="row mb-3">
               <div class="col-sm-12">
                 <article>
-                  <div class="overflow-auto" style="height:300px;border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ;">
+                  <div class="overflow-auto" style="min-height:100px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
                     <output id="result" />
                   </div>
                 </article>
