@@ -192,6 +192,12 @@ nav ul .active{
     margin: 80px 10%;
     margin-left: 5%;
 }
+.cart-page h1{
+    font-family: Montserrat;
+    font-weight:800;
+    color:rgb(30, 149, 0);
+    margin-bottom: 40px;
+}
 table{
     width: 100%;
     border-collapse: collapse;
