@@ -241,18 +241,14 @@ th:last-child{
 .total-price td a{
     color: #fff;
     background: #009DD2;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
-    padding: 10px 50px;
+    padding: 10px 20px;
     border-radius: 20px;
     display: flex;
+    justify-content:center;
 }
-.total-price .addtocart{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-  
-}
+
 /*cart items end*/

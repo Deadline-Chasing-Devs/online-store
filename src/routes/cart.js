@@ -5,7 +5,10 @@ const handler = () => {
 
     // handle route
     cartRouter.get("", (req, res) => {
-        res.render("cart");
+        // console.log("GET SESSION OBJ", req.session);
+        res.render("cart", { cart: req.session.cart });
+        // res.json(req.session);
+        // res.render("cart", { cart: req.session.cart || {} });
     });
 
     return cartRouter;
