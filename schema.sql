@@ -26,7 +26,8 @@ CREATE TABLE `item` (
   `item_id` varchar(36) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` text DEFAULT NULL,
-  `price` decimal(10,0) NOT NULL
+  `price` decimal(10,0) NOT NULL,
+  `cover_photo` varchar(36)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
