@@ -5,7 +5,7 @@
 }
 .dashboard-banner {
   /* background-color: #0d6dfd60; */
-  background-color: #0d6dfdd0;
+  background-color: #3a88fd;
   backdrop-filter: blur(50px);
 
   margin: 0;
@@ -88,10 +88,10 @@
   display: block;
   overflow: hidden;
   padding-left: 0px;
-  background-color: #0d6dfdd0;
+  background-color: #3a88fd;
 
   backdrop-filter: blur(50px);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .side-minimized {
   width: 60px;
@@ -129,6 +129,12 @@
   color: white;
   background-color: #3a88fd;
 }
+
+.dashboard-list-logout:hover a{
+  color: white !important;
+  background-color: #f80c35 !important;
+}
+
 .dashboard-side-bar li a .text {
   font-size: 14px;
 }
@@ -225,27 +231,58 @@
   z-index: 1;
   padding-top: 100px;
   padding-bottom: 50px;
-  padding-right: 5vw;
+  padding-right: 4vw;
   margin-right: 70px;
-  padding-left: 8vw;
+  padding-left: 10vw;
 }
 
+/* @media screen and (max-width: 450px) {
+  #second {
+    z-index: 1;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    padding-right: 4vw;
+    margin-right: 70px;
+    padding-left: 10vw;
+    background-color: #000;
+  }
+} */
 .order-header {
   z-index: 3;
   position: fixed;
   width: 100%;
   height: 52.5px;
-  background-color: #000000;
+  /* background-color: #000000; */
   left: 60px;
 }
 
 .Page-heading {
   position: fixed;
   left: 75px;
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 3rem !important;
+  overflow: hidden;
+  margin-right: 100px;
+  width: 75%;
+  height: 55.5px;
+  
 }
 
+/* @media screen and (max-width: 450px){
+  
+  .Page-heading {
+    
+    position: fixed;
+    
+    margin-top: 8px;
+    font-size: 5vw + 0.25rem !important;
+    overflow: hidden;
+    margin-right: 100px;
+    width: 60%;
+    height: 55.5px;
+    
+  }
+} */
 .nav-infoblock {
   display: flex;
   justify-content: flex-end;
@@ -323,10 +360,11 @@
 }
 
 body {
-  /* background-image: url("https://wallpapercave.com/wp/wp3537552.jpg"); */
-  /* background-repeat: no-repeat; */
+  background-image: url("https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=929");
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  /* height: 100vh; */
 }
 
 .search-bar-area {
@@ -334,12 +372,22 @@ body {
   width: 100%;
   
   height: 60px;
-  border: #000;
 }
+
+.search-input{
+  background: white !important;
+}
+
+/* @media screen  and (max-width: 450px){
+  .search-bar-div {
+    
+
+    
+  }
+} */
 
 ::-webkit-scrollbar{
   min-width: 10px;
-  
   max-width: 50px;
 }
 
