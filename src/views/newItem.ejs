@@ -1,12 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Add new item</title>
-    </head>
-    <body>
-        <h1>Add new item</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <%-include('partials/vendorUILinks.ejs') %>
+    <link href="css/vendor.css" rel="stylesheet" />
+    <title>new-Item</title>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs', {activeTab: "New Item"}) %> <%-
+    include('partials/sidebar.ejs') %>
+
+    <div id="second" class="sub-division">
+      <div class="container">
+
+        <form action="">
+
+          <div class="">
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label">ID</label> -->
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="colFormLabel"
+                  placeholder="Item ID"
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Name</label
+              > -->
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="colFormLabel"
+                  placeholder="Item Name"
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Description</label
+              > -->
+              <div class="col-sm-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="Item Description"
+                ></textarea>
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Price</label
+              > -->
+              <div class="col-sm-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="colFormLabel"
+                  placeholder="Item Price"
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Images</label
+              > -->
+              <div class="col-sm-10">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="formFileMultiple"
+                  multiple
+                />
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <!-- <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Availability</label
+              > -->
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios1"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="exampleRadios1">
+                    In Stock
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="exampleRadios2">
+                    Out Of Stock
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-dark">Add Item</button>
+                <button type="button" class="btn btn-dark">Discard</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+        
+      </div>
+    </div>
+
+    <%- include('partials/scripts.ejs') %>
+  </body>
 </html>
