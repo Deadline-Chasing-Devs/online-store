@@ -1,6 +1,6 @@
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
-import { addItem } from "../util/database.js";
+import { addImage, addItem } from "../util/database.js";
 import { authChecker } from "../util/middleware.js";
 import { randomUUID } from "crypto";
 import upload from "../config/storage.js";
@@ -61,7 +61,6 @@ const handler = (pool) => {
                         });
                     });
                 }
-
                 return res.status(400).json({
                     errors: errors.array(),
                 });
@@ -69,8 +68,22 @@ const handler = (pool) => {
 
             const { name, description, price } = req.body;
             const itemId = randomUUID();
+            let coverPhotoPath;
+            let imagePaths; 
+            if (req.files) {
+                coverPhotoPath = req.files["cover-photo"][0].filename;
+                imagePaths = req.files["images"].map((image) => image.filename);
+            }
             try {
                 await addItem(pool, itemId, name, description, price);
+                if (coverPhotoPath) {
+                    await addImage(pool, itemId, coverPhotoPath);
+                }
+                if (imagePaths) {
+                    imagePaths.forEach(async (imagePath) => {
+                        await addImage(pool, itemId, imagePath);
+                    });
+                }
             } catch (err) {
                 console.log(err);
             }
