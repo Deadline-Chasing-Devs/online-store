@@ -10,13 +10,19 @@
     <title>Edit Item</title>
   </head>
   <body>
-    <%- include('partials/navbar.ejs', {activeTab: "Edit Item - Mobile Phone 3000"}) %> 
+    <%- include('partials/navbar.ejs', {activeTab: "Edit Item"}) %> 
     <%- include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
       <div class="container">
         <form action="">
           <div class="vendor-form">
+
+            <div class="row mb-3">
+              <div class="col-sm-12">
+                <h2>Item Details</h2>
+              </div>
+            </div>
 
             <div class="row mb-3">
               <label for="colFormLabel" class="col-sm-2 col-form-label"
@@ -28,6 +34,7 @@
                   class="form-control"
                   id="colFormLabel"
                   placeholder="Item ID"
+                  value="#1089222200"
                 />
               </div>
             </div>
@@ -42,6 +49,7 @@
                   class="form-control"
                   id="colFormLabel"
                   placeholder="Item Name"
+                  value="Product name"
                 />
               </div>
             </div>
@@ -56,7 +64,7 @@
                   id="exampleFormControlTextarea1"
                   rows="3"
                   placeholder="Item Description"
-                ></textarea>
+                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusantium, sed est nihil iste sunt alias ea deserunt debitis expedita omnis, adipisci, quas error praesentium iure aliquam amet fugiat impedit!</textarea>
               </div>
             </div>
 
@@ -70,6 +78,7 @@
                   class="form-control"
                   id="colFormLabel"
                   placeholder="Item Price"
+                  value="399.56"
                 />
               </div>
             </div>
@@ -86,6 +95,7 @@
                     name="exampleRadios"
                     id="exampleRadios1"
                     value="option1"
+                    checked
                   />
                   <label class="form-check-label" for="exampleRadios1">
                     In Stock
@@ -106,7 +116,7 @@
               </div>
             </div>
 
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
               <div class="col-sm-12">
                 <article>
                   <label class="form-check-label" for="files"
@@ -115,7 +125,7 @@
                   <input class="form-control" id="files" type="file" multiple />
                 </article>
               </div>
-            </div>
+            </div> -->
 
             <div class="row mb-3">
               <div class="col-sm-12">
@@ -123,13 +133,26 @@
                   <div class="overflow-auto" style="min-height:500px; max-height:700px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
                     <output id="result" />
 
-                    <%for(i=0; i<50; i++){%>
+                    <%for(i=0; i<10; i++){%>
 
                     <div class="card vendor-item-image" style="width: 18rem;">
-                      <img src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640" class="card-img-top" alt="...">
+                      
+                      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdCUyMGltYWdlc3xlbnwwfHwwfHw%3D&w=1000&q=80" class="card-img-top" alt="...">
                       <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">filename</p>
+                        <button type="button" class="btn btn-danger">Remove</button>
                       </div>
+                      
+                    </div>
+
+                    <div class="card vendor-item-image" style="width: 18rem;">
+                      
+                      <img src="https://www.prophotostudio.net/wp-content/uploads/2021/01/a-picture-of-a-skincare-product-on-a-black-background.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <p class="card-text">filename</p>
+                        <button type="button" class="btn btn-danger">Remove</button>
+                      </div>
+                      
                     </div>
                     <%}%>
                   </div>
