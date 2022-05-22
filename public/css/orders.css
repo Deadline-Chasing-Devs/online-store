@@ -1,4 +1,5 @@
 .table-all{
-  background-color: rgba(241, 240, 240, 0.932);
+  background-color: rgba(255, 255, 255, 0.747);
   border-radius: 8px;
+  backdrop-filter: blur(50px);
 }

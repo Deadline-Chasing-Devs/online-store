@@ -26,3 +26,8 @@ article
     border-radius: 0.25rem;
 }
 
+.vendor-item-image{
+    width: 100px; 
+    float:left;
+    margin:10px;
+}
