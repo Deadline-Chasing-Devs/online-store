@@ -378,14 +378,6 @@ body {
   background: white !important;
 }
 
-/* @media screen  and (max-width: 450px){
-  .search-bar-div {
-    
-
-    
-  }
-} */
-
 ::-webkit-scrollbar{
   min-width: 10px;
   max-width: 50px;
