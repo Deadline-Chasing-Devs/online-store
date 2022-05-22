@@ -11,32 +11,37 @@ INSERT INTO `item` VALUES (
     'bf2d2630-a453-4315-849d-b8badc63b6a7',
     'Item 01',
     'This is item 01. This is a sample description. This has these features.',
-    '2000'
+    '2000',
+    NULL
     );
 INSERT INTO `item` VALUES (
     '66e9aa26-7610-4ed8-a67b-0e816ebfc03c',
     'Item 02',
     'This is item 02. This is a sample description. This has these features.',
-    '450.70'
+    '450.70',
+    NULL
     );
 
 INSERT INTO `item` VALUES (
     'e3b8e679-ef21-4ece-9d7b-b8fb749a253f',
     'Item 03',
     'This is item 03. This is a sample description. This has these features.',
-    '3500.50'
+    '3500.50',
+    NULL
     );
 INSERT INTO `item` VALUES (
     '076c6864-b574-4915-8d69-ec7e8e07a4cc',
     'Item 04',
     'This is item 04. This is a sample description. This has these features.',
-    '250.70'
+    '250.70',
+    NULL
     );
 INSERT INTO `item` VALUES (
     '56bd110a-d93b-421e-a0d7-ef45f9a260eb',
     'Item 05',
     'This is item 05. This is a sample description. This has these features.',
-    '8050.25'
+    '8050.25',
+    NULL
     );
 
 -- `order` table
