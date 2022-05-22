@@ -131,14 +131,14 @@ const getAllOrders = async (pool) => {
 };
 
 // Add new item to the database
-const addItem = async (pool, itemId, name, description, price) => {
+const addItem = async (pool, itemId, name, description, price, coverPhoto=null) => {
     try {
         await queryPromise(
             pool,
             `INSERT INTO item 
-            (item_id, name, description, price)
-            VALUES (?, ?, ?, ?)`,
-            [itemId, name, description, price]
+            (item_id, name, description, price, cover_photo)
+            VALUES (?, ?, ?, ?, ?)`,
+            [itemId, name, description, price, coverPhoto]
         );
     } catch (error) {
         throw "Database Error";
