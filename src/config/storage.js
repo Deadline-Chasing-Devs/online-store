@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 const storage = multer.diskStorage({
     destination: "public/uploads",
     filename: function (req, file, cb) {
-        cb(null, randomUUID() + "_" + file.originalname);
+        cb(null, randomUUID());
     },
 });
 
