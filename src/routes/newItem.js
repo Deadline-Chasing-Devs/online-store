@@ -3,6 +3,8 @@ import { checkSchema, validationResult } from "express-validator";
 import { addItem } from "../util/database.js";
 import { authChecker } from "../util/middleware.js";
 import { randomUUID } from "crypto";
+import upload from "../config/storage.js";
+import { deleteFile } from "../util/helpers.js";
 
 const handler = (pool) => {
     const newItemRouter = express.Router();
@@ -26,11 +28,29 @@ const handler = (pool) => {
     newItemRouter.post(
         "",
         authChecker,
+        upload.fields([
+            {
+                name: "cover-photo",
+                maxCount: 1
+            },
+            {
+                name: "images",
+                maxCount: 3
+            }
+        ]),
         checkSchema(newItemSchema),
         async (req, res) => {
             const errors = validationResult(req);
-
             if (!errors.isEmpty()) {
+                if (req.files) {
+                    Object.keys(req.files).forEach((key) => {
+                        req.files[key].forEach(async (image) => {
+                            await deleteFile(image.path);
+                        });
+                    });
+                }
+
+
                 return res.status(400).json({
                     errors: errors.array(),
                 });
