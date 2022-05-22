@@ -179,6 +179,21 @@ const searchItemByName = async (pool, name) => {
     }
 };
 
+// Add image of an item
+const addImage = async (pool, itemId, imageId) => {
+    try {
+        await queryPromise(
+            pool,
+            `INSERT INTO item_image
+            VALUES (?, ?)`,
+            [itemId, imageId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 export {
     getUserByUsername,
     getItemById,
@@ -189,4 +204,5 @@ export {
     addItem,
     editItem,
     searchItemByName,
+    addImage,
 };
