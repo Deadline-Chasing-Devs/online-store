@@ -25,19 +25,31 @@ const handler = (pool) => {
             isFloat: true,
         },
     };
+
+    const imageUpload = upload.fields([
+        {
+            name: "cover-photo",
+            maxCount: 1,
+        },
+        {
+            name: "images",
+            maxCount: 3,
+        },
+    ]);
+
     newItemRouter.post(
         "",
         authChecker,
-        upload.fields([
-            {
-                name: "cover-photo",
-                maxCount: 1
-            },
-            {
-                name: "images",
-                maxCount: 3
-            }
-        ]),
+        (req, res, next) => {
+            imageUpload(req, res, (err) => {
+                if (err) {
+                    console.log(err);
+                    res.status(400).end();
+                } else {
+                    next();
+                }
+            });
+        },
         checkSchema(newItemSchema),
         async (req, res) => {
             const errors = validationResult(req);
@@ -49,7 +61,6 @@ const handler = (pool) => {
                         });
                     });
                 }
-
 
                 return res.status(400).json({
                     errors: errors.array(),
