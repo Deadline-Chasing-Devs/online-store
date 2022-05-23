@@ -8,7 +8,7 @@
     <%-include('partials/vendorUILinks.ejs') %>
 
     <!-- <link rel="stylesheet" href="css/order.css"> -->
-    
+
     <link rel="stylesheet" href="css/orders.css" />
 
     <title>Orders</title>
@@ -20,12 +20,16 @@
     <div id="second" class="sub-division">
       <div class="container">
         <!-- Insert Page Content here -->
-        
+
         <div class="search-bar-area row">
           <div class="col-md-12">
             <div class="input-group">
               <div class="form-outline">
-                <input type="search" id="form1" class="form-control" />
+                <input
+                  type="search"
+                  id="form1"
+                  class="form-control search-input"
+                />
                 <label class="form-label" for="form1">Search Order</label>
               </div>
               <button type="button" class="btn btn-primary">
@@ -35,10 +39,7 @@
           </div>
         </div>
 
-        
-
         <div class="row">
-
           <div class="order-container col-md-12">
             <!-- <div class="order-credentiatls">
               <div class="row">
@@ -64,7 +65,7 @@
                 <tbody>
                   <%for(i=0; i<50; i++){%>
                   <tr>
-                    <th scope="row">#00110005</th>
+                    <th scope="row">411653f5-2320-4f2d-a78a-09dc45f7d0e2</th>
                     <td>2022-04-26 22:30:56</td>
                     <td>Mr. Place Holder</td>
                     <td>$399.00</td>
@@ -84,10 +85,7 @@
               </table>
             </div>
           </div>
-
         </div>
-
-        
       </div>
     </div>
     <%- include('partials/scripts.ejs', {activeTab: "products"}) %>

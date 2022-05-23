@@ -130,6 +130,37 @@ const getAllOrders = async (pool) => {
     return results;
 };
 
+// Add new item to the database
+const addItem = async (pool, itemId, name, description, price, coverPhoto=null) => {
+    try {
+        await queryPromise(
+            pool,
+            `INSERT INTO item 
+            (item_id, name, description, price, cover_photo)
+            VALUES (?, ?, ?, ?, ?)`,
+            [itemId, name, description, price, coverPhoto]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+};
+
+// Edit item
+const editItem = async (pool, itemId, name, description, price) => {
+    try {
+        await queryPromise(
+            pool,
+            `UPDATE item
+            SET name=?, description=?, price=?
+            WHERE item_id=?`,
+            [name, description, price, itemId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 // Search item by name
 const searchItemByName = async (pool, name) => {
     let results;
@@ -148,6 +179,21 @@ const searchItemByName = async (pool, name) => {
     }
 };
 
+// Add image of an item
+const addImage = async (pool, itemId, imageId) => {
+    try {
+        await queryPromise(
+            pool,
+            `INSERT INTO item_image
+            VALUES (?, ?)`,
+            [itemId, imageId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 export {
     getUserByUsername,
     getItemById,
@@ -155,5 +201,8 @@ export {
     getImageIdsByItemId,
     getOrderById,
     getAllOrders,
-    searchItemByName
+    addItem,
+    editItem,
+    searchItemByName,
+    addImage,
 };
