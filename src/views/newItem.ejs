@@ -1,144 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <%-include('partials/vendorUILinks.ejs') %>
-    <link href="css/newItem.css" rel="stylesheet" />
+    <link href="/css/newItem.css" rel="stylesheet" />
 
-    <title>new-Item</title>
-  </head>
-  <body>
-    <%-include('partials/navbar.ejs', {activeTab: "New Item"}) %> 
+    <title>Add New Item</title>
+</head>
+
+<body>
+    <%-include('partials/navbar.ejs', {activeTab: "New Item"}) %>
     <%-include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
-      <div class="container">
-        <form action="">
-          <div class="vendor-form">
-            <div class="row mb-3">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >ID</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="colFormLabel"
-                  placeholder="Item ID"
-                />
-              </div>
-            </div>
+        <div class="container">
+            <form action="/new-item" method="post" id="new-item-form" enctype="multipart/form-data">
+                <div class="vendor-form">
+                    <div class="row mb-3">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                id="colFormLabel"
+                                placeholder="Item Name"
+                                required
+                            />
+                        </div>
+                    </div>
 
-            <div class="row mb-3">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >Name</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="colFormLabel"
-                  placeholder="Item Name"
-                />
-              </div>
-            </div>
+                    <div class="row mb-3">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea
+                                class="form-control"
+                                name="description"
+                                rows="3"
+                                placeholder="Item Description">
+                            </textarea>
+                        </div>
+                    </div>
 
-            <div class="row mb-3">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >Description</label
-              >
-              <div class="col-sm-10">
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="Item Description"
-                ></textarea>
-              </div>
-            </div>
+                    <div class="row mb-3">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Price</label>
+                        <div class="col-sm-10">
+                            <input
+                                type="number"
+                                name="price"
+                                min="0"
+                                step="any"
+                                class="form-control"
+                                required
+                            />
+                        </div>
+                    </div>
 
-            <div class="row mb-3">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >Price</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="number" min="0"
-                  class="form-control"
-                  id="colFormLabel"
-                  placeholder="Item Price"
-                />
-              </div>
-            </div>
+                    <div class="row mb-3">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Availability</label>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    In Stock
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Out Of Stock
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row mb-3">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >Availability</label
-              >
-              <div class="col-sm-10">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios1"
-                    value="option1"
-                  />
-                  <label class="form-check-label" for="exampleRadios1">
-                    In Stock
-                  </label>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <label class="form-check-label" for="files">Cover Photo (png, jpg, jpeg types only.)</label>
+                                <input
+                                    class="form-control"
+                                    name="cover-photo"
+                                    type="file"
+                                    onchange="showCoverPhoto(event)"
+                                    accept="image/png,image/jpg,image/jpeg"
+                                />
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <div
+                                    class="overflow-auto"
+                                    style=
+                                        "min-height:100px;
+                                        max-height:300px;
+                                        border-style: solid;
+                                        border-color:
+                                        rgb(189, 189, 189);
+                                        border-radius: .25rem;
+                                        border-width:1px;
+                                        background-color: white;"
+                                >
+                                    <img 
+                                        id="cover-photo-view"
+                                        style="max-width: 400px; height:auto;"
+                                    />
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <label class="form-check-label" for="images">Images (png, jpg, jpeg types only. maximum 3 images)</label>
+                                <input class="form-control" name="images"  id="images" type="file" multiple />
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <div class="overflow-auto" style="min-height:100px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
+                                    <output id="images-view" />
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="btn-group" role="group">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="button" onclick="clearForm()" class="btn btn-danger">
+                                Clear</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios2"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="exampleRadios2">
-                    Out Of Stock
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-sm-12">
-                <article>
-                  <label class="form-check-label" for="files"
-                    >Select multiple files</label
-                  >
-                  <input class="form-control" id="files" type="file" multiple />
-                </article>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-sm-12">
-                <article>
-                  <div class="overflow-auto" style="min-height:100px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
-                    <output id="result" />
-                  </div>
-                </article>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-success">Submit</button>
-                <button type="button" class="btn btn-danger">Clear</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+            </form>
+        </div>
     </div>
 
     <%- include('partials/scripts.ejs') %>
-    <script src="javascript/vendorNewItem.js"></script>
-  </body>
+    <script src="/javascript/vendorNewItem.js"></script>
+</body>
+
 </html>
