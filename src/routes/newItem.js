@@ -10,7 +10,11 @@ const handler = (pool) => {
     const newItemRouter = express.Router();
 
     newItemRouter.get("", authChecker, (req, res) => {
-        res.render("newItem");
+        res.render("newItem", {
+            validationError: req.flash("validationError") || [],
+            fileError: req.flash("fileError") || [],
+            success: req.flash("success") || [],
+        });
     });
 
     const newItemSchema = {
@@ -44,7 +48,9 @@ const handler = (pool) => {
             imageUpload(req, res, (err) => {
                 if (err) {
                     console.log(err);
-                    res.status(400).end();
+                    req.flash("fileError", "File uploading error.");
+                    res.redirect("/new-item");
+                    return;
                 } else {
                     next();
                 }
@@ -61,9 +67,9 @@ const handler = (pool) => {
                         });
                     });
                 }
-                return res.status(400).json({
-                    errors: errors.array(),
-                });
+                req.flash("validationError", errors.array()[0]);
+                res.redirect("/new-item");
+                return;
             }
 
             const { name, description, price } = req.body;
@@ -98,6 +104,7 @@ const handler = (pool) => {
             } catch (err) {
                 console.log(err);
             }
+            req.flash("success", "Added item successfully.");
             res.redirect("/new-item");
         }
     );
