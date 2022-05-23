@@ -7,7 +7,11 @@
     box-sizing: border-box;
 }
 /*nav bar start*/
-nav{
+nav {
+    position: fixed;
+    top: 0;
+    z-index: 50;
+
     width: 100%;
     height: 75px;
     font-family: Montserrat;
@@ -100,7 +104,7 @@ nav ul .active{
     display: none;
 }
 .container{
-    margin-top: 20px;
+    margin-top: 100px;
 }
 @media screen and (max-width: 1060px){
     nav{
@@ -152,7 +156,7 @@ nav ul .active{
         height: auto;
         background-color: #53694c;
         position: fixed;
-        top: 125px;
+        top: 100px;
         left: -100%;
         text-align: center;
         transition: 0.5s ease;
@@ -163,13 +167,17 @@ nav ul .active{
         line-height: 5px;
     }
     .search{
-      z-index: 10;
+      z-index: 101;
       left: -200%;
       position: fixed;
-      top: 60px;
+      top: 75px;
       transition: 0.5s ease;
       justify-content: center;
       display: flex;
+      background: #53694c;
+    }
+    .search-box{
+        top: 20px;
     }
     .search-txt {
       width: 200px;
