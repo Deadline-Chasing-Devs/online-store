@@ -1,5 +1,4 @@
-/*login page styles */
-.order-container{
+  .order-container{
     width:100%;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
   }
@@ -16,8 +15,6 @@
     border-radius: 8px;
   }
 
-
-  /* dfvfvfv */
   .order-view{
     padding: 10px;
     border: 1px solid rgb(202, 205, 208);
@@ -26,6 +23,8 @@
 
   .order-details-content{
     display: flex;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid rgb(202, 205, 208);
     padding: 10px;
   }
