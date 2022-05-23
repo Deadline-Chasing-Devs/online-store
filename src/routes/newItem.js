@@ -10,7 +10,7 @@ const handler = (pool) => {
     const newItemRouter = express.Router();
 
     newItemRouter.get("", authChecker, (req, res) => {
-        res.render("newItem");
+        res.render("newItem", { error: req.flash("error") || {}});
     });
 
     const newItemSchema = {
@@ -61,9 +61,9 @@ const handler = (pool) => {
                         });
                     });
                 }
-                return res.status(400).json({
-                    errors: errors.array(),
-                });
+                req.flash("error", errors.array()[0]);
+                res.redirect("/new-item");
+                return;
             }
 
             const { name, description, price } = req.body;

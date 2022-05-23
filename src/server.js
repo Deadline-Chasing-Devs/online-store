@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import expressMysqlSession from "express-mysql-session";
 import expressSession from "express-session";
 import logger from "morgan";
+import flash from "connect-flash";
 import {
     PORT,
     MYSQL_DATABASE,
@@ -53,6 +54,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(logger("dev"));
+app.use(flash());
 
 // Session store
 const MySQLStore = expressMysqlSession(expressSession);

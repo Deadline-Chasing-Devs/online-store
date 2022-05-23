@@ -17,6 +17,12 @@
     <%-include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
+        <% if (error[0]) { %>
+            <%- include("partials/errorFlashMessage.ejs",
+                { 
+                    message: error[0].msg + " : " + error[0].param
+                }) %> 
+        <% } %>
         <div class="container">
             <form action="/new-item" method="post" id="new-item-form" enctype="multipart/form-data">
                 <div class="vendor-form">
@@ -29,7 +35,6 @@
                                 class="form-control"
                                 id="colFormLabel"
                                 placeholder="Item Name"
-                                required
                             />
                         </div>
                     </div>
@@ -41,8 +46,7 @@
                                 class="form-control"
                                 name="description"
                                 rows="3"
-                                placeholder="Item Description">
-                            </textarea>
+                                placeholder="Item Description"></textarea>
                         </div>
                     </div>
 
