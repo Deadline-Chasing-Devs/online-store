@@ -11,7 +11,8 @@ const handler = (pool) => {
 
     newItemRouter.get("", authChecker, (req, res) => {
         res.render("newItem", {
-            error: req.flash("error") || [],
+            validationError: req.flash("validationError") || [],
+            fileError: req.flash("fileError") || [],
             success: req.flash("success") || [],
         });
     });
@@ -47,7 +48,9 @@ const handler = (pool) => {
             imageUpload(req, res, (err) => {
                 if (err) {
                     console.log(err);
-                    res.status(400).end();
+                    req.flash("fileError", "File uploading error.");
+                    res.redirect("/new-item");
+                    return;
                 } else {
                     next();
                 }
@@ -64,7 +67,7 @@ const handler = (pool) => {
                         });
                     });
                 }
-                req.flash("error", errors.array()[0]);
+                req.flash("validationError", errors.array()[0]);
                 res.redirect("/new-item");
                 return;
             }
