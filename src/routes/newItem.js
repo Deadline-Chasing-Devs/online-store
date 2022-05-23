@@ -10,7 +10,10 @@ const handler = (pool) => {
     const newItemRouter = express.Router();
 
     newItemRouter.get("", authChecker, (req, res) => {
-        res.render("newItem", { error: req.flash("error") || {}});
+        res.render("newItem", {
+            error: req.flash("error") || [],
+            success: req.flash("success") || [],
+        });
     });
 
     const newItemSchema = {
@@ -98,6 +101,7 @@ const handler = (pool) => {
             } catch (err) {
                 console.log(err);
             }
+            req.flash("success", "Added item successfully.");
             res.redirect("/new-item");
         }
     );

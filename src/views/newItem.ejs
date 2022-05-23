@@ -23,6 +23,12 @@
                     message: error[0].msg + " : " + error[0].param
                 }) %> 
         <% } %>
+        <% if (success[0]) { %>
+            <%- include("partials/successFlashMessage.ejs",
+                { 
+                    message: success[0]
+                }) %> 
+        <% } %>
         <div class="container">
             <form action="/new-item" method="post" id="new-item-form" enctype="multipart/form-data">
                 <div class="vendor-form">
