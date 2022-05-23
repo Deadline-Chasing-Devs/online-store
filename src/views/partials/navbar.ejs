@@ -1,41 +1,24 @@
 <header>
-  <div class="order-header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bar-size">
-      <h1 class="Page-heading"><%=activeTab %></h1>
+    <div class="order-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bar-size">
+            <h1 class="Page-heading"><%=activeTab %></h1>
 
-      <div class="nav-item dropdown nav-infoblock">
+            <div class="nav-item dropdown nav-infoblock">
 
-        <div class="user-image">
-          <img
-            class="rounded-circle me-lg-2"
-            src="https://image.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1768126784.jpg"
-            alt="profile image"
-            style="object-fit: cover; width: 40px; height: 40px"
-          />
-        </div>
+                <div class="user-image">
+                    <img class="rounded-circle me-lg-2" src="https://image.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1768126784.jpg" alt="profile image" style="object-fit: cover; width: 40px; height: 40px" />
+                </div>
 
-        <div class="nav-dropdown">
-          <a
-            class="nav-link dropdown-toggle user-name"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            ><span class="user-name">User Name</span></a
-          >
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">My Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li>
-              <a class="dropdown-item" href="#"
-                >Logout<span class="material-icons logout-icon"
-                  >logout</span
-                ></a
-              >
-            </li>
-          </ul>
-        </div>
+                <div class="nav-dropdown">
+                    <a class="nav-link dropdown-toggle user-name" href="#" role="button" data-bs-toggle="dropdown"><span class="user-name">User Name</span></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
 
-      </div>
-    </nav>
-  </div>
+            </div>
+        </nav>
+    </div>
 </header>
