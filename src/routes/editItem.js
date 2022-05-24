@@ -13,7 +13,11 @@ const handler = (pool) => {
         const images = await getImageIdsByItemId(pool, itemId);
 
         if (!item) res.redirect("/dashboard");
-        else res.render("editItem", { item, images });
+        else res.render("editItem", {
+            item,
+            images,
+            updateSuccess: req.flash("update-success") || [],
+        });
     });
 
     // Edit item
@@ -49,9 +53,7 @@ const handler = (pool) => {
 
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({
-                    errors: errors.array(),
-                });
+                return res.redirect(`/edit-item/${itemId}`);
             }
 
             await editItem(
@@ -61,6 +63,7 @@ const handler = (pool) => {
                 req.body.description,
                 req.body.price
             );
+            req.flash("update-success", "Item updated successfully.");
             res.redirect(`/edit-item/${itemId}`);
         }
     );

@@ -16,6 +16,12 @@
     <%- include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
+        <% if (updateSuccess[0]) { %>
+            <%- include("partials/successFlashMessage.ejs",
+                { 
+                    message: updateSuccess[0]
+                }) %> 
+        <% } %>
         <div class="container">
             <form action="<%= '/edit-item/' + item.itemId %>" method="post">
                 <div class="vendor-form">
