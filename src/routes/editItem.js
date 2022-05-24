@@ -25,7 +25,11 @@ const handler = (pool) => {
         },
         price: {
             notEmpty: true,
-            isFloat: true,
+            isFloat: {
+                options: {
+                    min: 0
+                }
+            },
         },
     };
 
