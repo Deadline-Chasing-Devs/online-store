@@ -29,7 +29,7 @@ const handler = (pool) => {
         },
     };
 
-    editItemRouter.put(
+    editItemRouter.post(
         "/:id",
         authChecker,
         checkSchema(editItemSchema),
