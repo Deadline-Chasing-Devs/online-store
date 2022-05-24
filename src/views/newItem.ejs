@@ -18,7 +18,7 @@
 
     <div id="second" class="sub-division">
         <% if (validationError[0]) { %>
-            <%- include("partials/validationErrorFlashMessage.ejs",
+            <%- include("partials/errorFlashMessage.ejs",
                 { 
                     message: validationError[0].msg + " : " + validationError[0].param
                 }) %> 
