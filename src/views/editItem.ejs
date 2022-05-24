@@ -75,29 +75,19 @@
                     <div class="row mb-3">
                         <div class="col-sm-12">
                             <article>
-                                <div class="overflow-auto" style="min-height:500px; max-height:700px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
+                                <div class="overflow-auto" style="min-height:250px; max-height:500px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
                                     <output id="result" />
 
-                                    <%for(i=0; i<10; i++){%>
-
-                                    <div class="card vendor-item-image" style="width: 18rem;">
-
-                                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdCUyMGltYWdlc3xlbnwwfHwwfHw%3D&w=1000&q=80" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-text">filename</p>
-                                            <button type="button" class="btn btn-danger">Remove</button>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="card vendor-item-image" style="width: 18rem;">
-
-                                        <img src="https://www.prophotostudio.net/wp-content/uploads/2021/01/a-picture-of-a-skincare-product-on-a-black-background.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-text">filename</p>
-                                            <button type="button" class="btn btn-danger">Remove</button>
-                                        </div>
-
+                                    <%for(i=0; i<images.length; i++){%>
+                                    <!-- <h1><%= JSON.stringify(images[i].image_id) %></h1> -->
+                                    <div class="card vendor-item-image">
+                                        <img
+                                            src="/uploads/<%= images[i].image_id %>"
+                                            class="card-img-top"
+                                            alt=""
+                                            max-width="80px"
+                                            height="auto"
+                                        >
                                     </div>
                                     <%}%>
                   </div>

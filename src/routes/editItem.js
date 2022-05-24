@@ -1,6 +1,6 @@
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
-import { editItem, getItemById } from "../util/database.js";
+import { editItem, getImageIdsByItemId, getItemById } from "../util/database.js";
 import { authChecker } from "../util/middleware.js";
 
 const handler = (pool) => {
@@ -10,9 +10,10 @@ const handler = (pool) => {
     editItemRouter.get("/:id", authChecker, async (req, res) => {
         const itemId = req.params.id;
         const item = await getItemById(pool, itemId);
+        const images = await getImageIdsByItemId(pool, itemId);
 
         if (!item) res.redirect("/dashboard");
-        else res.render("editItem", { item });
+        else res.render("editItem", { item, images });
     });
 
     // Edit item
