@@ -2,7 +2,6 @@ window.onload = async function () {
     const data = await getItemData();
     // populate table with data
     populateTable(data);
-    console.log(data.data);
     addPageButtons(data.data);
 };
 
