@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%-include('partials/vendorUILinks.ejs') %>
-    
-    <link rel="stylesheet" href="/css/dashboard.css" />
+        <%-include('partials/vendorUILinks.ejs') %>
 
-    <title>Dashboard</title>
-  </head>
-  <body>
-    <%- include('partials/navbar.ejs', {activeTab: "Dashboard"}) %>
-    <%-include('partials/sidebar.ejs');%>
+        <link rel="stylesheet" href="/css/dashboard.css" />
 
-    <div id="second" class="sub-division">
-      <div class="container">
-        
-        <div class="search-bar-area row">
-          <div class="col-md-12">
-            <div class="input-group">
-              <div class="form-outline">
-                <input type="search" id="form1" class="form-control search-input" />
-                <label class="form-label" for="form1">Search item</label>
-              </div>
-              <button type="button" class="btn btn-primary">
-                <i class="fas fa-search"></i>
-              </button>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <%- include('partials/navbar.ejs', {activeTab: "Dashboard"}) %>
+        <%-include('partials/sidebar.ejs');%>
+
+        <div id="second" class="sub-division">
+            <div class="container">
+                <div class="search-bar-area row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="form-outline">
+                                <input
+                                    type="search"
+                                    id="form1"
+                                    class="form-control search-input"
+                                />
+                                <label class="form-label" for="form1"
+                                    >Search item</label
+                                >
+                            </div>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul id="page-link-list" class="pagination">
+                        <li id="previous-link" class="page-item">
+                            <button class="page-link">Previous</button>
+                        </li>
+                        <li id="next-link" class="page-item">
+                            <button class="page-link">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="row">
+                    <div class="order-container col-md-12">
+                        <div class="table-responsive table-all">
+                            <table
+                                id="item-table"
+                                class="table table-striped table-sm table-hover"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Item name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="row">
-
-          <div class="order-container col-md-12">
-            <div class="table-responsive table-all">
-              <table id="item-table" class="table table-striped table-sm table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Item name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-        </div>
-
-        
-      </div>
-    </div>
-    <%- include('partials/scripts.ejs', {activeTab: "products"}) %>
-    <script src="/javascript/sideBar.js"></script>
-    <script src="/javascript/dashboard.js"></script>
-  </body>
+        <%- include('partials/scripts.ejs', {activeTab: "products"}) %>
+        <script src="/javascript/sideBar.js"></script>
+        <script src="/javascript/dashboard.js"></script>
+    </body>
 </html>
