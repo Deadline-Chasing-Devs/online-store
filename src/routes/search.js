@@ -14,7 +14,6 @@ const handler = (pool) => {
                 price: item.price
             };
         });
-        // console.log(results);
         res.json(results);
     });
 
