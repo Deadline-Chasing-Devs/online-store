@@ -1,8 +1,21 @@
 window.onload = async function () {
     const data = await getItemData();
     // populate table with data
-    populateTable(data);
+    populateTable(data.rows);
     addPageButtons(data.data);
+
+    // search func
+    const searchButton = document.getElementById("search-btn");
+    const searchText = document.getElementById("search-text");
+    searchText.value = "";
+    const clearButton = document.getElementById("search-clear-btn");
+    searchButton.addEventListener("click", async () => {
+        const results = await getSearchData(searchText.value);
+        populateTable(results);
+    });
+    clearButton.addEventListener("click", () => {
+        location.reload();
+    });
 };
 
 async function getItemData(offset = 0) {
@@ -19,13 +32,13 @@ async function getItemData(offset = 0) {
         .then((res) => res.json());
 }
 
-function populateTable(data) {
+function populateTable(rows) {
     const table = document.getElementById("item-table");
     const rowCount = table.rows.length - 1;
     for (let i = 0; i < rowCount; i++) {
         table.deleteRow(-1);
     }
-    data.rows.forEach((row) => {
+    rows.forEach((row) => {
         let tableRow = table.insertRow();
 
         let newCell1 = tableRow.insertCell();
@@ -60,19 +73,17 @@ function addPageButtons(data) {
     }
 
     previous.addEventListener("click", async () => {
-        if (previous.dataset.previousOffset < 0)
-            return;
+        if (previous.dataset.previousOffset < 0) return;
         const itemData = await getItemData(previous.dataset.previousOffset);
         updatePreviousAndNextButtons(itemData);
-        populateTable(itemData);
+        populateTable(itemData.rows);
     });
 
     next.addEventListener("click", async () => {
-        if (next.dataset.nextOffset < 0)
-            return;
+        if (next.dataset.nextOffset < 0) return;
         const itemData = await getItemData(next.dataset.nextOffset);
         updatePreviousAndNextButtons(itemData);
-        populateTable(itemData);
+        populateTable(itemData.rows);
     });
 
     for (let i = 0; i < data.totalPages; i++) {
@@ -88,7 +99,7 @@ function addPageButtons(data) {
         listElem.addEventListener("click", async () => {
             const itemData = await getItemData(i * data.limit);
             updatePreviousAndNextButtons(itemData);
-            populateTable(itemData);
+            populateTable(itemData.rows);
         });
         next.parentNode.insertBefore(listElem, next.previousSibling);
     }
@@ -111,4 +122,19 @@ function addPageButtons(data) {
             next.classList.remove("disabled");
         }
     }
+}
+
+async function getSearchData(keyword) {
+    if (!keyword) return;
+    return await fetch(`/search/vendor/?name=${keyword}`, {
+        method: "GET",
+    })
+        .then((res) => {
+            if (res.status >= 200 && res.status < 300) {
+                return Promise.resolve(res);
+            } else {
+                return Promise.reject(new Error(res.statusText));
+            }
+        })
+        .then((res) => res.json());
 }

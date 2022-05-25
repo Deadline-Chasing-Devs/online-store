@@ -17,6 +17,19 @@ const handler = (pool) => {
         res.json(results);
     });
 
+    searchRouter.get("/vendor", async (req, res) => {
+        const name = req.query.name;
+        let results = await searchItemByName(pool, name);
+        results = results.map((item) => {
+            return {
+                item_id: item.item_id,
+                name: item.name,
+                price: item.price
+            };
+        });
+        res.json(results);
+    });
+
     return searchRouter;
 };
 
