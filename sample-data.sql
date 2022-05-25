@@ -45,147 +45,147 @@ INSERT INTO `item` VALUES (
     );
 INSERT INTO `item` VALUES (
     '5af6c640-1d4b-49d1-822b-9f31ded304d0',
-    'Item 05',
+    'Item 06',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '78ab804e-28b4-4392-a36d-f5884ffdc876',
-    'Item 05',
+    'Item 07',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '1dc59a6d-b5b0-4baa-b2a9-57d52b18c57c',
-    'Item 05',
+    'Item 08',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '5a37ffb5-a82f-46c6-8330-a03d1e1f503f',
-    'Item 05',
+    'Item 09',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'f294cb4b-f078-4a56-84ba-448164f9a837',
-    'Item 05',
+    'Item 10',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '3c814f7d-8a4f-4493-8a87-c3351700e3ae',
-    'Item 05',
+    'Item 11',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'bed2b206-b0ab-4f8c-a1a8-84765d438ccd',
-    'Item 05',
+    'Item 12',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'b95c1e4d-51a7-4eab-999f-3389ce8790c7',
-    'Item 05',
+    'Item 13',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'bb2bff84-19b1-4063-9e0b-e82a7cd4305e',
-    'Item 05',
+    'Item 14',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '2172d317-3aea-460f-9ad9-35edd4168505',
-    'Item 05',
+    'Item 15',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'cf5d9e17-d3d2-465c-b140-17f7692f2da6',
-    'Item 05',
+    'Item 16',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '1c47ff20-14ab-4987-802b-3a65b9941e05',
-    'Item 05',
+    'Item 17',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'e9229334-fa3c-45a4-ae5d-0f05adf865a5',
-    'Item 05',
+    'Item 18',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '2f149720-19ca-41b3-9d4a-b0dc66e86de0',
-    'Item 05',
+    'Item 19',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '72854ba3-448a-4532-ba22-295269090343',
-    'Item 05',
+    'Item 20',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '52cfe011-05be-4302-9d46-17e64390aabc',
-    'Item 05',
+    'Item 21',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '4c70d36b-f75b-498a-8ec1-a04be67e23bd',
-    'Item 05',
+    'Item 22',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '95c17baf-ef77-49ae-94b4-f87249f6e8ed',
-    'Item 05',
+    'Item 23',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '009a9a0e-df89-484c-898d-77f4be827a11',
-    'Item 05',
+    'Item 24',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     'f6f48f39-68ab-4f86-8fa9-36b429265c5a',
-    'Item 05',
+    'Item 25',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
     );
 INSERT INTO `item` VALUES (
     '724628aa-86e4-4e7a-9870-a3e0c3224137',
-    'Item 05',
+    'Item 26',
     'This is item 05. This is a sample description. This has these features.',
     '8050.25',
     NULL
