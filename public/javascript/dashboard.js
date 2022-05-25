@@ -17,8 +17,10 @@ window.onload = function () {
                 let tableRow = table.insertRow();
 
                 let newCell1 = tableRow.insertCell();
+                let newLink1 = document.createElement("a");
+                newLink1.setAttribute("href", `/edit-item/${row.item_id}`);
                 let newText1 = document.createTextNode(row.name);
-                newCell1.appendChild(newText1);
+                newCell1.appendChild(newLink1).appendChild(newText1);
 
 
                 let newCell2 = tableRow.insertCell();
