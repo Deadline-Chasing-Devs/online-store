@@ -22,8 +22,8 @@ const handler = (pool) => {
             data: {
                 page: Math.floor((offset + 1) / limit) + 1,
                 totalPages: Math.ceil(itemCount / limit),
-                nextOffset: offset + limit < itemCount - 1 ? offset + limit : 0,
-                previousOffset: offset - limit > 0 ? offset - limit : 0,
+                nextOffset: offset + limit <= itemCount - 1 ? offset + limit : -1,
+                previousOffset: offset - limit >= 0 ? offset - limit : -1,
                 limit: limit
             },
             rows: data
