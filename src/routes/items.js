@@ -7,6 +7,10 @@ const handler = (pool) => {
     // handle route
     itemsRouter.get("/", async (req, res) => {
         const offset = parseInt(req.query.offset) || 0;
+        if (offset < 0) {
+            return res.end();
+        }
+
         const maxLimit = 10;
         let limit = parseInt(req.query.limit) || 10;
 
