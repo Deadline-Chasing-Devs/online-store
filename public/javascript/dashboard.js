@@ -10,6 +10,7 @@ window.onload = async function () {
     searchText.value = "";
     const clearButton = document.getElementById("search-clear-btn");
     searchButton.addEventListener("click", async () => {
+        document.getElementById("page-link-list").style.display = "none";
         const results = await getSearchData(searchText.value);
         populateTable(results);
     });
