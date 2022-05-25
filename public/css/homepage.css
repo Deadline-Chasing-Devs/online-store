@@ -238,6 +238,7 @@ nav ul .active{
     z-index: 1;
     position: absolute;
     max-width: 280px;
+    max-height: 250px;
     top: 25%;
     left: 50%;
     transform: translate(-50%,-50%);
