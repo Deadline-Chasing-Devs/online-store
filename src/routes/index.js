@@ -10,6 +10,7 @@ import newItemRouter from "./newItem.js";
 import orderRouter from "./order.js";
 import ordersRouter from "./orders.js";
 import searchRouter from "./search.js";
+import itemsRouter from "./items.js";
 
 const handler = (pool) => {
     return {
@@ -25,6 +26,7 @@ const handler = (pool) => {
         orderRouter: orderRouter(pool),
         ordersRouter: ordersRouter(pool),
         searchRouter: searchRouter(pool),
+        itemsRouter: itemsRouter(pool)
     };
 };
 

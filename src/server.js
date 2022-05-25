@@ -92,6 +92,7 @@ const {
     orderRouter,
     ordersRouter,
     searchRouter,
+    itemsRouter
 } = router(pool);
 
 app.use("/cart", cartRouter);
@@ -105,4 +106,5 @@ app.use("/new-item", newItemRouter);
 app.use("/order", orderRouter);
 app.use("/orders", ordersRouter);
 app.use("/search", searchRouter);
+app.use("/items", itemsRouter);
 app.use("/", homepageRouter);

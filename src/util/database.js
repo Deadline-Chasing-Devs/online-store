@@ -194,6 +194,40 @@ const addImage = async (pool, itemId, imageId) => {
     }
 };
 
+// Get items with an offset and a limit
+const getItems = async (pool, offset=0, limit=10) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT * FROM item
+            LIMIT ?, ?`,
+            [offset, limit]
+        );
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+// Get total item count
+const getItemCount = async (pool) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT COUNT(*) as count FROM item",
+            []
+        );
+        if (results) return results[0].count;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+
 export {
     getUserByUsername,
     getItemById,
@@ -205,4 +239,6 @@ export {
     editItem,
     searchItemByName,
     addImage,
+    getItems,
+    getItemCount
 };
