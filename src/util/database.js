@@ -171,8 +171,7 @@ const searchItemByName = async (pool, name) => {
             WHERE LOWER(name) LIKE LOWER(?)`,
             ["%" + name + "%"]
         );
-
-        if (results.length) return results;
+        return results;
     } catch (error) {
         console.log(error.message);
         throw "Database Error";
