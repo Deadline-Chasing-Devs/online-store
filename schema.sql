@@ -53,7 +53,7 @@ CREATE TABLE `order` (
   `customer_address` varchar(100) NOT NULL,
   `customer_contact_num` varchar(15) NOT NULL,
   `customer_email` varchar(50) NOT NULL,
-  `date_time` date NOT NULL,
+  `date_time` datetime NOT NULL,
   `status` enum('PAID','PROCESSING','DISPATCHED','DELIVERED') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
