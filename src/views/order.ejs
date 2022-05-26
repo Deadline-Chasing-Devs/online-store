@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,114 +10,104 @@
     <link rel="stylesheet" href="/css/order.css">
     <title>Order</title>
 </head>
+
 <body>
     <div class="dashboard-container">
-      <%- include('partials/navbar.ejs', {activeTab: "Order"}) %>
-      <%-include('partials/sidebar.ejs');%>
-        <div id = "second" class="sub-division">
-          <div class="order-container">
-            <div class="order-view">
-              Order ID : 123456789OD
-              <div class="order-date">
-                Created on : 21 / 05 / 2022
-              </div>
-            </div>
-            
-            <div class="order-details-content">
-              <div class="order-shipping-details">
-                Shipping Details
-                <hr>
-                <div class="order-shipping">
-                  <div class="form-group">
-                    <label>First Name</label>
-                    <div class="order-field form-control">
-                      Poorna
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Last Name</label>
-                    <div class="order-field form-control">
-                      Cooray
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Email</label>
-                    <div class="order-field form-control">
-                      Poorna.19@cse.mrt.ac.lk
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Contact No</label>
-                    <div class="order-field form-control">
-                      0761234567
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Address</label>
-                    <div class="order-field form-control">
-                      12/A, bla bla rd, Bla bla
-                    </div>
-                  </div>
+        <%- include('partials/navbar.ejs', {activeTab: "Order"}) %>
+        <%-include('partials/sidebar.ejs');%>
+        <div id="second" class="sub-division">
+            <div class="order-container">
+                <div class="order-view">
+                    Order ID: <%= order.order_id %>
+                    <div class="order-date">
+                        <%= new Date(order.date_time).toLocaleString() %>
                 </div>
-              </div>
-              <div class="order-detail">
-                Order Details
-                <hr>
-                <table class="table table-responsive table-all table-striped table-sm table-hover">
-                  <thead>
-                    <tr class="order">
-                      <th scope="col">#</th>
-                      <th scope="col">Item</th>
-                      <th scope="col">Quantity</th>
-                      <th scope="col">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="order">
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr class="order">
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr class="order">
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-                  <div class="order-total">
-                    <div class="order-total-label">
-                      Grand Total :
+                </div>
+
+                <div class="order-details-content">
+                    <div class="order-shipping-details">
+                        Customer Details
+                        <hr>
+                        <div class="order-shipping">
+                            <div class="form-group">
+                                <label>Customer Name</label>
+                                <div class="order-field form-control">
+                                    <%= order.customer_name %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <div class="order-field form-control">
+                                    <%= order.customer_email %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Contact No</label>
+                                <div class="order-field form-control">
+                                    <%= order.customer_contact_num %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <div class="order-field form-control">
+                                    <%= order.customer_address %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="order-total-value">
-                      Rs. 12000.00
+                    <div class="order-detail">
+                        Order Details
+                        <hr>
+                        <table class="table table-responsive table-all table-striped table-sm table-hover">
+                            <thead>
+                                <tr class="order">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let i=0; i<orderItems.length; i++) { %>
+                                <tr class="order">
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%= orderItems[i].name %></td>
+                                    <td><%= orderItems[i].quantity %></td>
+                                    <td><%= (Math.round(orderItems[i].price * 100) / 100).toFixed(2) %></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                        <div class="order-total">
+                            <div class="order-total-label">
+                                Grand Total :
+                            </div>
+                            Rs. <%= (Math.round(orderItems.reduce((prev, curr) => prev + curr.price , 0) * 100) / 100).toFixed(2)%>
+                            <div class="order-total-value">
+                            </div>
+                        </div>
+                        <div class="order-status form-group">
+                            <label>
+                                Order Status :
+                            </label>
+                            <form action="">
+                                <select class="order-status-select form-select" aria-label="Default select example">
+                                    <% 
+                                        let options = ["PAID", "PROCESSING", "DISPATCHED", "DELIVERED"];
+                                        for (let i=0; i < options.length; i++) {
+                                            let selected = (order.status==options[i]) ? "selected" : "";
+                                            %><option value="<%= options[i] %>" <%= selected %>> <%= options[i] %> <%
+                                        }
+                                    %> 
+                                </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="order-status form-group">
-                    <label>
-                      Order Status :
-                    </label>
-                    <form action="">
-                      <select class="order-status-select form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Dispatched</option>
-                        <option value="2">Rejected</option>
-                      </select>
-                  </div>
-              </div>
+                </div>
             </div>
-          </div>
-          <button type="submit" class="order-accept-btn btn btn-primary">Update Status</button>
-        </form>
-    </div>
-    <script src="/javascript/sideBar.js"></script>
+            <button type="submit" class="order-accept-btn btn btn-primary">Update Status</button>
+            </form>
+        </div>
+        <script src="/javascript/sideBar.js"></script>
 </body>
+
 </html>
