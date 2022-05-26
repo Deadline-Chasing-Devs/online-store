@@ -65,6 +65,7 @@
                                     <th scope="col">Item</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Subtotal</th> 
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,7 @@
                                     <td><%= orderItems[i].name %></td>
                                     <td><%= orderItems[i].quantity %></td>
                                     <td><%= (Math.round(orderItems[i].price * 100) / 100).toFixed(2) %></td>
+                                    <td><%= (Math.round(orderItems[i].quantity * orderItems[i].price * 100) / 100).toFixed(2) %></td>
                                 </tr>
                                 <% } %>
                             </tbody>
@@ -82,7 +84,7 @@
                             <div class="order-total-label">
                                 Grand Total :
                             </div>
-                            Rs. <%= (Math.round(orderItems.reduce((prev, curr) => prev + curr.price , 0) * 100) / 100).toFixed(2)%>
+                            Rs. <%= (Math.round(orderItems.reduce((prev, curr) => prev + curr.quantity * curr.price , 0) * 100) / 100).toFixed(2)%>
                             <div class="order-total-value">
                             </div>
                         </div>
