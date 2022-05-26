@@ -87,19 +87,17 @@ const getItemsByOrderId = async (pool, orderId) => {
     try {
         results = await queryPromise(
             pool,
-            "SELECT item_id FROM order_item WHERE order_id=?",
+            `SELECT * FROM order_item
+            INNER JOIN item using(item_id)
+            WHERE order_id=?`,
             [orderId]
         );
     } catch (error) {
         throw "Database Error";
     }
 
-    let i = 0;
-    const items = [];
-    while (i < results.length) {
-        items[i] = getItemById(results[i]);
-    }
-    return items;
+    if (results.length)
+        return results;
 };
 
 // Get image_ids of an item by itemId
