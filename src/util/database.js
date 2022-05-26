@@ -224,6 +224,20 @@ const getItemCount = async (pool) => {
     }
 };
 
+// Update order status
+const updateOrderStatus = async (pool, orderId, orderStatus) => {
+    try {
+        await queryPromise(
+            pool,
+            "UPDATE `order` SET status=? WHERE order_id=?",
+            [orderStatus, orderId]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 
 export {
     getUserByUsername,
@@ -237,5 +251,6 @@ export {
     searchItemByName,
     addImage,
     getItems,
-    getItemCount
+    getItemCount,
+    updateOrderStatus
 };
