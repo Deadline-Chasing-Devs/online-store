@@ -50,7 +50,8 @@ const getItemById = async (pool, itemId) => {
             results[0].item_id,
             results[0].name,
             results[0].description,
-            results[0].price
+            results[0].price,
+            results[0].availability
         );
     }
 };
@@ -96,8 +97,7 @@ const getItemsByOrderId = async (pool, orderId) => {
         throw "Database Error";
     }
 
-    if (results.length)
-        return results;
+    if (results.length) return results;
 };
 
 // Get image_ids of an item by itemId
@@ -129,29 +129,38 @@ const getAllOrders = async (pool) => {
 };
 
 // Add new item to the database
-const addItem = async (pool, itemId, name, description, price, coverPhoto=null) => {
+const addItem = async (
+    pool,
+    itemId,
+    name,
+    description,
+    price,
+    coverPhoto = null,
+    availability
+) => {
     try {
         await queryPromise(
             pool,
             `INSERT INTO item 
-            (item_id, name, description, price, cover_photo)
-            VALUES (?, ?, ?, ?, ?)`,
-            [itemId, name, description, price, coverPhoto]
+            (item_id, name, description, price, cover_photo, availability)
+            VALUES (?, ?, ?, ?, ?, ?)`,
+            [itemId, name, description, price, coverPhoto, availability]
         );
     } catch (error) {
+        console.log(error.message);
         throw "Database Error";
     }
 };
 
 // Edit item
-const editItem = async (pool, itemId, name, description, price) => {
+const editItem = async (pool, itemId, name, description, price, availability) => {
     try {
         await queryPromise(
             pool,
             `UPDATE item
-            SET name=?, description=?, price=?
+            SET name=?, description=?, price=?, availability=?
             WHERE item_id=?`,
-            [name, description, price, itemId]
+            [name, description, price, availability, itemId]
         );
     } catch (error) {
         console.log(error.message);
@@ -192,7 +201,7 @@ const addImage = async (pool, itemId, imageId) => {
 };
 
 // Get items with an offset and a limit
-const getItems = async (pool, offset=0, limit=10) => {
+const getItems = async (pool, offset = 0, limit = 10) => {
     let results;
     try {
         results = await queryPromise(
@@ -238,6 +247,29 @@ const updateOrderStatus = async (pool, orderId, orderStatus) => {
     }
 };
 
+const deleteItem = async (pool, itemId) => {
+    try {
+        await queryPromise(pool, "DELETE FROM item WHERE item_id=?", [itemId]);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+const getOrderIdsIncludingItem = async (pool, itemId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT DISTINCT order_id FROM order_item WHERE item_id=?",
+            [itemId]
+        );
+        return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
 // Get items with an offset and a limit
 const getItemsForCustomer = async (pool, offset=0, limit=10) => {
     let results;
@@ -271,4 +303,7 @@ export {
     getItemCount,
     updateOrderStatus,
     getItemsForCustomer
+    updateOrderStatus,
+    deleteItem,
+    getOrderIdsIncludingItem
 };

@@ -32,6 +32,9 @@ const handler = (pool) => {
                 }
             },
         },
+        availability: {
+            notEmpty: true
+        }
     };
 
     const imageUpload = upload.fields([
@@ -76,7 +79,7 @@ const handler = (pool) => {
                 return;
             }
 
-            const { name, description, price } = req.body;
+            const { name, description, price, availability } = req.body;
             const itemId = randomUUID();
             let coverPhotoPath;
             let imagePaths;
@@ -95,7 +98,8 @@ const handler = (pool) => {
                     name,
                     description,
                     price,
-                    coverPhotoPath ? coverPhotoPath : null
+                    coverPhotoPath ? coverPhotoPath : null,
+                    availability === "true" ? true : false
                 );
                 if (coverPhotoPath) {
                     await addImage(pool, itemId, coverPhotoPath);
