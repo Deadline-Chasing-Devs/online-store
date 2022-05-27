@@ -38,6 +38,9 @@ const handler = (pool) => {
                 }
             },
         },
+        availability: {
+            notEmpty: true,
+        }
     };
 
     editItemRouter.post(
@@ -63,7 +66,8 @@ const handler = (pool) => {
                 itemId,
                 req.body.name,
                 req.body.description,
-                req.body.price
+                req.body.price,
+                req.body.availability === "true" ? true : false
             );
             req.flash("update-success", "Item updated successfully.");
             res.redirect(`/edit-item/${itemId}`);

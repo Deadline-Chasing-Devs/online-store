@@ -29,7 +29,7 @@
                 }) %> 
         <% } %>
         <div class="container">
-            <form action="<%= '/edit-item/' + item.itemId %>" method="post">
+            <form action="<%= '/edit-item/' + item.itemId %>" method="post" autocomplete="off">
                 <div class="vendor-form">
 
                     <div class="row mb-3">
@@ -77,16 +77,16 @@
                         <label for="colFormLabel" class="col-sm-2 col-form-label">Availability</label>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
+                                <input class="form-check-input" type="radio" name="availability" id="availability1" value="true" <% if (item.availability) { %> checked  <% } %> />
                                 <label class="form-check-label" for="exampleRadios1">
                                     In Stock
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                                <input class="form-check-input" type="radio" name="availability" id="availability2" value="false" <% if (!item.availability) { %> checked  <% } %>/>
                                 <label class="form-check-label" for="exampleRadios2">
                                     Out Of Stock
-                                </label>
+                            </label>
                             </div>
                         </div>
                     </div>

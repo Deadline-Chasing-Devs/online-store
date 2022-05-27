@@ -50,7 +50,8 @@ const getItemById = async (pool, itemId) => {
             results[0].item_id,
             results[0].name,
             results[0].description,
-            results[0].price
+            results[0].price,
+            results[0].availability
         );
     }
 };
@@ -134,30 +135,32 @@ const addItem = async (
     name,
     description,
     price,
-    coverPhoto = null
+    coverPhoto = null,
+    availability
 ) => {
     try {
         await queryPromise(
             pool,
             `INSERT INTO item 
-            (item_id, name, description, price, cover_photo)
-            VALUES (?, ?, ?, ?, ?)`,
-            [itemId, name, description, price, coverPhoto]
+            (item_id, name, description, price, cover_photo, availability)
+            VALUES (?, ?, ?, ?, ?, ?)`,
+            [itemId, name, description, price, coverPhoto, availability]
         );
     } catch (error) {
+        console.log(error.message);
         throw "Database Error";
     }
 };
 
 // Edit item
-const editItem = async (pool, itemId, name, description, price) => {
+const editItem = async (pool, itemId, name, description, price, availability) => {
     try {
         await queryPromise(
             pool,
             `UPDATE item
-            SET name=?, description=?, price=?
+            SET name=?, description=?, price=?, availability=?
             WHERE item_id=?`,
-            [name, description, price, itemId]
+            [name, description, price, availability, itemId]
         );
     } catch (error) {
         console.log(error.message);
