@@ -11,89 +11,31 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/login.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="/css/login.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        />
     </head>
     <body>
-        <!-- <section class="vh-100 gradient-custom">
-            <% if (invalidLogin) { %>
-            <div class="alert alert-danger" role="alert">
-                Invalid username or password.
-                <br />
-                Try again.
-            </div>
-            <% } %>
-            <div class="container h-100">
-                <div
-                    class="row d-flex justify-content-center align-items-center h-100"
-                >
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div
-                            class="card bg-dark text-white"
-                            style="border-radius: 1rem"
-                        >
-                            <form
-                                method="post"
-                                class="card-body p-4 text-center"
-                            >
-                                <div class="mb-md-5 mt-md-4 pb-5">
-                                    <h2 class="fw-bold mb-2 text-uppercase">
-                                        Login
-                                    </h2>
-                                    <p class="text-white-50 mb-5">
-                                        Please enter your username and password!
-                                    </p>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            class="form-control form-control-lg"
-                                        />
-                                        <label class="form-label" for="username"
-                                            >Username</label
-                                        >
-                                    </div>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            name="password"
-                                            class="form-control form-control-lg"
-                                        />
-                                        <label
-                                            class="form-label"
-                                            for="typePasswordX"
-                                            >Password</label
-                                        >
-                                    </div>
-                                    <button
-                                        class="btn btn-outline-light btn-lg px-5"
-                                        type="submit"
-                                    >
-                                        Login
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"
-        ></script> -->
+        <% if (loginError.length) {%>
+            <%- include("partials/errorFlashMessage.ejs", { message: loginError[0] }) %>
+        <% } %>
         <div class="login-container">
             <div class="login">
                 <div class="login-content">
-                    <img src="/img/login.png" alt="" srcset="">
+                    <img src="/img/login.png" alt="" srcset="" />
                 </div>
                 <div class="login-form">
                     <h1>Login</h1>
@@ -101,20 +43,22 @@
                         <div class="login-tbox">
                             <i class="fa fa-user"></i>
                             <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            placeholder="Username"
-                                        />
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Username"
+                                required
+                            />
                         </div>
                         <div class="login-tbox">
                             <i class="fa fa-lock"></i>
                             <input
-                                            type="password"
-                                            id="password"
-                                            name="password"
-                                            placeholder="Password"
-                                        />
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Password"
+                                required
+                            />
                         </div>
                         <button class="login-btn">Login</button>
                     </form>
