@@ -55,6 +55,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(logger("dev"));
 app.use(flash());
+app.enable("trust proxy")
 
 // Session store
 const MySQLStore = expressMysqlSession(expressSession);
