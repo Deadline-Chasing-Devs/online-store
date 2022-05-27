@@ -302,8 +302,7 @@ export {
     getItems,
     getItemCount,
     updateOrderStatus,
-    getItemsForCustomer
-    updateOrderStatus,
+    getItemsForCustomer,
     deleteItem,
     getOrderIdsIncludingItem
 };
