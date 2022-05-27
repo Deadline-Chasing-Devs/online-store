@@ -38,20 +38,21 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                 </tr>
-                <%= JSON.stringify(cart) %>
-                <% for (const [itemId, item] of Object.entries(cart.items)) { %>
-                    <tr>
-                        <td>
-                            <div>
-                                <p><%= item.name %></p>
-                                <small>Price: Rs. <%= (Math.round(item.price * 100) / 100).toFixed(2) %>  </small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
-                        </td>
-                        <td><%= item.qty %></td>
-                        <td><%= (Math.round(item.price * item.qty * 100) / 100).toFixed(2) %></td>
-                    </tr>
+                <% if (Object.entries(cart).length) { %>
+                    <% for (const [itemId, item] of Object.entries(cart.items)) { %>
+                        <tr id="<%= itemId %>">
+                            <td>
+                                <div>
+                                    <p><%= item.name %></p>
+                                    <small>Price: Rs. <%= (Math.round(item.price * 100) / 100).toFixed(2) %>  </small>
+                                    <br>
+                                    <button data-item-id="<%= itemId %>" class="delete-btn"><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></button>
+                                </div>
+                            </td>
+                            <td><%= item.qty %></td>
+                            <td><%= (Math.round(item.price * item.qty * 100) / 100).toFixed(2) %></td>
+                        </tr>
+                    <% } %>
                 <% } %>
             </table>
 
@@ -59,7 +60,7 @@
                 <table>
                     <tr>
                         <td>Total</td>
-                        <td>Rs. <%= (Math.round(cart.totalPrice * 100) / 100).toFixed(2) %></td>
+                        <td>Rs. <%= cart.totalPrice ? (Math.round(cart.totalPrice * 100) / 100).toFixed(2) : '0.00' %></td>
                     </tr>
                     <tr>
                         <td id="buttons" class="clearcart"><a href="#" class="clear-cart-btn">Clear cart</a></td>
@@ -70,6 +71,6 @@
 
         </div>
         <!--cart items end-->
-
+    <script src="/javascript/cart.js"></script>
     </body>
 </html>

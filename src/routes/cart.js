@@ -73,7 +73,8 @@ const handler = (pool) => {
 
             if (!errors.isEmpty()) {
                 return res.status(400).json({
-                    errors: errors.array(),
+                    success: false,
+                    message: "Invalid input."
                 });
             }
             req.session.cart = new Cart(req.session.cart);
