@@ -9,7 +9,7 @@ const handler = (pool) => {
     // Get cart page
     cartRouter.get("", (req, res) => {
         // console.log("GET SESSION OBJ", req.session);
-        res.render("cart", { cart: req.session.cart });
+        res.render("cart", { cart: req.session.cart || {} });
         // res.json(req.session);
         // res.render("cart", { cart: req.session.cart || {} });
     });
@@ -43,7 +43,7 @@ const handler = (pool) => {
         }
 
         req.session.cart = new Cart(req.session.cart || {});
-        req.session.cart.addItem(item, req.body.quantity);
+        req.session.cart.addItem(item, parseInt(req.body.quantity));
         res.status(200).json({
             success: true,
             message: "Added to the cart.",
