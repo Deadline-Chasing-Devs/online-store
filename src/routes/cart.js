@@ -35,7 +35,7 @@ const handler = (pool) => {
         if (!errors.isEmpty()) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid input."
+                message: "Invalid input.",
             });
         }
 
@@ -54,7 +54,11 @@ const handler = (pool) => {
                 options: (value, { req }) => {
                     console.log(req.session.cart.items);
                     // eslint-disable-next-line no-prototype-builtins
-                    if (!req.session.cart || !req.session.cart.items.hasOwnProperty(value)) {
+                    if (
+                        !req.session.cart ||
+                        // eslint-disable-next-line no-prototype-builtins
+                        !req.session.cart.items.hasOwnProperty(value)
+                    ) {
                         return Promise.reject("Invalid item id.");
                     }
                     return true;
@@ -71,7 +75,7 @@ const handler = (pool) => {
             if (!errors.isEmpty()) {
                 return res.status(400).json({
                     success: false,
-                    message: "Invalid input."
+                    message: "Invalid input.",
                 });
             }
             req.session.cart = new Cart(req.session.cart);
@@ -82,6 +86,14 @@ const handler = (pool) => {
             });
         }
     );
+
+    // Clear cart
+    cartRouter.delete("", (req, res) => {
+        req.session.cart = new Cart({});
+        res.status(200).json({
+            success: true
+        });
+    });
     return cartRouter;
 };
 
