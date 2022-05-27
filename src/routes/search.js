@@ -1,5 +1,6 @@
 import express from "express";
 import { searchItemByName } from "../util/database.js";
+import { authChecker } from "../util/middleware.js";
 
 const handler = (pool) => {
     const searchRouter = express.Router();
@@ -17,7 +18,7 @@ const handler = (pool) => {
         res.json(results);
     });
 
-    searchRouter.get("/vendor", async (req, res) => {
+    searchRouter.get("/vendor", authChecker, async (req, res) => {
         const name = req.query.name;
         let results = await searchItemByName(pool, name);
         results = results.map((item) => {
