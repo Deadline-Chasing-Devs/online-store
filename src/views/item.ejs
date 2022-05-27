@@ -83,18 +83,33 @@
               </div>
       </div>
       <div class="info">
-        <h2><%=item["name"]%></h2>
+        <h2 id="item-name"><%=item["name"]%></h2>
         <p>
             <%=item["description"]%>
         </p>
         <span class="price">Rs.<%=item["price"]%></span>
         <span class="quantity">Quantity :</span>
-        <input type="number" name="pqty" id="<?php echo $product->item_id ?>" class="<?php echo $product->item_id ?>" value="1" id="quantity" name="quantity" min="1" max="<?php echo $product->amount; ?>">
-        <a href="#" class="add-cart-btn">Add to cart</a>
+        <input 
+            type="number"
+            id="quantity"
+            name="quantity"
+            value="1"
+            step="1"
+            min="1"
+            max="5"
+            autocomplete="off"
+        />
+        <button 
+            id="add-to-cart-btn"
+            class="add-cart-btn"
+            data-item-id="<%= item["itemId"] %>"
+        >
+            Add to cart
+        </button>
       </div>
     </div>
   </div>
   <!--item details start-->
-
+    <script src="/javascript/item.js"></script>
     </body>
 </html>

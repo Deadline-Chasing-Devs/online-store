@@ -37,7 +37,8 @@ const handler = (pool) => {
 
         if (!errors.isEmpty()) {
             return res.status(400).json({
-                errors: errors.array(),
+                success: false,
+                message: "Invalid input."
             });
         }
 
@@ -45,7 +46,7 @@ const handler = (pool) => {
         req.session.cart.addItem(item, req.body.quantity);
         res.status(200).json({
             success: true,
-            message: "Added to the cart",
+            message: "Added to the cart.",
         });
     });
 
