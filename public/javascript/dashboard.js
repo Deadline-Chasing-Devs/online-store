@@ -53,6 +53,12 @@ function populateTable(rows) {
             (Math.round(row.price * 100) / 100).toFixed(2)
         );
         newCell2.appendChild(newText2);
+
+        let newCell3 = tableRow.insertCell();
+        let newText3 = document.createTextNode(
+            row.availability ? "IN-STOCK" : "OUT-OF-STOCK"
+        );
+        newCell3.appendChild(newText3);
     });
 }
 
