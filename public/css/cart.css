@@ -250,7 +250,7 @@ td:last-child{
 th:last-child{
     text-align: right;
 }
-.total-price td button{
+.total-price td a{
     color: #fff;
     background: #009DD2;
     font-size: 14px;

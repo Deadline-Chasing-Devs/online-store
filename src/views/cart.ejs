@@ -62,10 +62,12 @@
                         <td>Total</td>
                         <td>Rs. <%= cart.totalPrice ? (Math.round(cart.totalPrice * 100) / 100).toFixed(2) : '0.00' %></td>
                     </tr>
-                    <tr>
-                        <td id="clear-cart"><button>Clear cart</button></td>
-                        <td id="checkout"><button>Proceed to checkout</button></td>
-                    </tr>
+                    <% if (Object.entries(cart).length && Object.entries(cart.items).length) { %>
+                        <tr>
+                            <td id="clear-cart"><a href="#">Clear cart</a></td>
+                            <td id="checkout"><a href="/checkout" >Proceed to checkout</a></td>
+                        </tr>
+                    <% } %>
                 </table>
             </div>
 
