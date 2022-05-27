@@ -96,8 +96,7 @@ const getItemsByOrderId = async (pool, orderId) => {
         throw "Database Error";
     }
 
-    if (results.length)
-        return results;
+    if (results.length) return results;
 };
 
 // Get image_ids of an item by itemId
@@ -129,7 +128,14 @@ const getAllOrders = async (pool) => {
 };
 
 // Add new item to the database
-const addItem = async (pool, itemId, name, description, price, coverPhoto=null) => {
+const addItem = async (
+    pool,
+    itemId,
+    name,
+    description,
+    price,
+    coverPhoto = null
+) => {
     try {
         await queryPromise(
             pool,
@@ -192,7 +198,7 @@ const addImage = async (pool, itemId, imageId) => {
 };
 
 // Get items with an offset and a limit
-const getItems = async (pool, offset=0, limit=10) => {
+const getItems = async (pool, offset = 0, limit = 10) => {
     let results;
     try {
         results = await queryPromise(
@@ -238,6 +244,29 @@ const updateOrderStatus = async (pool, orderId, orderStatus) => {
     }
 };
 
+const deleteItem = async (pool, itemId) => {
+    try {
+        await queryPromise(pool, "DELETE FROM item WHERE item_id=?", [itemId]);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+const getOrderIdsIncludingItem = async (pool, itemId) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT DISTINCT order_id FROM order_item WHERE item_id=?",
+            [itemId]
+        );
+        return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
 
 export {
     getUserByUsername,
@@ -252,5 +281,7 @@ export {
     addImage,
     getItems,
     getItemCount,
-    updateOrderStatus
+    updateOrderStatus,
+    deleteItem,
+    getOrderIdsIncludingItem
 };

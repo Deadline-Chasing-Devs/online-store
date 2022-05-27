@@ -1,6 +1,7 @@
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
-import { editItem, getImageIdsByItemId, getItemById } from "../util/database.js";
+import { deleteItem, editItem, getImageIdsByItemId, getItemById, getOrderIdsIncludingItem } from "../util/database.js";
+import { deleteFile } from "../util/helpers.js";
 import { authChecker } from "../util/middleware.js";
 
 const handler = (pool) => {
@@ -17,6 +18,7 @@ const handler = (pool) => {
             item,
             images,
             updateSuccess: req.flash("update-success") || [],
+            error: req.flash("error")
         });
     });
 
@@ -67,6 +69,30 @@ const handler = (pool) => {
             res.redirect(`/edit-item/${itemId}`);
         }
     );
+
+    editItemRouter.delete("/:id", authChecker, async (req, res) => {
+        const itemId = req.params.id;
+        const item = await getItemById(pool, itemId);
+        if (!item) {
+            res.status(400).send();
+            return;
+        }
+
+        const availableOrderIds = await getOrderIdsIncludingItem(pool, itemId);
+        if (availableOrderIds.length) {
+            req.flash("error", "Cannot delete this item: There are orders including this item.");
+            res.status(400).send();
+            return;
+        }
+
+        const imageIds = await getImageIdsByItemId(pool, itemId);
+        if (imageIds.length) {
+            imageIds.forEach(val => deleteFile(`public/uploads/${val.image_id}`));
+        }
+
+        await deleteItem(pool, itemId);
+        res.status(200).send();
+    });
 
     return editItemRouter;
 };

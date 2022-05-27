@@ -126,7 +126,7 @@ ALTER TABLE `vendor`
 -- Constraints for table `item_image`
 --
 ALTER TABLE `item_image`
-  ADD CONSTRAINT `item_image_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`);
+  ADD CONSTRAINT `item_image_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `order_item`
