@@ -238,6 +238,23 @@ const updateOrderStatus = async (pool, orderId, orderStatus) => {
     }
 };
 
+// Get items with an offset and a limit
+const getItemsForCustomer = async (pool, offset=0, limit=10) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT name,description,item_id,price,cover_photo FROM item
+            LIMIT ?, ?`,
+            [offset, limit]
+        );
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 
 export {
     getUserByUsername,
@@ -252,5 +269,6 @@ export {
     addImage,
     getItems,
     getItemCount,
-    updateOrderStatus
+    updateOrderStatus,
+    getItemsForCustomer
 };

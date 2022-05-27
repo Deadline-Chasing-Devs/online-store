@@ -1,16 +1,21 @@
 import express from "express";
-import {getItemById} from "../util/database.js";
+import {getImageIdsByItemId,getItemById,getItems, getItemCount,getItemsForCustomer} from "../util/database.js";
+import Item from "../models/item.js";
 
 const handler = (pool) => {
     const itemRouter = express.Router();
 
     // handle route
-
     itemRouter.get("/:item_id", async (req,res) => {
         const itemId = req.params.item_id;
         const item = await getItemById(pool,itemId);
-        res.render("item",{item: item});
+        const itemImages = await getImageIdsByItemId(pool,itemId);
+        if(item == null){
+            res.redirect('/');
+        }
+        res.render("item",{item: item, itemimg: itemImages});
     });
+
 
     return itemRouter;
 };
