@@ -10,9 +10,19 @@
     font-size: 1em;
   }
 
-  .table-all{
-    background-color: rgba(241, 240, 240, 0.932);
-    border-radius: 8px;
+  .table-mini{
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 0.25rem;
+    overflow: auto;
+  }
+
+  .table-mini::-webkit-scrollbar-thumb{
+    background: rgb(80, 80, 80);
+  }
+
+  .table-mini::-webkit-scrollbar-track{
+    background: rgba(141, 141, 141, 0.596);
   }
 
   .order-view{
@@ -25,7 +35,7 @@
     display: flex;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgb(202, 205, 208);
+    /* border: 1px solid rgb(202, 205, 208); */
     padding: 10px;
   }
 
