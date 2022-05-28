@@ -10,7 +10,7 @@ const handler = (pool) => {
         const itemId = req.params.item_id;
         const item = await getItemById(pool,itemId);
         const itemImages = await getImageIdsByItemId(pool,itemId);
-        if(item == null){
+        if(item == null || item.availability === 0){
             res.redirect('/');
         }
         res.render("item",{item: item, itemimg: itemImages});
