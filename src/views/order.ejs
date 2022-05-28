@@ -64,28 +64,30 @@
                     <div class="order-detail">
                         Order Details
                         <hr>
-                        <table class="table table-responsive table-all table-striped table-sm table-hover">
-                            <thead>
-                                <tr class="order">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Item</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Subtotal</th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for (let i=0; i<orderItems.length; i++) { %>
-                                <tr class="order">
-                                    <th scope="row"><%= i+1 %></th>
-                                    <td><%= orderItems[i].name %></td>
-                                    <td><%= orderItems[i].quantity %></td>
-                                    <td><%= (Math.round(orderItems[i].price * 100) / 100).toFixed(2) %></td>
-                                    <td><%= (Math.round(orderItems[i].quantity * orderItems[i].price * 100) / 100).toFixed(2) %></td>
-                                </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
+                        <div class="table-mini">
+                            <table class="table table-responsive table-striped table-sm table-hover">
+                                <thead>
+                                    <tr class="order">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Subtotal</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let i=0; i<orderItems.length; i++) { %>
+                                    <tr class="order">
+                                        <th scope="row"><%= i+1 %></th>
+                                        <td><%= orderItems[i].name %></td>
+                                        <td><%= orderItems[i].quantity %></td>
+                                        <td><%= (Math.round(orderItems[i].price * 100) / 100).toFixed(2) %></td>
+                                        <td><%= (Math.round(orderItems[i].quantity * orderItems[i].price * 100) / 100).toFixed(2) %></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="order-total">
                             <div class="order-total-label">
                                 Grand Total :
