@@ -8,7 +8,16 @@ const handler = (pool) => {
     homepageRouter.get("",async (req, res) => {
         const noofItems = await getItemCount(pool);
         const items = await getItemsForCustomer(pool,0,noofItems);
-        res.render("homepage",{items: items, size: noofItems});
+        let i;
+        let availableItems = []
+        var j = 0;
+        for(i=0; i < items.length; i++){
+            if(items[i].availability === 1){
+                availableItems[j] = items[j];
+                j++;
+            }
+        }
+        res.render("homepage",{items: availableItems, size: j});
     });
 
     return homepageRouter;
