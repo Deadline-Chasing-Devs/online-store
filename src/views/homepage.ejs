@@ -49,7 +49,9 @@
         <h2 class="name"><%= items[i]["name"] %></h2>
         <span class="price"><%= items[i]["price"] %></span>
         <a class="popup-btn" href="/item/<%=items[i]["item_id"]%>">View item</a>
-        <img src="/uploads/<%= items[i]["cover_photo"] %>" class="product-img" alt="">
+        <object data="/uploads/<%= items[i]["cover_photo"] %>" type="image/jpg" class="product-img">
+            <img src="https://via.placeholder.com/250x300" class="product-img" alt="">
+        </object>
       </div>
     </li>
 
