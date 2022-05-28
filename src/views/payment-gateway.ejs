@@ -28,7 +28,7 @@
             payment.
         </p>
         <button onclick="success()">Successful Payment</button>
-        <button>Failed Payment</button>
+        <button onclick="failed()">Failed Payment</button>
         <script>
             async function success() {
                 const customerData = document.querySelector(
@@ -55,7 +55,9 @@
                     });
             }
 
-            function failed() {}
+            function failed() {
+                window.location.replace("/order/fail");
+            }
         </script>
     </body>
 </html>
