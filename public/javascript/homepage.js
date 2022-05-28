@@ -25,7 +25,7 @@ function searchElement() {
     fileter = input.value.toLowerCase();
     product = document.getElementsByTagName('li');
 
-    for(i = 3; i < product.length; i++){
+    for(i = 2; i < product.length; i++){
         h2 = product[i].getElementsByTagName("div")[0].getElementsByTagName("h2")[0];
         txtvalue = h2.innerText;
         if(txtvalue.toLowerCase().indexOf(fileter) > -1){

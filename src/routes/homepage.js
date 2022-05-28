@@ -13,7 +13,7 @@ const handler = (pool) => {
         var j = 0;
         for(i=0; i < items.length; i++){
             if(items[i].availability === 1){
-                availableItems[j] = items[j];
+                availableItems[j] = items[i];
                 j++;
             }
         }
