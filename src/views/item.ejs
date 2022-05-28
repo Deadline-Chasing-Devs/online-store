@@ -71,7 +71,7 @@
         <p>
             <%=item["description"]%>
         </p>
-        <span class="price">Rs.<%=item["price"]%></span>
+        <span class="price">Rs. <%= (Math.round(item["price"] * 100) / 100).toFixed(2) %></span>
         <span class="quantity">Quantity :</span>
         <input 
             type="number"

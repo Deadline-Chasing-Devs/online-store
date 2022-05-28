@@ -29,7 +29,7 @@
     <li class="product">
       <div class="product-card">
         <h2 class="name"><%= items[i]["name"] %></h2>
-        <span class="price"><%= items[i]["price"] %></span>
+        <span class="price">Rs <%= (Math.round(items[i]["price"] * 100) / 100).toFixed(2) %></span>
         <a class="popup-btn" href="/item/<%=items[i]["item_id"]%>">View item</a>
         <object data="/uploads/<%= items[i]["cover_photo"] %>" type="image/jpg" class="product-img">
             <img src="https://via.placeholder.com/250x300" class="product-img" alt="">
