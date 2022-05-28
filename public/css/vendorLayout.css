@@ -104,6 +104,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   /* height: 100vh; */
+  background-color:#ecf0f5;
 }
 
 .search-bar-area {
