@@ -10,6 +10,11 @@
     font-size: 1em;
   }
 
+  .table-all{
+    background-color: rgba(241, 240, 240, 0.932);
+    border-radius: 8px;
+  } 
+  
   .table-mini{
     position: relative;
     background-color: #ffffff;
