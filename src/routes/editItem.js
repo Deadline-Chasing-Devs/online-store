@@ -18,7 +18,8 @@ const handler = (pool) => {
             item,
             images,
             updateSuccess: req.flash("update-success") || [],
-            error: req.flash("error")
+            error: req.flash("error"),
+            user: req.session.user
         });
     });
 
