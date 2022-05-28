@@ -16,29 +16,11 @@
 </head>
 <body>
 <!--navbar start-->
-<nav id="navbar">
-  <input type="checkbox" id="check">
-  <label for="check" class="checkbtn">
-    <i class="fas fa-bars"></i>
-  </label>
-  <div class="logo">
-    <p>Website</p>
-  </div>
-  <div class="search">
-    <div class="search-box">
-      <input class="search-txt" id="pinput" type="text" name="" placeholder="Search here" onkeyup="searchElement()">
-    </div>
-  </div>
-  <ul>
-    <li><a class="active" href="/">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Cart</a></li>
-  </ul>
-</nav>
+<%- include("partials/customerNavBar", { searchBar: true, active: "home" }); %>
+</nav> -->
 <!--navbar end-->
 
 <!--product cards start-->
-<h2 class="product-head">Featured Products</h2>
 <ul class="container-product" id="myUL">
   <%
   for(let i = 0; i < size; i++){
