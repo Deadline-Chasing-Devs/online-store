@@ -20,7 +20,7 @@ closeBtns.forEach((closeBtn)=>{
 });
 
 function searchElement() {
-    var input,txtvalue,products,div,i,h2;
+    var input,txtvalue,product,i,h2;
     input = document.getElementById("pinput");
     fileter = input.value.toLowerCase();
     product = document.getElementsByTagName('li');
