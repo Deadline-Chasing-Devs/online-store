@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mock Payment Gateway</title>
+    </head>
+    <body>
+        <h1>Mock Payment Gateway</h1>
+        <div>
+            <label>Customer Name: </label>
+            <label><%= data.customerData.name %></label>
+            <div
+                data-customer-data="<%= JSON.stringify(data.customerData) %>"
+            ></div>
+        </div>
+        <div>
+            <label>Total Payment: </label>
+            <label
+                >Rs: <%= (Math.round(data.cart.totalPrice * 100) /
+                100).toFixed(2) %></label
+            >
+        </div>
+        <p>
+            This page is created to mock the functionality of a payment gateway.
+            Use the below buttons to simulate a successful payment or a failed
+            payment.
+        </p>
+        <button onclick="success()">Successful Payment</button>
+        <button onclick="failed()">Failed Payment</button>
+        <script>
+            async function success() {
+                const customerData = document.querySelector(
+                    "[data-customer-data]"
+                );
+                fetch("/checkout/success", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: customerData.dataset.customerData,
+                })
+                    .then((res) => {
+                        if (res.status == 200) {
+                            return res.json();
+                        } else {
+                            console.log(res.statusText);
+                        }
+                    })
+                    .then((json) => {
+                        if (json.success) {
+                            window.location.replace(`/order/success/${json.orderId}`);
+                        }
+                    });
+            }
+
+            function failed() {
+                window.location.replace("/order/fail");
+            }
+        </script>
+    </body>
+</html>

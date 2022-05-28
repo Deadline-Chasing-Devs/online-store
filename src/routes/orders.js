@@ -8,7 +8,7 @@ const handler = (pool) => {
     // handle route
     ordersRouter.get("", authChecker, async (req, res) => {
         const orders = await getAllOrders(pool);
-        res.render("orders", { orders: orders });
+        res.render("orders", { user: req.session.user, orders: orders });
     });
 
     return ordersRouter;

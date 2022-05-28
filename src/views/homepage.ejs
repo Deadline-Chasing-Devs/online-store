@@ -12,33 +12,15 @@
   <link rel="stylesheet" href="/css/homepage.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="javascript/homepage.js"></script>
+  <script src="/javascript/homepage.js"></script>
 </head>
 <body>
 <!--navbar start-->
-<nav id="navbar">
-  <input type="checkbox" id="check">
-  <label for="check" class="checkbtn">
-    <i class="fas fa-bars"></i>
-  </label>
-  <div class="logo">
-    <p>Website</p>
-  </div>
-  <div class="search">
-    <div class="search-box">
-      <input class="search-txt" id="pinput" type="text" name="" placeholder="Search here" onkeyup="searchElement()">
-    </div>
-  </div>
-  <ul>
-    <li><a class="active" href="/">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Cart</a></li>
-  </ul>
-</nav>
+<%- include("partials/customerNavBar", { searchBar: true, active: "home" }); %>
+</nav> -->
 <!--navbar end-->
 
 <!--product cards start-->
-<h2 class="product-head">Featured Products</h2>
 <ul class="container-product" id="myUL">
   <%
   for(let i = 0; i < size; i++){
@@ -47,9 +29,11 @@
     <li class="product">
       <div class="product-card">
         <h2 class="name"><%= items[i]["name"] %></h2>
-        <span class="price"><%= items[i]["price"] %></span>
+        <span class="price">Rs <%= (Math.round(items[i]["price"] * 100) / 100).toFixed(2) %></span>
         <a class="popup-btn" href="/item/<%=items[i]["item_id"]%>">View item</a>
-        <img src="/uploads/<%= items[i]["cover_photo"] %>" class="product-img" alt="">
+        <object data="/uploads/<%= items[i]["cover_photo"] %>" type="image/jpg" class="product-img">
+            <img src="https://via.placeholder.com/250x300" class="product-img" alt="">
+        </object>
       </div>
     </li>
 

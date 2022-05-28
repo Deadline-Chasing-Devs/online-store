@@ -8,10 +8,7 @@ const handler = (pool) => {
 
     // Get cart page
     cartRouter.get("", (req, res) => {
-        // console.log("GET SESSION OBJ", req.session);
-        res.render("cart", { cart: req.session.cart });
-        // res.json(req.session);
-        // res.render("cart", { cart: req.session.cart || {} });
+        res.render("cart", { cart: req.session.cart || {} });
     });
 
     // Add item to cart
@@ -37,15 +34,16 @@ const handler = (pool) => {
 
         if (!errors.isEmpty()) {
             return res.status(400).json({
-                errors: errors.array(),
+                success: false,
+                message: "Invalid input.",
             });
         }
 
         req.session.cart = new Cart(req.session.cart || {});
-        req.session.cart.addItem(item, req.body.quantity);
+        req.session.cart.addItem(item, parseInt(req.body.quantity));
         res.status(200).json({
             success: true,
-            message: "Added to the cart",
+            message: "Added to the cart.",
         });
     });
 
@@ -56,7 +54,11 @@ const handler = (pool) => {
                 options: (value, { req }) => {
                     console.log(req.session.cart.items);
                     // eslint-disable-next-line no-prototype-builtins
-                    if (!req.session.cart || !req.session.cart.items.hasOwnProperty(value)) {
+                    if (
+                        !req.session.cart ||
+                        // eslint-disable-next-line no-prototype-builtins
+                        !req.session.cart.items.hasOwnProperty(value)
+                    ) {
                         return Promise.reject("Invalid item id.");
                     }
                     return true;
@@ -72,7 +74,8 @@ const handler = (pool) => {
 
             if (!errors.isEmpty()) {
                 return res.status(400).json({
-                    errors: errors.array(),
+                    success: false,
+                    message: "Invalid input.",
                 });
             }
             req.session.cart = new Cart(req.session.cart);
@@ -83,6 +86,14 @@ const handler = (pool) => {
             });
         }
     );
+
+    // Clear cart
+    cartRouter.delete("", (req, res) => {
+        req.session.cart = new Cart({});
+        res.status(200).json({
+            success: true
+        });
+    });
     return cartRouter;
 };
 

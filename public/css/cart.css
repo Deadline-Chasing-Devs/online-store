@@ -261,6 +261,7 @@ th:last-child{
     border-radius: 20px;
     display: flex;
     justify-content:center;
+    cursor: pointer;
 }
 
 /*cart items end*/

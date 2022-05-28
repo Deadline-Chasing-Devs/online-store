@@ -1,0 +1,23 @@
+<nav id="navbar">
+    <div class="logo">
+        <p>Online Store</p>
+    </div>
+    <% if (searchBar) { %>
+        <div class="search">
+            <div class="search-box">
+                <input
+                    class="search-txt"
+                    id="pinput"
+                    type="text"
+                    name="search"
+                    placeholder="Search here"
+                    onkeyup="searchElement()"
+                />
+            </div>
+        </div>
+    <% } %>
+    <ul>
+        <li><a class="<%= active=="home" ? 'active' : '' %>" href="/">Home</a></li>
+        <li><a class="<%= active=="cart" ? 'active' : '' %>" href="/cart">Cart</a></li>
+    </ul>
+</nav>

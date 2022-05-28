@@ -11,6 +11,7 @@ const handler = (pool) => {
 
     newItemRouter.get("", authChecker, (req, res) => {
         res.render("newItem", {
+            user: req.session.user,
             validationError: req.flash("validationError") || [],
             fileError: req.flash("fileError") || [],
             success: req.flash("success") || [],

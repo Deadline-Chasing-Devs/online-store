@@ -10,55 +10,9 @@
         <link rel="stylesheet" href="/css/cart.css">
         <title>Cart</title>
     </head>
-    <script>
-        function addItemOne() {
-            fetch(
-                "http://localhost:3000/cart/add-item",
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(
-                        {
-                            itemId: "bf2d2630-a453-4315-849d-b8badc63b6a7",
-                            quantity: 1
-                        }
-                    )
-                }).then(res => res.json()).then(data => console.log(data));
-        }
-        function removeItemOne() {
-            fetch(
-                "http://localhost:3000/cart/remove-item",
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(
-                        {
-                            itemId: "bf2d2630-a453-4315-849d-b8badc63b6a7",
-                        }
-                    )
-                }).then(res => res.json()).then(data => console.log(data));
-        }
-    </script>
     <body>
         <!--navbar start-->
-        <nav>
-            <input type="checkbox" id="check">
-            <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-            </label>
-            <div class="logo">
-            <p>Website</p>
-            </div>
-            <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a class="active"  href="#">Cart</a></li>
-            </ul>
-        </nav>
+        <%- include("partials/customerNavBar", { searchBar: false, active: "cart" }); %>
         <!--navbar end-->
 
         <!--cart items start-->
@@ -71,76 +25,41 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="img/kottu_mee.png">
-                            <div>
-                                <p>Kottu Mee - 80g</p>
-                                <small>Price: Rs. 80.00</small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>Rs. 80.00</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="/img/item-img/bread.png">
-                            <div>
-                                <p>Sandwitch bread</p>
-                                <small>Price: Rs. 90.00</small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>Rs. 90.00</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="/img/item-img/coconut.png">
-                            <div>
-                                <p>Coconut</p>
-                                <small>Price: Rs. 100.00</small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>Rs. 100.00</td>
-                </tr>
+                <% if (Object.entries(cart).length) { %>
+                    <% for (const [itemId, item] of Object.entries(cart.items)) { %>
+                        <tr id="<%= itemId %>">
+                            <td>
+                                <div>
+                                    <p><%= item.name %></p>
+                                    <small>Price: Rs. <%= (Math.round(item.price * 100) / 100).toFixed(2) %>  </small>
+                                    <br>
+                                    <button data-item-id="<%= itemId %>" class="delete-btn"><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></button>
+                                </div>
+                            </td>
+                            <td><%= item.qty %></td>
+                            <td><%= (Math.round(item.price * item.qty * 100) / 100).toFixed(2) %></td>
+                        </tr>
+                    <% } %>
+                <% } %>
             </table>
 
             <div class="total-price">
                 <table>
                     <tr>
-                        <td>Subtotal</td>
-                        <td>Rs. 240.00</td>
-                    </tr>
-                    <tr>
-                        <td>Delivery</td>
-                        <td>Rs. 200.00</td>
-                    </tr>
-                    <tr>
                         <td>Total</td>
-                        <td>Rs. 440.00</td>
+                        <td>Rs. <%= cart.totalPrice ? (Math.round(cart.totalPrice * 100) / 100).toFixed(2) : '0.00' %></td>
                     </tr>
-                    <tr>
-                        <td id="buttons" class="clearcart"><a href="#" class="clear-cart-btn">Clear cart</a></td>
-                        <td id="buttons" class="addtocart"><a href="#" class="add-cart-btn">Proceed to checkout</a></td>
-                    </tr>
+                    <% if (Object.entries(cart).length && Object.entries(cart.items).length) { %>
+                        <tr>
+                            <td id="clear-cart"><a href="#">Clear cart</a></td>
+                            <td id="checkout"><a href="/checkout" >Proceed to checkout</a></td>
+                        </tr>
+                    <% } %>
                 </table>
             </div>
 
         </div>
         <!--cart items end-->
-
+    <script src="/javascript/cart.js"></script>
     </body>
 </html>
