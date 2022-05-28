@@ -13,7 +13,6 @@ const handler = (pool) => {
     });
 
     orderRouter.get("/:order_id", authChecker, async (req, res) => {
-        console.log("here");
         const orderId = req.params.order_id;
         const order = await getOrderById(pool, orderId);
         if (!order) {
