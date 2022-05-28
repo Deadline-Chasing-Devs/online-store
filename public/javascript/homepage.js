@@ -18,3 +18,20 @@ closeBtns.forEach((closeBtn)=>{
         });
     });
 });
+
+function searchElement() {
+    var input,txtvalue,product,i,h2;
+    input = document.getElementById("pinput");
+    fileter = input.value.toLowerCase();
+    product = document.getElementsByTagName('li');
+
+    for(i = 2; i < product.length; i++){
+        h2 = product[i].getElementsByTagName("div")[0].getElementsByTagName("h2")[0];
+        txtvalue = h2.innerText;
+        if(txtvalue.toLowerCase().indexOf(fileter) > -1){
+            product[i].style.display = "";
+        }else{
+            product[i].style.display = "none";
+        }
+    }
+}

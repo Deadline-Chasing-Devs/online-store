@@ -276,7 +276,7 @@ const getItemsForCustomer = async (pool, offset=0, limit=10) => {
     try {
         results = await queryPromise(
             pool,
-            `SELECT name,description,item_id,price,cover_photo FROM item
+            `SELECT name,description,item_id,price,cover_photo,availability FROM item
             LIMIT ?, ?`,
             [offset, limit]
         );

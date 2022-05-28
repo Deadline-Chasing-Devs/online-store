@@ -6,7 +6,7 @@ const handler = () => {
 
     // handle route
     dashboardRouter.get("", authChecker, (req, res) => {
-        res.render("dashboard");
+        res.render("dashboard", {user: req.session.user});
     });
 
     return dashboardRouter;

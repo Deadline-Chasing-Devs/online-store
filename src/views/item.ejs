@@ -17,29 +17,8 @@
 
     <body>
         <!--navbar start-->
-  <nav id="navbar">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-    <div class="logo">
-      <p>Website</p>
-    </div>
-    <div class="search">
-    <div class="search-box">
-      <input class="search-txt" id="pinput" type="text" name="" placeholder="Search here" onkeyup="searchElement()">
-      <a class="search-btn" href="#">
-        <i class="fas fa-search"></i>
-      </a>
-  </div>
-  </div>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="/cart">Cart</a></li>
-    </ul>
-  </nav>
-  <!--navbar end-->
+        <%- include("partials/customerNavBar", { searchBar: false, active: "" }); %>
+        <!--navbar end-->
 
   <!--item details start-->
   <div class="popup-view">
@@ -66,9 +45,14 @@
                           if(i === 0){
                           active = "active";
                       }%> <%=active%>">
-                          <img src="<%=itemimg[i].image_id%>" alt="<%=item["name"]%>" style="width:100%;">
+                          <img src="/uploads/<%=itemimg[i].image_id%>" alt="<%=item["name"]%>" style="width:100%;">
                       </div>
                   <%}%>
+                  <% if (itemimg.length == 0) { %>
+                    <div class="item active">
+                          <img src="https://via.placeholder.com/250x300" style="width:100%;">
+                    </div>
+                  <% } %>
                   </div>
 
                   <!-- Left and right controls -->
@@ -87,7 +71,7 @@
         <p>
             <%=item["description"]%>
         </p>
-        <span class="price">Rs.<%=item["price"]%></span>
+        <span class="price">Rs. <%= (Math.round(item["price"] * 100) / 100).toFixed(2) %></span>
         <span class="quantity">Quantity :</span>
         <input 
             type="number"

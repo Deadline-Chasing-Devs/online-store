@@ -21,7 +21,7 @@ const handler = (pool) => {
             return;
         }
         const orderItems = await getItemsByOrderId(pool, orderId);
-        res.render("order", { order, orderItems, success: req.flash("success") });
+        res.render("order", { user: req.session.user, order, orderItems, success: req.flash("success") });
     });
 
     orderRouter.post("/:order_id", authChecker, async (req, res) => {
