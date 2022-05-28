@@ -270,6 +270,51 @@ const getOrderIdsIncludingItem = async (pool, itemId) => {
         throw "Database Error";
     }
 };
+// Get items with an offset and a limit
+const getItemsForCustomer = async (pool, offset=0, limit=10) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT name,description,item_id,price,cover_photo FROM item
+            LIMIT ?, ?`,
+            [offset, limit]
+        );
+        if (results.length) return results;
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+// Add order
+const addOrder = async (pool, orderId, name, address, contactNum, email, status) => {
+    try {
+        await queryPromise(
+            pool,
+            "INSERT INTO `order` VALUES (?, ?, ?, ?, ?, NOW(), ?)",
+            [orderId, name, address, contactNum, email, status]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+// Add item to order
+const addItemToOrder = async (pool, orderId, itemId, quantity) => {
+    try {
+        await queryPromise(
+            pool,
+            "INSERT INTO order_item VALUES (?, ?, ?)",
+            [orderId, itemId, quantity]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 
 export {
     getUserByUsername,
@@ -285,6 +330,9 @@ export {
     getItems,
     getItemCount,
     updateOrderStatus,
+    getItemsForCustomer,
     deleteItem,
-    getOrderIdsIncludingItem
+    getOrderIdsIncludingItem,
+    addOrder,
+    addItemToOrder
 };

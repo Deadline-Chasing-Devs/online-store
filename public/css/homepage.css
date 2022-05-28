@@ -6,6 +6,11 @@
     padding: 0px;
     box-sizing: border-box;
 }
+
+ul {
+    list-style-type: none;
+}
+
 /*nav bar start*/
 nav {
     position: fixed;
@@ -206,7 +211,7 @@ nav ul .active{
 /*product cards start*/
 .container-product{
     position: relative;
-    margin-top: 50px;
+    margin-top: 80px;
     font-family: 'Poppins', sans-serif;
     display: grid;
     grid-template-columns: repeat(auto-fit, 35rem);

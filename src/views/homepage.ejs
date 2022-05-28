@@ -1,179 +1,45 @@
 <!DOCTYPE html5>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Homepage</title>
-    
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>Homepage</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/homepage.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/homepage.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/javascript/homepage.js"></script>
 </head>
 <body>
-  <!--navbar start-->
-  <nav id="navbar">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-    <div class="logo">
-      <p>Website</p>
-    </div>
-    <div class="search">
-    <div class="search-box">
-      <input class="search-txt" id="pinput" type="text" name="" placeholder="Search here" onkeyup="searchElement()">
-      <a class="search-btn" href="#">
-        <i class="fas fa-search"></i>
-      </a>
-  </div>
-  </div>
-    <ul>
-      <li><a class="active" href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Cart</a></li>
-    </ul>
-  </nav>
-  <!--navbar end-->
+<!--navbar start-->
+<%- include("partials/customerNavBar", { searchBar: true, active: "home" }); %>
+</nav> -->
+<!--navbar end-->
 
-  <!--carousal start-->
-  <div class="container">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-  
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="img/1.jpg" alt="Los Angeles" style="width:100%;">
-        </div>
-  
-        <div class="item">
-          <img src="img/2.jpg" alt="Chicago" style="width:100%;">
-        </div>
-  
-        <div class="item">
-          <img src="img/3.jpg" alt="New york" style="width:100%;">
-        </div>
-      </div>
-  
-      <!-- Left and right controls -->
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div>
-  <!--carousal end-->
+<!--product cards start-->
+<ul class="container-product" id="myUL">
+  <%
+  for(let i = 0; i < size; i++){
 
-  <!--product cards start-->
-  <h2 class="product-head">Featured Products</h2>
-  <div class="container-product">
-    <div class="product">
+  %>
+    <li class="product">
       <div class="product-card">
-        <h2 class="name">Kottu mee</h2>
-        <span class="price">Rs.80</span>
-        <a class="popup-btn">View item</a>
-        <img src="img/kottu_mee.png" class="product-img" alt="">
+        <h2 class="name"><%= items[i]["name"] %></h2>
+        <span class="price">Rs <%= (Math.round(items[i]["price"] * 100) / 100).toFixed(2) %></span>
+        <a class="popup-btn" href="/item/<%=items[i]["item_id"]%>">View item</a>
+        <object data="/uploads/<%= items[i]["cover_photo"] %>" type="image/jpg" class="product-img">
+            <img src="https://via.placeholder.com/250x300" class="product-img" alt="">
+        </object>
       </div>
-      <div class="popup-view">
-        <div class="popup-card">
-          <a><i class="fas fa-times close-btn"></i></a>
-          <div class="product-img">
-            <img src="img/kottu_mee.png" alt="">
-          </div>
-          <div class="info">
-            <h2>Kottu mee<br><span>80g pack</span></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam hic reprehenderit iusto nobis culpa corporis, enim nemo quae, similique cupiditate! Modi dolorum cum dolorem rerum accusantium magni dolores mollitia!</p>
-            <span class="price">Rs.80</span>
-            <a href="#" class="add-cart-btn">Add to cart</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    </li>
 
-    <div class="product">
-      <div class="product-card">
-        <h2 class="name">Sandwitch Bread</h2>
-        <span class="price">Rs.80</span>
-        <a class="popup-btn">View item</a>
-        <img src="/img/item-img/bread.png" class="product-img" alt="">
-      </div>
-      <div class="popup-view">
-        <div class="popup-card">
-          <a><i class="fas fa-times close-btn"></i></a>
-          <div class="product-img">
-            <img src="/img/item-img/bread.png" alt="">
-          </div>
-          <div class="info">
-            <h2>Sandwitch Bread<br><span>Sliced sandwitch</span></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam hic reprehenderit iusto nobis culpa corporis, enim nemo quae, similique cupiditate! Modi dolorum cum dolorem rerum accusantium magni dolores mollitia!</p>
-            <span class="price">Rs.80</span>
-            <a href="#" class="add-cart-btn">Add to cart</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="product">
-      <div class="product-card">
-        <h2 class="name">Coca Cola</h2>
-        <span class="price">Rs.250</span>
-        <a class="popup-btn">View item</a>
-        <img src="/img/item-img/coke.png" class="product-img" alt="">
-      </div>
-      <div class="popup-view">
-        <div class="popup-card">
-          <a><i class="fas fa-times close-btn"></i></a>
-          <div class="product-img">
-            <img src="/img/item-img/coke.png" alt="">
-          </div>
-          <div class="info">
-            <h2>Coca Cola<br><span>2.5L Party pack</span></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam hic reprehenderit iusto nobis culpa corporis, enim nemo quae, similique cupiditate! Modi dolorum cum dolorem rerum accusantium magni dolores mollitia!</p>
-            <span class="price">Rs.80</span>
-            <a href="#" class="add-cart-btn">Add to cart</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="product">
-      <div class="product-card">
-        <h2 class="name">Tomato</h2>
-        <span class="price">Rs.100</span>
-        <a class="popup-btn">View item</a>
-        <img src="/img/item-img/tomato.png" class="product-img" alt="">
-      </div>
-      <div class="popup-view">
-        <div class="popup-card">
-          <a><i class="fas fa-times close-btn"></i></a>
-          <div class="product-img">
-            <img src="/img/item-img/tomato.png" alt="">
-          </div>
-          <div class="info">
-            <h2>Tomato<br><span>1kg</span></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam hic reprehenderit iusto nobis culpa corporis, enim nemo quae, similique cupiditate! Modi dolorum cum dolorem rerum accusantium magni dolores mollitia!</p>
-            <span class="price">Rs.100</span>
-            <a href="#" class="add-cart-btn">Add to cart</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--product cards end-->
+  <%}%>
+</ul>
+<!--product cards end-->
 </body>
 
-<script type="text/javascript" src="javascript/homepage.js"></script>
 </html>

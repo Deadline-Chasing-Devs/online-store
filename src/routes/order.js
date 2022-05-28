@@ -7,7 +7,13 @@ const handler = (pool) => {
 
     // handle route
 
+    orderRouter.get("/fail", async (req, res) => {
+        console.log("here fail");
+        res.render("orderFail");
+    });
+
     orderRouter.get("/:order_id", authChecker, async (req, res) => {
+        console.log("here");
         const orderId = req.params.order_id;
         const order = await getOrderById(pool, orderId);
         if (!order) {
@@ -37,6 +43,19 @@ const handler = (pool) => {
         req.flash("success", "Order status updated successfully");
         res.redirect(`/order/${orderId}`);
     });
+
+    orderRouter.get("/success/:order_id", async (req, res) => {
+        const orderId = req.params.order_id;
+        const order = await getOrderById(pool, orderId);
+        if (!order) {
+            res.redirect("/");
+            return;
+        }
+        
+        res.render("orderSuccess");
+    });
+
+    
 
     return orderRouter;
 };
