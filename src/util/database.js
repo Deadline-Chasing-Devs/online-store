@@ -287,6 +287,34 @@ const getItemsForCustomer = async (pool, offset=0, limit=10) => {
     }
 };
 
+// Add order
+const addOrder = async (pool, orderId, name, address, contactNum, email, status) => {
+    try {
+        await queryPromise(
+            pool,
+            "INSERT INTO `order` VALUES (?, ?, ?, ?, ?, NOW(), ?)",
+            [orderId, name, address, contactNum, email, status]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+// Add item to order
+const addItemToOrder = async (pool, orderId, itemId, quantity) => {
+    try {
+        await queryPromise(
+            pool,
+            "INSERT INTO order_item VALUES (?, ?, ?)",
+            [orderId, itemId, quantity]
+        );
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
 
 export {
     getUserByUsername,
@@ -304,5 +332,7 @@ export {
     updateOrderStatus,
     getItemsForCustomer,
     deleteItem,
-    getOrderIdsIncludingItem
+    getOrderIdsIncludingItem,
+    addOrder,
+    addItemToOrder
 };

@@ -38,6 +38,17 @@ const handler = (pool) => {
         res.redirect(`/order/${orderId}`);
     });
 
+    orderRouter.get("/success/:order_id", async (req, res) => {
+        const orderId = req.params.order_id;
+        const order = await getOrderById(pool, orderId);
+        if (!order) {
+            res.redirect("/");
+            return;
+        }
+        
+        res.render("orderSuccess");
+    });
+
     return orderRouter;
 };
 

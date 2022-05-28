@@ -5,44 +5,87 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/checkout.css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="/css/checkout.css" />
         <title>Checkout</title>
     </head>
 
     <body>
         <!--navbar start-->
         <nav>
-            <input type="checkbox" id="check">
+            <input type="checkbox" id="check" />
             <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
+                <i class="fas fa-bars"></i>
             </label>
             <div class="logo">
-            <p>Website</p>
+                <p>Website</p>
             </div>
             <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Cart</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Cart</a></li>
             </ul>
         </nav>
         <!--navbar end-->
 
         <!--customer details start-->
         <div class="customer_info">
-            <h1 style="font-family: Montserrat;font-weight:800;color:rgb(30, 149, 0);">Checkout</h1>
-            <form class="form-inline" action="/action_page.php">
+            <h1
+                style="
+                    font-family: Montserrat;
+                    font-weight: 800;
+                    color: rgb(30, 149, 0);
+                "
+            >
+                Checkout
+            </h1>
+            <form
+                id="checkout-form"
+                class="form-inline"
+                action="/checkout"
+                method="post"
+                autocomplete="off"
+            >
                 <h2>Customer Details</h2>
-                <label for="name" style="margin-top: 40px;">Name:</label>
-                <input id="name" placeholder="Enter Name" name="name">
+                <label for="name" style="margin-top: 40px">Name:</label>
+                <input
+                    id="name"
+                    placeholder="Enter name"
+                    name="name"
+                    required
+                />
                 <label for="no">Contact Number:</label>
-                <input type="tel" id="no" placeholder="Enter number" name="no">
+                <input
+                    type="tel"
+                    id="no"
+                    placeholder="Enter phone number"
+                    name="contactNumber"
+                    required
+                />
                 <label for="address">Delivery Address:</label>
-                <input type="text" id="address" placeholder="Enter address" name="address">
+                <input
+                    type="text"
+                    id="address"
+                    placeholder="Enter delivery address"
+                    name="address"
+                    required
+                />
                 <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Enter email" name="email">
-              </form>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    name="email"
+                    required
+                />
+            </form>
         </div>
         <!--customer details end-->
 
@@ -56,76 +99,47 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                 </tr>
-                <tr>
+                <% if (Object.entries(cart).length) { %> <% for (const [itemId,
+                item] of Object.entries(cart.items)) { %>
+                <tr id="<%= itemId %>">
                     <td>
-                        <div class="cart-info">
-                            <img src="/img/item-img/samba-rice.png">
-                            <div>
-                                <p>Samba Rice</p>
-                                <small>Price: Rs. 150.00</small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
+                        <div>
+                            <p><%= item.name %></p>
+                            <small
+                                >Price: Rs. <%= (Math.round(item.price * 100) /
+                                100).toFixed(2) %>
+                            </small>
                         </div>
                     </td>
-                    <td><input type="number" value="1"></td>
-                    <td>Rs. 150.00</td>
-                </tr>
-                <tr>
+                    <td><%= item.qty %></td>
                     <td>
-                        <div class="cart-info">
-                            <img src="/img/item-img/coke.png">
-                            <div>
-                                <p>Coca Cola</p>
-                                <small>Price: Rs. 250.00</small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
-                        </div>
+                        <%= (Math.round(item.price * item.qty * 100) /
+                        100).toFixed(2) %>
                     </td>
-                    <td><input type="number" value="1"></td>
-                    <td>Rs. 250.00</td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="/img/item-img/chunkey choc.png">
-                            <div>
-                                <p>Chunkey Choc</p>
-                                <small>Price: Rs. 200.00</small>
-                                <br>
-                                <a href=""><i class="fa fa-trash" aria-hidden="true" style="font-size: 18px;"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>Rs. 200.00</td>
-                </tr>
+                <% } %> <% } %>
             </table>
 
             <div class="total-price">
                 <table>
                     <tr>
-                        <td>Subtotal</td>
-                        <td>Rs. 240.00</td>
-                    </tr>
-                    <tr>
-                        <td>Delivery</td>
-                        <td>Rs. 200.00</td>
-                    </tr>
-                    <tr>
                         <td>Total</td>
-                        <td>Rs. 440.00</td>
+                        <td>
+                            Rs. <%= cart.totalPrice ?
+                            (Math.round(cart.totalPrice * 100) / 100).toFixed(2)
+                            : '0.00' %>
+                        </td>
                     </tr>
                     <tr>
-                        <td id="buttons" class="clearcart"><a href="#" class="clear-cart-btn">Cancel</a></td>
-                        <td id="buttons" class="addtocart"><a href="#" class="add-cart-btn">Order now</a></td>
+                        <td><button id="cancel">Cancel</button></td>
+                        <td>
+                            <button type="submit" form="checkout-form">Order now</button>
+                        </td>
                     </tr>
                 </table>
             </div>
-
         </div>
         <!--cart items end-->
-
+        <script src="/javascript/checkout.js"></script>
     </body>
 </html>
