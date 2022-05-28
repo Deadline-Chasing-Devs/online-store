@@ -69,6 +69,11 @@
                           <img src="/uploads/<%=itemimg[i].image_id%>" alt="<%=item["name"]%>" style="width:100%;">
                       </div>
                   <%}%>
+                  <% if (itemimg.length == 0) { %>
+                    <div class="item active">
+                          <img src="https://via.placeholder.com/250x300" style="width:100%;">
+                    </div>
+                  <% } %>
                   </div>
 
                   <!-- Left and right controls -->
