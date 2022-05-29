@@ -29,7 +29,8 @@ article
 }
 
 .vendor-item-image{
-    width: 100px; 
+    width: 200px; 
+    /* height: 100px; */
     float:left;
     margin:10px;
 }
