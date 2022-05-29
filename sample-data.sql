@@ -5,6 +5,8 @@ INSERT INTO `vendor` VALUES ('supun', '$2b$10$dNlVVW056oxBUbM7g8/qkO15UDFeRu5hZo
 INSERT INTO `vendor` VALUES ('achira', '$2b$10$DoR35CitVDURZ0izo1bh4er479UFd0G8OxWGj0qEouQBzT9Hl2gce');
 INSERT INTO `vendor` VALUES ('poorna', '$2b$10$FJafYi7ZPaEf.IE9lw2vUOWoEpUXkvRuvTVpuWOlVliW/y19T2ys2');
 INSERT INTO `vendor` VALUES ('ransika', '$2b$10$h1B2n7c58dqJg8DAA60o/eOWutfpPHHlYnMfBPEKVgRl7w5ovIR3a');
+-- username: test, password: 'password123'
+INSERT INTO `vendor` VALUES ('test', '$2b$10$yOhIC0ip5gMqNvGGV1GaGus7PUXZSvtV2g/xOmqkaP0hQBMaKJ4bq');
 
 -- `item` talbe
 INSERT INTO `item` VALUES (
