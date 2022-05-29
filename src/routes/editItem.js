@@ -1,6 +1,6 @@
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
-import { deleteItem, editItem, getImageIdsByItemId, getItemById, getOrderIdsIncludingItem } from "../util/database.js";
+import { deleteItem, editItem, getImageIdsByItemId, getItemById, getItemCoverPhoto, getOrderIdsIncludingItem, removePhoto } from "../util/database.js";
 import { deleteFile } from "../util/helpers.js";
 import { authChecker } from "../util/middleware.js";
 
@@ -12,10 +12,13 @@ const handler = (pool) => {
         const itemId = req.params.id;
         const item = await getItemById(pool, itemId);
         const images = await getImageIdsByItemId(pool, itemId);
+        const coverPhoto = await getItemCoverPhoto(pool,itemId);
+        // console.log(coverPhoto);
 
         if (!item) res.redirect("/dashboard");
         else res.render("editItem", {
             item,
+            coverPhoto,
             images,
             updateSuccess: req.flash("update-success") || [],
             error: req.flash("error"),
@@ -61,6 +64,12 @@ const handler = (pool) => {
             if (!errors.isEmpty()) {
                 return res.redirect(`/edit-item/${itemId}`);
             }
+
+            const removeList = req.body.delArray.split(",");
+            
+            removeList.forEach(async (element) => {
+                await removePhoto(pool, element);
+            });
 
             await editItem(
                 pool,
