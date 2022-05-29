@@ -22,8 +22,10 @@ article
     padding-right: 20px;
     padding-top: 20px;
     padding-bottom: 10px;
-    background-color: rgba(214, 214, 214, 0.719);
+    background-color: rgba(255, 255, 255, 0.685);
     border-radius: 0.25rem;
+
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 7%), 0 2px 4px rgb(0 0 0 / 5%);
 }
 
 .vendor-item-image{

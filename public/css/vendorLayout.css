@@ -99,11 +99,15 @@
 }
 
 body {
-  background-image: url("https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=929");
+  /* background-image: url("https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=929"); */
+  background-image: url("https://www.clipartmax.com/png/full/295-2950830_e-commerce-online-shopping-customer-relationship-management-online-shopping-wallpaper-png.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-position: center;
+  /* background-size: cover; */
   /* height: 100vh; */
+  /* background-color:#1973fab2; */
+  background-color:#3d8aa19c; 
 }
 
 .search-bar-area {

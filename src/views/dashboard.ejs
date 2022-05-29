@@ -7,7 +7,8 @@
 
         <%-include('partials/vendorUILinks.ejs') %>
 
-        <link rel="stylesheet" href="/css/dashboard.css" />
+        <!-- <link rel="stylesheet" href="/css/dashboard.css" /> -->
+        <link rel="stylesheet" href="/css/order.css">
 
         <title>Dashboard</title>
     </head>
@@ -50,11 +51,11 @@
                 </nav>
 
                 <div class="row">
-                    <div class="order-container col-md-12">
-                        <div class="table-responsive table-all">
+                    <div class="col-md-12">
+                        <div class="table-all">
                             <table
                                 id="item-table"
-                                class="table table-striped table-sm table-hover"
+                                class="table table-responsive table-striped table-sm table-hover"
                             >
                                 <thead>
                                     <tr>
@@ -71,7 +72,6 @@
             </div>
         </div>
         <%- include('partials/scripts.ejs') %>
-        <script src="/javascript/sideBar.js"></script>
         <script src="/javascript/dashboard.js"></script>
     </body>
 </html>
