@@ -54,4 +54,5 @@ function showCoverPhoto(event) {
 function clearForm() {
     document.getElementById("new-item-form").reset();
     document.getElementById("cover-photo-view").setAttribute("src", "");
+    document.getElementById("images-view").innerHTML = "";
 }
