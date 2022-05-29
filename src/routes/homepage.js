@@ -9,7 +9,7 @@ const handler = (pool) => {
         const noofItems = await getItemCount(pool);
         const items = await getItemsForCustomer(pool,0,noofItems);
         let i;
-        let availableItems = []
+        let availableItems = [];
         var j = 0;
         for(i=0; i < items.length; i++){
             if(items[i].availability === 1){
