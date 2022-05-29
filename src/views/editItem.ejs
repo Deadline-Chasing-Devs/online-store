@@ -94,29 +94,90 @@
                     <div class="row mb-3">
                         <div class="col-sm-12">
                             <article>
-                                <div class="overflow-auto" style="min-height:250px; max-height:500px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
-                                    <output id="result" />
+                                <label class="form-check-label" for="files">Cover Photo (png, jpg, jpeg types only.)</label>
+                                <input
+                                    class="form-control"
+                                    name="cover_photo"
+                                    type="file"
+                                    onchange="showCoverPhoto(event)"
+                                    accept="image/png,image/jpg,image/jpeg"
+                                />
+                            </article>
+                        </div>
+                    </div>
 
-                                    <%for(i=0; i<images.length; i++){%>
-                                    <div class="card vendor-item-image">
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <div
+                                    class="overflow-auto"
+                                    style=
+                                        "min-height:100px;
+                                        max-height:300px;
+                                        border-style: solid;
+                                        border-color:
+                                        rgb(189, 189, 189);
+                                        border-radius: .25rem;
+                                        border-width:1px;
+                                        background-color: white;"
+                                >
+                                <% if(coverPhoto.cover_photo != null){ %>
+                                    <img 
+                                        src="/uploads/<%= coverPhoto.cover_photo %>"
+                                        id="cover-photo-view"
+                                        style="max-width: 400px; height:auto; margin: 10px;"
+                                    />
+                                    <%}else{%>
+                                        <img 
+                                        src=""
+                                        id="cover-photo-view"
+                                        style="max-width: 400px; height:auto; margin: 10px;"
+                                    />    
+                                    <%}%>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <label class="form-check-label" for="images">Images (png, jpg, jpeg types only. maximum 3 images)</label>
+                                <input class="form-control" name="images"  id="images" type="file" multiple />
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <div class="overflow-auto" style="min-height:250px; max-height:500px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
+                                    <output id="images-view" />
+
+                                    <%for(i=0; i<images.length; i++){ if(images[i].image_id == coverPhoto.cover_photo)continue;%>
+                                    <div id="<%=images[i].image_id%>" class="card vendor-item-image">
                                         <img
                                             src="/uploads/<%= images[i].image_id %>"
-                                            class="card-img-top"
+                                            class=""
                                             alt=""
-                                            max-width="80px"
+                                            min-width="250px"
                                             height="auto"
                                         >
+                                        <button id="remove-imgx" type="button" class="btn btn-danger" onclick="addToDelete('<%=images[i].image_id%>')">remove</button>
                                     </div>
                                     <%}%>
-                  </div>
-                </article>
-              </div>
-            </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+            <input type="hidden" id="delArray" name="delArray">
 
             <div class="mb-3">
               <div class="btn-group" role="group">
                 <button type="submit" class="btn btn-success">Update</button>
-                <button id="remove-btn" type="button" class="btn btn-danger">Remove</button>
+                <button type="#" class="btn btn-warning"><i class="fas fa-close"></i></button>
+                <button id="remove-btn" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
               </div>
             </div>
 
@@ -124,9 +185,18 @@
         </form>
       </div>
     </div>
-
+<script>
+    var toDelList = [];
+    function addToDelete(image){
+        document.getElementById(image).outerHTML = "";
+        toDelList.push(image);
+        console.log(toDelList);
+        document.getElementById("delArray").value = toDelList;
+    }
+</script>
     <%- include('partials/scripts.ejs') %>
     <script src="/javascript/editItem.js"></script>
+    <script src="/javascript/vendorNewItem.js"></script>
 </body>
 
 </html>
