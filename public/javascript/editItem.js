@@ -17,3 +17,12 @@ window.onload = function () {
         }
     });
 };
+
+function showCoverPhoto(event) {
+    if (event.target.files.length == 1 && event.target.files[0].type.match("image")) {
+        let src = URL.createObjectURL(event.target.files[0]);
+        let preview = document.getElementById("cover-photo-view");
+        preview.src = src;
+        preview.style.display = "block";
+    }
+}
