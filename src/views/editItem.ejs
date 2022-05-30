@@ -122,11 +122,18 @@
                                         background-color: white;"
                                 >
                                 <% if(coverPhoto.cover_photo != null){ %>
-                                    <img 
-                                        src="/uploads/<%= coverPhoto.cover_photo %>"
-                                        id="cover-photo-view"
-                                        style="max-width: 400px; height:auto; margin: 10px;"
-                                    />
+                                    <div id="<%=coverPhoto.cover_photo%>" class=" vendor-item-image">
+                                        <img
+                                            src="/uploads/<%= coverPhoto.cover_photo %>"
+                                            class=""
+                                            id="cover-photo-view"
+                                            alt=""
+                                            min-width="250px"
+                                            height="auto"
+                                        >
+                                        <button id="remove-imgx" type="button" class="btn btn-danger btn-circle" onclick="deleteCover('<%=coverPhoto.cover_photo%>')"><i class="fas fa-close"></i></button>
+                                    </div>
+                                    
                                     <%}else{%>
                                         <img 
                                         src=""
@@ -183,6 +190,7 @@
                     </div>
 
             <input type="hidden" id="delArray" name="delArray">
+            <input type="hidden" id="oldCoverID" name="oldCoverID">
             <input type="hidden" id="initialImageCount" name="initialImageCount" value="<%=imageCount%>">
 
             <div class="mb-3">
