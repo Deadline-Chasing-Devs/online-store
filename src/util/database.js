@@ -338,6 +338,16 @@ const removePhoto = async (pool, imageId) => {
     }
 };
 
+const replaceCoverPhoto = async (pool, newImgPath, itemId) => {
+    try {
+        await queryPromise(pool, "UPDATE `item` SET cover_photo=? WHERE item_id=? ", [newImgPath, itemId]);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+ 
+
 
 export {
     getUserByUsername,
@@ -359,5 +369,6 @@ export {
     addOrder,
     addItemToOrder,
     getItemCoverPhoto,
-    removePhoto
+    removePhoto,
+    replaceCoverPhoto
 };
