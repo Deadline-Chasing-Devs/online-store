@@ -28,6 +28,14 @@
                     message: error[0]
                 }) %> 
         <% } var imageCount = 0; %>
+
+        <% if (fileErrorLimitExceed[0]) { %>
+            <%- include("partials/errorFlashMessage.ejs",
+                { 
+                    message: fileErrorLimitExceed[0]
+                }) %> 
+        <% } %>
+
         <div class="container">
             <form action="<%= '/edit-item/' + item.itemId %>" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="vendor-form">
@@ -128,10 +136,10 @@
                                             class=""
                                             id="cover-photo-view"
                                             alt=""
-                                            min-width="250px"
+                                            max-width="500px"
                                             height="auto"
                                         >
-                                        <button id="remove-imgx" type="button" class="btn btn-danger btn-circle" onclick="deleteCover('<%=coverPhoto.cover_photo%>')"><i class="fas fa-close"></i></button>
+                                        <button id="remove-imgcover" type="button" class="btn btn-danger btn-circle" onclick="deleteCover('<%=coverPhoto.cover_photo%>')"><i class="fas fa-close"></i></button>
                                     </div>
                                     
                                     <%}else{%>
