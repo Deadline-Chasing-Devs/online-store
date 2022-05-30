@@ -22,6 +22,7 @@ const handler = (pool) => {
             coverPhoto,
             images,
             updateSuccess: req.flash("update-success") || [],
+            fileErrorLimitExceed: req.flash("fileErrorLimitExceed") || [],
             error: req.flash("error"),
             user: req.session.user
         });
@@ -95,7 +96,7 @@ const handler = (pool) => {
             }
 
             let removeList = req.body.delArray.split(",");
-            if(removeList[0] == "")removeList = []; // splitting a empty string give an empty string giving unexpected outcome
+            if(removeList[0] == "")removeList = []; // splitting an empty string give an empty string giving unexpected outcome
 
             const initialImageCount = parseInt(req.body.initialImageCount);
             const deletedCount = removeList.length;
@@ -127,7 +128,7 @@ const handler = (pool) => {
                         });
                     });
                 }
-                req.flash("fileError", "File Limit exceeded."); 
+                req.flash("fileErrorLimitExceed", "Only maximum of 3 preview images are allowed"); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
 
