@@ -1,6 +1,6 @@
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
-import { deleteItem, editItem, getImageIdsByItemId, getItemById, getItemCoverPhoto, getOrderIdsIncludingItem, removePhoto } from "../util/database.js";
+import { addImage, deleteItem, editItem, getImageIdsByItemId, getItemById, getItemCoverPhoto, getOrderIdsIncludingItem, removePhoto, replaceCoverPhoto } from "../util/database.js";
 import { deleteFile } from "../util/helpers.js";
 import { authChecker } from "../util/middleware.js";
 import upload from "../config/storage.js";
@@ -132,9 +132,23 @@ const handler = (pool) => {
                         });
                     });
                 } 
-                req.flash("fileError", "File uploading error.");
                 return res.redirect(`/edit-item/${itemId}`); 
             }
+
+            if (coverPhotoPath !=null) {
+                console.log("cover here : ",coverPhotoPath);
+                async ()=>{
+                    await addImage(pool, itemId, coverPhotoPath);
+                    await replaceCoverPhoto(pool, coverPhotoPath, itemId);
+                }
+            }
+
+            if (imagePaths !=null) {
+                imagePaths.forEach(async (currentImage)=>{
+                    await addImage(pool, itemId, currentImage);
+                });
+            }
+            
 
             removeList.forEach(async (element) => {
                 console.log(element);
