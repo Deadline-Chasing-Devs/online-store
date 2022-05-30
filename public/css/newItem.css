@@ -33,4 +33,21 @@ article
     /* height: 100px; */
     float:left;
     margin:10px;
+ 
+
+    position: relative;
+    width: 100%;
+    max-width: 150px;
+}
+
+.vendor-item-image img{
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.vendor-item-image button{
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
