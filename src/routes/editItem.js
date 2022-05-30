@@ -96,7 +96,7 @@ const handler = (pool) => {
 
             let removeList = req.body.delArray.split(",");
             if(removeList[0] == "")removeList = []; // splitting a empty string give an empty string giving unexpected outcome
-            console.log(req.body.initialImageCount);
+
             const initialImageCount = parseInt(req.body.initialImageCount);
             const deletedCount = removeList.length;
             let previewImageList = [];
@@ -117,13 +117,8 @@ const handler = (pool) => {
                     
             }
             
-            console.log("image here : ",coverPhotoPath, imagePaths);
-            console.log("Deleted count", deletedCount);
-            console.log("Initial Image Count is :" , initialImageCount);
-            console.log("Initial Image Count is :" , previewImageList);
+            // Calculate if limit exceeded
             let totalImages = initialImageCount + previewImageList - deletedCount;
-            console.log("Total Images : ",totalImages);
-
             if (totalImages >3) {
                 if (req.files && Object.keys(req.files).length !== 0) {
                     Object.keys(req.files).forEach((key) => {
@@ -135,23 +130,31 @@ const handler = (pool) => {
                 return res.redirect(`/edit-item/${itemId}`); 
             }
 
-            if (coverPhotoPath !=null) {
-                console.log("cover here : ",coverPhotoPath);
-                async ()=>{
-                    await addImage(pool, itemId, coverPhotoPath);
-                    await replaceCoverPhoto(pool, coverPhotoPath, itemId);
-                }
+            // Deleting Cover Photo when no file is uploaded to cover photo input
+            if (req.body.oldCoverID && coverPhotoPath ==null) {
+                await replaceCoverPhoto(pool, null, itemId);
+                await removePhoto(pool, req.body.oldCoverID);
+                await deleteFile(`./public/uploads/${req.body.oldCoverID}`);
             }
 
+            // Replacing Cover Photo when file is uploaded to cover photo input
+            if (coverPhotoPath !=null) {
+                console.log("cover here : ",coverPhotoPath);
+                await addImage(pool, itemId, coverPhotoPath);
+                await replaceCoverPhoto(pool, coverPhotoPath, itemId);
+                await removePhoto(pool, req.body.oldCoverID);
+                await deleteFile(`./public/uploads/${req.body.oldCoverID}`);
+            }
+
+            // Add preview Image if limit is not exceeded
             if (imagePaths !=null) {
                 imagePaths.forEach(async (currentImage)=>{
                     await addImage(pool, itemId, currentImage);
                 });
             }
             
-
+            // Delete Preview images if requested to delete
             removeList.forEach(async (element) => {
-                console.log(element);
                 await deleteFile(`./public/uploads/${element}`);
                 await removePhoto(pool, element);
             });
