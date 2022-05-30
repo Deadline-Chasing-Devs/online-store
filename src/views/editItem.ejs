@@ -107,7 +107,7 @@
                                     class="form-control"
                                     name="cover-photo"
                                     type="file"
-                                    onchange="showCoverPhoto(event)"
+                                    onchange="showCoverPhoto(event,'<%=item.itemId %>')"
                                     accept="image/png,image/jpg,image/jpeg"
                                 />
                             </article>
@@ -208,7 +208,6 @@
                 <button id="remove-btn" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
               </div>
             </div>
-
           </div>
         </form>
       </div>
