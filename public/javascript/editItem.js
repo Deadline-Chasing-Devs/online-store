@@ -61,13 +61,13 @@ window.onload = function () {
     }
 };
 
-function showCoverPhoto(event) {
+function showCoverPhoto(event,itemId) {
     if (event.target.files.length == 1 && event.target.files[0].type.match("image")) {
         let src = URL.createObjectURL(event.target.files[0]);
         let preview = document.getElementById("cover-photo-view");
         preview.src = src;
         preview.style.display = "block";
-        document.getElementById("remove-imgcover").outerHTML = "";
+        document.getElementById("remove-imgcover").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle\" onclick=\"refresh('"+itemId+"')\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
     }
 }
 
@@ -80,6 +80,11 @@ function addToDelete(image){
 }
 function discard(){
     window.location.href = "/dashboard";
+}
+
+function refresh(itemId){
+    console.log(itemId);
+    window.location.href = "/edit-item/" + itemId;
 }
 
 function deleteCover(coverId){
