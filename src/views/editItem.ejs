@@ -152,7 +152,7 @@
                     <div class="row mb-3">
                         <div class="col-sm-12">
                             <article>
-                                <div class="overflow-auto" style="min-height:250px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
+                                <div class="overflow-auto" style="min-height:50px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
                                     <output id="images-view" />
                                 </div>
                             </article>
@@ -174,7 +174,7 @@
                                             min-width="250px"
                                             height="auto"
                                         >
-                                        <button id="remove-imgx" type="button" class="btn btn-danger" onclick="addToDelete('<%=images[i].image_id%>')">remove</button>
+                                        <button id="remove-imgx" type="button" class="btn btn-primary btn-circle btn-sm" onclick="addToDelete('<%=images[i].image_id%>')"><i class="glyphicon glyphicon-ok"></i></i></button>
                                     </div>
                                     <%imageCount++}%>
                                 </div>
@@ -197,21 +197,9 @@
         </form>
       </div>
     </div>
-<script>
-    var toDelList = [];
-    function addToDelete(image){
-        document.getElementById(image).outerHTML = "";
-        toDelList.push(image);
-        console.log(toDelList);
-        document.getElementById("delArray").value = toDelList;
-    }
-    function discard(){
-        window.location.href = '/dashboard';
-    }
-</script>
+
     <%- include('partials/scripts.ejs') %>
     <script src="/javascript/editItem.js"></script>
-    <script src="/javascript/vendorNewItem.js"></script>
 </body>
 
 </html>
