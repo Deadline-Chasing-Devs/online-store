@@ -126,7 +126,8 @@ const handler = (pool) => {
                             await deleteFile(image.path);
                         });
                     });
-                } 
+                }
+                req.flash("fileError", "File Limit exceeded."); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
 
