@@ -80,3 +80,8 @@ function addToDelete(image){
 function discard(){
     window.location.href = "/dashboard";
 }
+
+function deleteCover(coverId){
+    document.getElementById(coverId).outerHTML = "";
+    document.getElementById("oldCoverID").value = coverId;
+}
