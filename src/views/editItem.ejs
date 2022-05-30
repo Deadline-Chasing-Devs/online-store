@@ -27,9 +27,9 @@
                 { 
                     message: error[0]
                 }) %> 
-        <% } %>
+        <% } var imageCount = 0; %>
         <div class="container">
-            <form action="<%= '/edit-item/' + item.itemId %>" method="post" autocomplete="off">
+            <form action="<%= '/edit-item/' + item.itemId %>" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="vendor-form">
 
                     <div class="row mb-3">
@@ -97,7 +97,7 @@
                                 <label class="form-check-label" for="files">Cover Photo (png, jpg, jpeg types only.)</label>
                                 <input
                                     class="form-control"
-                                    name="cover_photo"
+                                    name="cover-photo"
                                     type="file"
                                     onchange="showCoverPhoto(event)"
                                     accept="image/png,image/jpg,image/jpeg"
@@ -147,12 +147,23 @@
                             </article>
                         </div>
                     </div>
+                    
 
                     <div class="row mb-3">
                         <div class="col-sm-12">
                             <article>
-                                <div class="overflow-auto" style="min-height:250px; max-height:500px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
+                                <div class="overflow-auto" style="min-height:250px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
                                     <output id="images-view" />
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <article>
+                                <label class="form-check-label" for="images">Uploaded Images</label>
+                                <div class="overflow-auto" style="min-height:250px; max-height:500px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
 
                                     <%for(i=0; i<images.length; i++){ if(images[i].image_id == coverPhoto.cover_photo)continue;%>
                                     <div id="<%=images[i].image_id%>" class="card vendor-item-image">
@@ -165,18 +176,19 @@
                                         >
                                         <button id="remove-imgx" type="button" class="btn btn-danger" onclick="addToDelete('<%=images[i].image_id%>')">remove</button>
                                     </div>
-                                    <%}%>
+                                    <%imageCount++}%>
                                 </div>
                             </article>
                         </div>
                     </div>
 
             <input type="hidden" id="delArray" name="delArray">
+            <input type="hidden" id="initialImageCount" name="initialImageCount" value="<%=imageCount%>">
 
             <div class="mb-3">
               <div class="btn-group" role="group">
                 <button type="submit" class="btn btn-success">Update</button>
-                <button type="#" class="btn btn-warning"><i class="fas fa-close"></i></button>
+                <button id="discard-btn" type="button" class="btn btn-warning" onclick="discard()"><i class="fas fa-close"></i></button>
                 <button id="remove-btn" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
               </div>
             </div>
@@ -192,6 +204,9 @@
         toDelList.push(image);
         console.log(toDelList);
         document.getElementById("delArray").value = toDelList;
+    }
+    function discard(){
+        window.location.href = '/dashboard';
     }
 </script>
     <%- include('partials/scripts.ejs') %>
