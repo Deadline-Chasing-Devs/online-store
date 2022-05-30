@@ -67,6 +67,7 @@ function showCoverPhoto(event) {
         let preview = document.getElementById("cover-photo-view");
         preview.src = src;
         preview.style.display = "block";
+        document.getElementById("remove-imgcover").outerHTML = "";
     }
 }
 
