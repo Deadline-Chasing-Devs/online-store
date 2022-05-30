@@ -3,6 +3,7 @@ import { checkSchema, validationResult } from "express-validator";
 import { deleteItem, editItem, getImageIdsByItemId, getItemById, getItemCoverPhoto, getOrderIdsIncludingItem, removePhoto } from "../util/database.js";
 import { deleteFile } from "../util/helpers.js";
 import { authChecker } from "../util/middleware.js";
+import upload from "../config/storage.js";
 
 const handler = (pool) => {
     const editItemRouter = express.Router();
@@ -47,10 +48,38 @@ const handler = (pool) => {
         }
     };
 
+    const imageUpload = upload.fields([
+        {
+            name: "cover-photo",
+            maxCount: 1,
+        },
+        {
+            name: "images",
+            maxCount: 3,
+        },
+    ]);
+
+
     editItemRouter.post(
         "/:id",
         authChecker,
+
+        (req, res, next) => {
+            imageUpload(req, res, (err) => {
+                const itemId = req.params.id;
+                if (err) {
+                    console.log(err);
+                    req.flash("fileError", "File uploading error.");
+                    res.redirect(`/edit-item/${itemId}`);
+                    return;
+                } else {
+                    next();
+                }
+            });
+        },
+
         checkSchema(editItemSchema),
+
         async (req, res) => {
             // Check if the itemId is valid
             const itemId = req.params.id;
@@ -65,9 +94,51 @@ const handler = (pool) => {
                 return res.redirect(`/edit-item/${itemId}`);
             }
 
-            const removeList = req.body.delArray.split(",");
+            let removeList = req.body.delArray.split(",");
+            if(removeList[0] == "")removeList = []; // splitting a empty string give an empty string giving unexpected outcome
+            console.log(req.body.initialImageCount);
+            const initialImageCount = parseInt(req.body.initialImageCount);
+            const deletedCount = removeList.length;
+            let previewImageList = [];
             
+            console.log(removeList);
+
+            let coverPhotoPath;
+            let imagePaths;
+            if (req.files && Object.keys(req.files).length !== 0) {
+                if (req.files["cover-photo"])
+                    coverPhotoPath = req.files["cover-photo"][0].filename;
+                if (req.files["images"]){
+                    imagePaths = req.files["images"].map(
+                        (image) => image.filename
+                    );
+                    previewImageList = imagePaths.length;
+                }
+                    
+            }
+            
+            console.log("image here : ",coverPhotoPath, imagePaths);
+            console.log("Deleted count", deletedCount);
+            console.log("Initial Image Count is :" , initialImageCount);
+            console.log("Initial Image Count is :" , previewImageList);
+            let totalImages = initialImageCount + previewImageList - deletedCount;
+            console.log("Total Images : ",totalImages);
+
+            if (totalImages >3) {
+                if (req.files && Object.keys(req.files).length !== 0) {
+                    Object.keys(req.files).forEach((key) => {
+                        req.files[key].forEach(async (image) => {
+                            await deleteFile(image.path);
+                        });
+                    });
+                } 
+                req.flash("fileError", "File uploading error.");
+                return res.redirect(`/edit-item/${itemId}`); 
+            }
+
             removeList.forEach(async (element) => {
+                console.log(element);
+                await deleteFile(`./public/uploads/${element}`);
                 await removePhoto(pool, element);
             });
 
