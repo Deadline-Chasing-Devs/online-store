@@ -106,7 +106,6 @@ const handler = (pool) => {
                 return res.redirect(`/edit-item/${itemId}`); 
             }
             const coverPhotoId = await getItemCoverPhoto(pool,itemId);
-            console.log("Cover photo ID", coverPhotoId);
 
             let previewImageList = []; // Initial Image id list without cover
             const imageList = await getImageIdsByItemId(pool,itemId);
@@ -143,7 +142,8 @@ const handler = (pool) => {
                 return res.redirect(`/edit-item/${itemId}`); 
             }
 
-            console.log("item ID    old Cover ID    new Cover ID \n", itemId, coverPhotoId.cover_photo,"-",removeCoverPhoto[0], coverPhotoPath);
+            // console.log("item ID    old Cover ID    new Cover ID \n", itemId, coverPhotoId.cover_photo,"-",removeCoverPhoto[0], coverPhotoPath);
+
             // Deleting Cover Photo when no file is uploaded to cover photo input
             if (removeCoverPhoto[0] == coverPhotoId.cover_photo && coverPhotoPath ==null && removeCoverPhoto[0] != null) {
                 await replaceCoverPhoto(pool, null, itemId);
@@ -153,7 +153,6 @@ const handler = (pool) => {
 
             // Replacing Cover Photo when file is uploaded to cover photo input
             if (coverPhotoPath !=null) {
-                console.log("cover here : ",coverPhotoPath, itemId);
                 await addImage(pool, itemId, coverPhotoPath);
                 await replaceCoverPhoto(pool, coverPhotoPath, itemId);
                 await removePhoto(pool, coverPhotoId.cover_photo);
