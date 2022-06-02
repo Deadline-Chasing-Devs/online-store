@@ -102,3 +102,20 @@ function refresh(itemId){
     console.log(itemId);
     window.location.href = "/edit-item/" + itemId;
 }
+
+const input = document.querySelector("#images");
+
+// Listen for files selection
+input.addEventListener("change", (e) => {
+    // Retrieve all files
+    const files = input.files;
+    const delCount = toDelList.length;
+    console.log(initialImg, delCount, itemId);
+    var maxAllowed = parseInt(initialImg) + files.length - delCount;
+    console.log("limit val = ", maxAllowed);
+    // Check files count
+    if (maxAllowed > 3) {
+        alert("Maximum Preview Image Limit Exceeded");
+        window.location.href = "/edit-item/" + itemId;
+    }
+});
