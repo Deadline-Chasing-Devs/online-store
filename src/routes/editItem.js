@@ -68,9 +68,8 @@ const handler = (pool) => {
         authChecker,
 
         (req, res, next) => {
-            const uploadedPreviewCount = parseInt(req.body.newPreviewCount)
-            console.log("New preview Count: ", req.body.newPreviewCount);
             imageUpload(req, res, (err) => {
+                console.log("REQ param: ", req.body);
                 const itemId = req.params.id;
                 if (err) {
                     console.log(err);
@@ -98,6 +97,10 @@ const handler = (pool) => {
             if (!errors.isEmpty()) {
                 return res.redirect(`/edit-item/${itemId}`);
             }
+
+            // const uploadedPreviewCount = parseInt(req.body.newPreviewCount);
+            // console.log("New preview Count: ", uploadedPreviewCount);
+
             let removeList =[];
             let removeCoverPhoto =[];
             try{
