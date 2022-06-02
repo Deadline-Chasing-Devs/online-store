@@ -110,22 +110,16 @@ const handler = (pool) => {
             const coverPhotoId = await getItemCoverPhoto(pool,itemId);
             console.log("Cover photo ID", coverPhotoId);
 
-            let previewImageList = []; // Original Image id list
+            let previewImageList = []; // Original Image id list without cover
             const imageList = await getImageIdsByItemId(pool,itemId);
             previewImageList = imageList.filter((element)=>{
                 return element.image_id != coverPhotoId.cover_photo;
             });
 
             
-            
-            console.log("Del Array count : ", removeList);
             console.log("Delete cover photo Id : ", removeCoverPhoto );
 
-            console.log("initial preview image count : ", previewImageList.length);
-            console.log(previewImageList);
-
             
-
             let coverPhotoPath;
             let imagePaths;
             let uploadedPreviewImageList = 0;
@@ -166,13 +160,13 @@ const handler = (pool) => {
             }
 
             // Replacing Cover Photo when file is uploaded to cover photo input
-            // if (coverPhotoPath !=null) {
-            //     console.log("cover here : ",coverPhotoPath, itemId);
-            //     await addImage(pool, itemId, coverPhotoPath);
-            //     await replaceCoverPhoto(pool, coverPhotoPath, itemId);
-            //     await removePhoto(pool, coverPhotoId);
-            //     await deleteFile(`./public/uploads/${coverPhotoId}`);
-            // }
+            if (coverPhotoPath !=null) {
+                console.log("cover here : ",coverPhotoPath, itemId);
+                await addImage(pool, itemId, coverPhotoPath);
+                await replaceCoverPhoto(pool, coverPhotoPath, itemId);
+                await removePhoto(pool, coverPhotoId);
+                await deleteFile(`./public/uploads/${coverPhotoId}`);
+            }
 
             // Add preview Image if limit is not exceeded
             if (imagePaths !=null) {
