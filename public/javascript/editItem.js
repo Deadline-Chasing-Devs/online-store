@@ -71,13 +71,29 @@ function showCoverPhoto(event,itemId) {
     }
 }
 
-var toDelList = [];
+function getImages(images){
+    console.log(images);
+}
+
+let toDelList = [];
+let delete_List;
 function addToDelete(image){
     document.getElementById(image).outerHTML = "";
     toDelList.push(image);
     console.log(toDelList);
-    document.getElementById("delArray").value = toDelList;
+    // document.getElementById("initialImageCount").outerHTML = "<input type=\"hidden\" id=\"initialImageCount\" name=\"initialImageCount\" value=\"<%=imageCount%>\">";
 }
+
+
+function postValues(itemID){
+    // const initialCount =JSON.parse(d).length;
+    delete_List = JSON.stringify(toDelList);
+    document.getElementById("delArray").value = delete_List;
+    // document.getElementById("itemId").value = itemID;
+    console.log(document);
+    
+}
+
 function discard(){
     window.location.href = "/dashboard";
 }
