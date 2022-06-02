@@ -71,27 +71,17 @@ function showCoverPhoto(event,itemId) {
     }
 }
 
-function getImages(images){
-    console.log(images);
-}
-
 let toDelList = [];
-let delete_List;
+let toDelCover = [];
 function addToDelete(image){
     document.getElementById(image).outerHTML = "";
     toDelList.push(image);
-    console.log(toDelList);
-    // document.getElementById("initialImageCount").outerHTML = "<input type=\"hidden\" id=\"initialImageCount\" name=\"initialImageCount\" value=\"<%=imageCount%>\">";
 }
 
 
-function postValues(itemID){
-    // const initialCount =JSON.parse(d).length;
-    delete_List = JSON.stringify(toDelList);
-    document.getElementById("delArray").value = delete_List;
-    // document.getElementById("itemId").value = itemID;
-    console.log(document);
-    
+function postValues(){
+    document.getElementById("delArray").value = JSON.stringify(toDelList);
+    document.getElementById("deleteCoverPhoto").value = JSON.stringify(toDelCover);
 }
 
 function discard(){
@@ -105,5 +95,5 @@ function refresh(itemId){
 
 function deleteCover(coverId){
     document.getElementById(coverId).outerHTML = "";
-    document.getElementById("oldCoverID").value = coverId;
+    toDelCover.push(coverId);
 }
