@@ -67,9 +67,21 @@ const handler = (pool) => {
         "/:id",
         authChecker,
 
-        // (req, res, next) => {
-            
-        // },
+        (req, res, next) => {
+            const uploadedPreviewCount = parseInt(req.body.newPreviewCount)
+            console.log("New preview Count: ", req.body.newPreviewCount);
+            imageUpload(req, res, (err) => {
+                const itemId = req.params.id;
+                if (err) {
+                    console.log(err);
+                    req.flash("fileError", "File uploading error.");
+                    res.redirect(`/edit-item/${itemId}`);
+                    return;
+                } else {
+                    next();
+                }
+            });
+        },
 
         checkSchema(editItemSchema),
 
@@ -129,17 +141,7 @@ const handler = (pool) => {
             }
             
 
-            imageUpload(req, res, (err) => {
-                const itemId = req.params.id;
-                if (err) {
-                    console.log(err);
-                    req.flash("fileError", "File uploading error.");
-                    res.redirect(`/edit-item/${itemId}`);
-                    return;
-                } else {
-                    next();
-                }
-            });
+            
 
             // if (totalImages >3) {
             //     if (req.files && Object.keys(req.files).length !== 0) {
