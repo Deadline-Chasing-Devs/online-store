@@ -108,7 +108,7 @@
                                     id="cover-files"
                                     name="cover-photo"
                                     type="file"
-                                    onchange="showCoverPhoto(event,'<%=item.itemId %>')"
+                                    onchange="showCoverPhoto(event)"
                                     accept="image/png,image/jpg,image/jpeg"
                                 />
                             </article>
@@ -218,7 +218,6 @@
 
     <script>
         const initialImg = '<%=imageCount%>';
-        const itemId = '<%=item.itemId%>';
     </script>
     <%- include('partials/scripts.ejs') %>
     <script src="/javascript/editItem.js"></script>
