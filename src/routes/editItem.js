@@ -95,14 +95,17 @@ const handler = (pool) => {
                 return res.redirect(`/edit-item/${itemId}`);
             }
 
-            let removeList = req.body.delArray.split(",");
-            if(removeList[0] == "")removeList = []; // splitting an empty string give an empty string giving unexpected outcome
+            const removeList = JSON.parse (req.body.delArray);
+            
+
 
             const initialImageCount = parseInt(req.body.initialImageCount);
             const deletedCount = removeList.length;
             let previewImageList = [];
-            
-            console.log(removeList);
+            const imageList = await getImageIdsByItemId(pool,itemId);
+            console.log("Del Array : ", removeList);
+            console.log("inittial amount : ", req.body.initialImageCount);
+            console.log(imageList.length);
 
             let coverPhotoPath;
             let imagePaths;
@@ -120,46 +123,46 @@ const handler = (pool) => {
             
             // Calculate if limit exceeded
             let totalImages = initialImageCount + previewImageList - deletedCount;
-            if (totalImages >3) {
-                if (req.files && Object.keys(req.files).length !== 0) {
-                    Object.keys(req.files).forEach((key) => {
-                        req.files[key].forEach(async (image) => {
-                            await deleteFile(image.path);
-                        });
-                    });
-                }
-                req.flash("fileErrorLimitExceed", "Only maximum of 3 preview images are allowed"); 
-                return res.redirect(`/edit-item/${itemId}`); 
-            }
+            // if (totalImages >3) {
+            //     if (req.files && Object.keys(req.files).length !== 0) {
+            //         Object.keys(req.files).forEach((key) => {
+            //             req.files[key].forEach(async (image) => {
+            //                 await deleteFile(image.path);
+            //             });
+            //         });
+            //     }
+            //     req.flash("fileErrorLimitExceed", "Only maximum of 3 preview images are allowed"); 
+            //     return res.redirect(`/edit-item/${itemId}`); 
+            // }
 
             // Deleting Cover Photo when no file is uploaded to cover photo input
-            if (req.body.oldCoverID && coverPhotoPath ==null) {
-                await replaceCoverPhoto(pool, null, itemId);
-                await removePhoto(pool, req.body.oldCoverID);
-                await deleteFile(`./public/uploads/${req.body.oldCoverID}`);
-            }
+            // if (req.body.oldCoverID && coverPhotoPath ==null) {
+            //     await replaceCoverPhoto(pool, null, itemId);
+            //     await removePhoto(pool, req.body.oldCoverID);
+            //     await deleteFile(`./public/uploads/${req.body.oldCoverID}`);
+            // }
 
             // Replacing Cover Photo when file is uploaded to cover photo input
-            if (coverPhotoPath !=null) {
-                console.log("cover here : ",coverPhotoPath);
-                await addImage(pool, itemId, coverPhotoPath);
-                await replaceCoverPhoto(pool, coverPhotoPath, itemId);
-                await removePhoto(pool, req.body.oldCoverID);
-                await deleteFile(`./public/uploads/${req.body.oldCoverID}`);
-            }
+            // if (coverPhotoPath !=null) {
+            //     console.log("cover here : ",coverPhotoPath);
+            //     await addImage(pool, itemId, coverPhotoPath);
+            //     await replaceCoverPhoto(pool, coverPhotoPath, itemId);
+            //     await removePhoto(pool, req.body.oldCoverID);
+            //     await deleteFile(`./public/uploads/${req.body.oldCoverID}`);
+            // }
 
             // Add preview Image if limit is not exceeded
-            if (imagePaths !=null) {
-                imagePaths.forEach(async (currentImage)=>{
-                    await addImage(pool, itemId, currentImage);
-                });
-            }
+            // if (imagePaths !=null) {
+            //     imagePaths.forEach(async (currentImage)=>{
+            //         await addImage(pool, itemId, currentImage);
+            //     });
+            // }
             
             // Delete Preview images if requested to delete
-            removeList.forEach(async (element) => {
-                await deleteFile(`./public/uploads/${element}`);
-                await removePhoto(pool, element);
-            });
+            // removeList.forEach(async (element) => {
+            //     await deleteFile(`./public/uploads/${element}`);
+            //     await removePhoto(pool, element);
+            // });
 
             await editItem(
                 pool,
