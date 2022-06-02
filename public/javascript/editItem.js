@@ -1,3 +1,5 @@
+let toDelList = [];
+let toDelCover = [];
 window.onload = function () {
 
     const removeItemBtn = document.getElementById("remove-btn");
@@ -71,13 +73,16 @@ function showCoverPhoto(event,itemId) {
     }
 }
 
-let toDelList = [];
-let toDelCover = [];
+function deleteCover(coverId){
+    document.getElementById(coverId).outerHTML = "";
+    toDelCover.push(coverId);  
+}
+
 function addToDelete(image){
     document.getElementById(image).outerHTML = "";
     toDelList.push(image);
+    
 }
-
 
 function postValues(){
     document.getElementById("delArray").value = JSON.stringify(toDelList);
@@ -91,9 +96,4 @@ function discard(){
 function refresh(itemId){
     console.log(itemId);
     window.location.href = "/edit-item/" + itemId;
-}
-
-function deleteCover(coverId){
-    document.getElementById(coverId).outerHTML = "";
-    toDelCover.push(coverId);
 }
