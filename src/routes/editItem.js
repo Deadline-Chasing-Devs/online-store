@@ -69,7 +69,6 @@ const handler = (pool) => {
 
         (req, res, next) => {
             imageUpload(req, res, (err) => {
-                console.log("REQ param: ", req.body);
                 const itemId = req.params.id;
                 if (err) {
                     console.log(err);
@@ -84,7 +83,7 @@ const handler = (pool) => {
 
         checkSchema(editItemSchema),
 
-        async (req, res,next) => {
+        async (req, res) => {
             // Check if the itemId is valid
             const itemId = req.params.id;
             const item = await getItemById(pool, itemId);
@@ -98,8 +97,8 @@ const handler = (pool) => {
                 return res.redirect(`/edit-item/${itemId}`);
             }
 
-            // const uploadedPreviewCount = parseInt(req.body.newPreviewCount);
-            // console.log("New preview Count: ", uploadedPreviewCount);
+            const uploadedPreviewCount = parseInt(req.body.newPreviewCount);
+            console.log("New preview Count: ", uploadedPreviewCount);
 
             let removeList =[];
             let removeCoverPhoto =[];
@@ -120,17 +119,17 @@ const handler = (pool) => {
                 return element.image_id != coverPhotoId.cover_photo;
             });
 
-            // Calculate if limit exceeded
-            let totalImages = previewImageList.length + previewImageList - removeList.length;
             
-            console.log("Del Array count : ", removeList.length);
-            console.log("initial preview image count : ", previewImageList.length);
-            console.log(previewImageList);
+            
+            // console.log("Del Array count : ", removeList.length);
+            // console.log("initial preview image count : ", previewImageList.length);
+            // console.log(previewImageList);
 
-            console.log("Delete cover photo Id : ", removeCoverPhoto );
+            // console.log("Delete cover photo Id : ", removeCoverPhoto );
 
             let coverPhotoPath;
             let imagePaths;
+            let uploadedPreviewImageList = 0;
             if (req.files && Object.keys(req.files).length !== 0) {
                 if (req.files["cover-photo"])
                     coverPhotoPath = req.files["cover-photo"][0].filename;
@@ -138,12 +137,13 @@ const handler = (pool) => {
                     imagePaths = req.files["images"].map(
                         (image) => image.filename
                     );
-                    previewImageList = imagePaths.length;
+                    uploadedPreviewImageList = imagePaths.length;
                 }
                     
             }
             
-
+            // Calculate if limit exceeded
+            let totalImages = previewImageList.length + uploadedPreviewImageList - removeList.length;
             
 
             // if (totalImages >3) {
