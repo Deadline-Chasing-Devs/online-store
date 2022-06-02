@@ -113,7 +113,7 @@ input.addEventListener("change", (e) => {
     console.log("limit val = ", maxAllowed);
     // Check files count
     if (maxAllowed > 3) {
-        alert("Maximum Preview Image Limit Exceeded");
+        alert("Only maximum of 3 preview images are allowed");
         location.reload();
     }
 });
