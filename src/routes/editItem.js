@@ -22,7 +22,7 @@ const handler = (pool) => {
             coverPhoto,
             images,
             updateSuccess: req.flash("update-success") || [],
-            fileErrorLimitExceed: req.flash("fileErrorLimitExceed") || [],
+            editItemError: req.flash("editItemError") || [],
             error: req.flash("error"),
             user: req.session.user
         });
@@ -99,10 +99,9 @@ const handler = (pool) => {
             try{
                 removeList = JSON.parse (req.body.delArray);
                 removeCoverPhoto= JSON.parse(req.body.deleteCoverPhoto);
-
             }
             catch(err){
-                req.flash("fileErrorLimitExceed", "Error Occured. Try Again"); 
+                req.flash("editItemError", "Error Occured. Try Again"); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
             
