@@ -63,44 +63,42 @@ window.onload = function () {
     }
 };
 
-function showCoverPhoto(event,itemId) {
+function showCoverPhoto(event) {
     if (event.target.files.length == 1 && event.target.files[0].type.match("image")) {
         let src = URL.createObjectURL(event.target.files[0]);
         let preview = document.getElementById("cover-photo-view");
         preview.src = src;
         preview.style.display = "block";
-        document.getElementById("remove-imgcover").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle\" onclick=\"refresh('"+itemId+"')\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
+        document.getElementById("remove-imgcover").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle\" onclick=\"refresh()\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
     }
 }
 
 function deleteCover(coverId){
     document.getElementById(coverId).outerHTML = "";
-    toDelCover.push(coverId);  
+    toDelCover.push(coverId);  // push cover image to deletedcover list
 }
 
 function addToDelete(image){
     document.getElementById(image).outerHTML = "";
-    toDelList.push(image);
+    toDelList.push(image); // push image id to deleted list
     
 }
 
 function postValues(){
-    document.getElementById("delArray").value = JSON.stringify(toDelList);
-    document.getElementById("deleteCoverPhoto").value = JSON.stringify(toDelCover);
+    document.getElementById("delArray").value = JSON.stringify(toDelList); // Ids of delete preview photos
+    document.getElementById("deleteCoverPhoto").value = JSON.stringify(toDelCover); // Id of coverphoto If deleted
     const cover = document.getElementById("cover-files");
     const preview = document.getElementById("images");
-    document.getElementById("newCoverCount").value = cover.files.length;
-    document.getElementById("newPreviewCount").value = preview.files.length;
-    console.log(cover.files.length, preview.files.length);
+    document.getElementById("newCoverCount").value = cover.files.length; // no  of uploaded cover images (max = 1)
+    document.getElementById("newPreviewCount").value = preview.files.length; // no of uploaded preview images (0 - 3)
 }
 
 function discard(){
     window.location.href = "/dashboard";
 }
 
-function refresh(itemId){
-    console.log(itemId);
-    window.location.href = "/edit-item/" + itemId;
+function refresh(){
+    location.reload();
 }
 
 const input = document.querySelector("#images");
@@ -110,12 +108,12 @@ input.addEventListener("change", (e) => {
     // Retrieve all files
     const files = input.files;
     const delCount = toDelList.length;
-    console.log(initialImg, delCount, itemId);
+    console.log(initialImg, delCount);
     var maxAllowed = parseInt(initialImg) + files.length - delCount;
     console.log("limit val = ", maxAllowed);
     // Check files count
     if (maxAllowed > 3) {
         alert("Maximum Preview Image Limit Exceeded");
-        window.location.href = "/edit-item/" + itemId;
+        location.reload();
     }
 });
