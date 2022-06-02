@@ -105,6 +105,7 @@
                                 <label class="form-check-label" for="files">Cover Photo (png, jpg, jpeg types only.)</label>
                                 <input
                                     class="form-control"
+                                    id="cover-files"
                                     name="cover-photo"
                                     type="file"
                                     onchange="showCoverPhoto(event,'<%=item.itemId %>')"
@@ -199,6 +200,8 @@
 
             <input type="hidden" id="delArray" name="delArray">
             <input type="hidden" id="deleteCoverPhoto" name="deleteCoverPhoto">
+            <input type="hidden" id="newPreviewCount" name="newPreviewCount">
+            <input type="hidden" id="newCoverCount" name="newCoverCount">
             
 
             <div class="mb-3">
