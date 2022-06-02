@@ -49,6 +49,8 @@ const handler = (pool) => {
         }
     };
 
+    let permittedImageCount = 3;
+
     const imageUpload = upload.fields([
         {
             name: "cover-photo",
@@ -56,7 +58,7 @@ const handler = (pool) => {
         },
         {
             name: "images",
-            maxCount: 3,
+            maxCount: permittedImageCount,
         },
     ]);
 
@@ -65,23 +67,13 @@ const handler = (pool) => {
         "/:id",
         authChecker,
 
-        (req, res, next) => {
-            imageUpload(req, res, (err) => {
-                const itemId = req.params.id;
-                if (err) {
-                    console.log(err);
-                    req.flash("fileError", "File uploading error.");
-                    res.redirect(`/edit-item/${itemId}`);
-                    return;
-                } else {
-                    next();
-                }
-            });
-        },
+        // (req, res, next) => {
+            
+        // },
 
         checkSchema(editItemSchema),
 
-        async (req, res) => {
+        async (req, res,next) => {
             // Check if the itemId is valid
             const itemId = req.params.id;
             const item = await getItemById(pool, itemId);
@@ -104,12 +96,7 @@ const handler = (pool) => {
                 req.flash("editItemError", "Error Occured. Try Again"); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
-            
             const coverPhotoId = await getItemCoverPhoto(pool,itemId);
-
-            // Calculate if limit exceeded
-            // let totalImages = previewImageList.length + previewImageList - removeList.length;
-
             console.log("Cover photo ID", coverPhotoId);
 
             let previewImageList = [];
@@ -117,6 +104,9 @@ const handler = (pool) => {
             previewImageList = imageList.filter((element)=>{
                 return element.image_id != coverPhotoId.cover_photo;
             });
+
+            // Calculate if limit exceeded
+            let totalImages = previewImageList.length + previewImageList - removeList.length;
             
             console.log("Del Array count : ", removeList.length);
             console.log("initial preview image count : ", previewImageList.length);
@@ -138,6 +128,18 @@ const handler = (pool) => {
                     
             }
             
+
+            imageUpload(req, res, (err) => {
+                const itemId = req.params.id;
+                if (err) {
+                    console.log(err);
+                    req.flash("fileError", "File uploading error.");
+                    res.redirect(`/edit-item/${itemId}`);
+                    return;
+                } else {
+                    next();
+                }
+            });
 
             // if (totalImages >3) {
             //     if (req.files && Object.keys(req.files).length !== 0) {
