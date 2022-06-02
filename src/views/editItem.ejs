@@ -29,10 +29,10 @@
                 }) %> 
         <% } var imageCount = 0; %>
 
-        <% if (fileErrorLimitExceed[0]) { %>
+        <% if (editItemError[0]) { %>
             <%- include("partials/errorFlashMessage.ejs",
                 { 
-                    message: fileErrorLimitExceed[0]
+                    message: editItemError[0]
                 }) %> 
         <% } %>
 
