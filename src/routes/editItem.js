@@ -94,23 +94,33 @@ const handler = (pool) => {
             if (!errors.isEmpty()) {
                 return res.redirect(`/edit-item/${itemId}`);
             }
+            let removeList =[];
+            let removeCoverPhoto =[];
+            try{
+                removeList = JSON.parse (req.body.delArray);
+                removeCoverPhoto= JSON.parse(req.body.deleteCoverPhoto);
 
-            const removeList = JSON.parse (req.body.delArray);
-            const removeCoverPhoto = JSON.parse(req.body.deleteCoverPhoto);
-            const initialImageCount = parseInt(req.body.initialImageCount);
+            }
+            catch(err){
+                req.flash("fileErrorLimitExceed", "Error Occured. Try Again"); 
+                return res.redirect(`/edit-item/${itemId}`); 
+            }
+            
             const coverPhotoId = await getItemCoverPhoto(pool,itemId);
+
+            // Calculate if limit exceeded
+            // let totalImages = previewImageList.length + previewImageList - removeList.length;
 
             console.log("Cover photo ID", coverPhotoId);
 
-            const deletedCount = removeList.length;
             let previewImageList = [];
             const imageList = await getImageIdsByItemId(pool,itemId);
             previewImageList = imageList.filter((element)=>{
                 return element.image_id != coverPhotoId.cover_photo;
             });
             
-            console.log("Del Array : ", removeList);
-            console.log("inittial amount : ", req.body.initialImageCount);
+            console.log("Del Array count : ", removeList.length);
+            console.log("initial preview image count : ", previewImageList.length);
             console.log(previewImageList);
 
             console.log("Delete cover photo Id : ", removeCoverPhoto );
@@ -129,8 +139,7 @@ const handler = (pool) => {
                     
             }
             
-            // Calculate if limit exceeded
-            let totalImages = initialImageCount + previewImageList - deletedCount;
+
             // if (totalImages >3) {
             //     if (req.files && Object.keys(req.files).length !== 0) {
             //         Object.keys(req.files).forEach((key) => {
