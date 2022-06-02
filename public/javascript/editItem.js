@@ -87,6 +87,11 @@ function addToDelete(image){
 function postValues(){
     document.getElementById("delArray").value = JSON.stringify(toDelList);
     document.getElementById("deleteCoverPhoto").value = JSON.stringify(toDelCover);
+    const cover = document.getElementById("cover-files");
+    const preview = document.getElementById("images");
+    document.getElementById("newCoverCount").value = cover.files.length;
+    document.getElementById("newPreviewCount").value = preview.files.length;
+    console.log(cover.files.length, preview.files.length);
 }
 
 function discard(){
