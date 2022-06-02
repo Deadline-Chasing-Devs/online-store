@@ -96,6 +96,7 @@ const handler = (pool) => {
             }
 
             const removeList = JSON.parse (req.body.delArray);
+            const removeCoverPhoto = JSON.parse(req.body.deleteCoverPhoto);
             const initialImageCount = parseInt(req.body.initialImageCount);
             const coverPhotoId = await getItemCoverPhoto(pool,itemId);
 
@@ -111,6 +112,8 @@ const handler = (pool) => {
             console.log("Del Array : ", removeList);
             console.log("inittial amount : ", req.body.initialImageCount);
             console.log(previewImageList);
+
+            console.log("Delete cover photo Id : ", removeCoverPhoto );
 
             let coverPhotoPath;
             let imagePaths;
