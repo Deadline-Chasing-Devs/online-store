@@ -108,9 +108,7 @@ input.addEventListener("change", (e) => {
     // Retrieve all files
     const files = input.files;
     const delCount = toDelList.length;
-    console.log(initialImg, delCount);
     var maxAllowed = parseInt(initialImg) + files.length - delCount;
-    console.log("limit val = ", maxAllowed);
     // Check files count
     if (maxAllowed > 3) {
         alert("Only maximum of 3 preview images are allowed");
