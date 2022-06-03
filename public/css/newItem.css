@@ -39,7 +39,7 @@ article
     width: 100%;
     max-width: 150px;
 
-    min-height: 100px; 
+    min-height: 30px; 
     text-align: center; 
     vertical-align: middle;
 }
@@ -64,9 +64,15 @@ article
     font-size: 15px;
     line-height: 0.428571429;
     border-radius: 15px;
+    margin: 2px
   }
 
 .preview-Upload-Reset{
+    position: absolute;
+    
     float: right;
     margin: 10px;
+    z-index: 1;
+    right: 0;
+    margin-right: 32px;
 }
