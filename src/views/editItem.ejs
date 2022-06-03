@@ -62,7 +62,7 @@
                     <div class="row mb-3">
                         <label for="colFormLabel" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="description" rows="3"><%= item.description %></textarea>
+                            <textarea class="form-control" name="description" rows="3" required><%= item.description %></textarea>
                         </div>
                     </div>
 
@@ -144,11 +144,15 @@
                                     </div>
                                     
                                     <%}else{%>
-                                        <img 
-                                        src=""
-                                        id="cover-photo-view"
-                                        style="max-width: 400px; height:auto; margin: 10px;"
-                                    />    
+                                        <div id="null-cover" class="card vendor-item-image" style= "display:none">
+                                            <img 
+                                                src=""
+                                                id="cover-photo-view"
+                                                max-width="500px"
+                                                height="auto"
+                                            /> 
+                                            <button id="remove-imgcover" ></button>
+                                        </div>   
                                     <%}%>
                                 </div>
                             </article>
@@ -187,7 +191,7 @@
                                         <img
                                             src="/uploads/<%= images[i].image_id %>"
                                             class=""
-                                            alt="Preview Image \n <%= imageCount + 1%>"
+                                            alt="preview image<%= imageCount + 1%>"
                                             min-width="250px"
                                             height="auto"
                                         >
@@ -207,9 +211,9 @@
 
             <div class="mb-3">
               <div class="btn-group" role="group">
-                <button type="submit" class="btn btn-success" onclick="postValues()">Update</button>
-                <button id="discard-btn" type="button" class="btn btn-warning" onclick="discard()">Disacrd</button>
-                <button id="remove-btn" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <button type="submit" class="btn btn-success" onclick="postValues()" data-bs-toggle="tooltip" data-bs-placement="top" title="Update item changes">Update</button>
+                <button id="discard-btn" type="button" class="btn btn-warning" onclick="refresh()" data-bs-toggle="tooltip" data-bs-placement="top" title="Discard changes">Discard</button>
+                <button id="remove-btn" type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove item"><i class="fas fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -219,6 +223,7 @@
 
     <script>
         const initialImg = '<%=imageCount%>';
+        const hasCover = '<%=coverPhoto.cover_photo%>';
     </script>
     <%- include('partials/scripts.ejs') %>
     <script src="/javascript/editItem.js"></script>
@@ -228,12 +233,4 @@
 
 <!-- max limit disable 
 multer error handling
-preview  error 
-    - cover preview not showing when cover deleted-
-    
-    flash format done !
-     
-    edit-item-error
-    edit-item-file-error
-
 ->
