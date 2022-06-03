@@ -315,6 +315,39 @@ const addItemToOrder = async (pool, orderId, itemId, quantity) => {
     }
 };
 
+// Get cover photo
+const getItemCoverPhoto = async (pool, itemId) => {
+    let results;
+    try {
+        results = await queryPromise(pool, "SELECT cover_photo FROM `item` WHERE item_id = ?", [itemId]);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+
+    return results[0];
+};
+
+// Remove photo
+const removePhoto = async (pool, imageId) => {
+    try {
+        await queryPromise(pool, "DELETE FROM item_image WHERE image_id=?", [imageId]);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+
+const replaceCoverPhoto = async (pool, newImgPath, itemId) => {
+    try {
+        await queryPromise(pool, "UPDATE item SET cover_photo=? WHERE item_id=? ", [newImgPath, itemId]);
+    } catch (error) {
+        console.log(error.message);
+        throw "Database Error";
+    }
+};
+ 
+
 
 export {
     getUserByUsername,
@@ -334,5 +367,8 @@ export {
     deleteItem,
     getOrderIdsIncludingItem,
     addOrder,
-    addItemToOrder
+    addItemToOrder,
+    getItemCoverPhoto,
+    removePhoto,
+    replaceCoverPhoto
 };

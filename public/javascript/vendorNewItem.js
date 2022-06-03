@@ -6,7 +6,7 @@ window.onload = function () {
         filesInput.addEventListener("change", function (event) {
             var files = event.target.files; //FileList object
             var output = document.getElementById("images-view");
-
+            output.innerHTML = "";
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
 
