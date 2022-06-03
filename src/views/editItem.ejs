@@ -22,17 +22,17 @@
                     message: updateSuccess[0]
                 }) %> 
         <% } %>
-        <% if (error[0]) { %>
-            <%- include("partials/errorFlashMessage.ejs",
-                { 
-                    message: error[0]
-                }) %> 
-        <% } var imageCount = 0; %>
-
         <% if (editItemError[0]) { %>
             <%- include("partials/errorFlashMessage.ejs",
                 { 
                     message: editItemError[0]
+                }) %> 
+        <% } var imageCount = 0; %>
+
+        <% if (editItemFileError[0]) { %>
+            <%- include("partials/errorFlashMessage.ejs",
+                { 
+                    message: editItemFileError[0]
                 }) %> 
         <% } %>
 
@@ -62,7 +62,7 @@
                     <div class="row mb-3">
                         <label for="colFormLabel" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="description" rows="3"><%= item.description %></textarea>
+                            <textarea class="form-control" name="description" rows="3" required><%= item.description %></textarea>
                         </div>
                     </div>
 
@@ -131,24 +131,28 @@
                                         background-color: white;"
                                 >
                                 <% if(coverPhoto.cover_photo != null){ %>
-                                    <div id="<%=coverPhoto.cover_photo%>" class=" vendor-item-image">
+                                    <div id="<%=coverPhoto.cover_photo%>" class="card vendor-item-image">
                                         <img
                                             src="/uploads/<%= coverPhoto.cover_photo %>"
                                             class=""
                                             id="cover-photo-view"
-                                            alt=""
+                                            alt="Cover Image"
                                             max-width="500px"
                                             height="auto"
                                         >
-                                        <button id="remove-imgcover" type="button" class="btn btn-danger btn-circle" onclick="deleteCover('<%=coverPhoto.cover_photo%>')"><i class="fas fa-close"></i></button>
+                                        <button id="remove-imgcover" type="button" class="btn btn-danger btn-circle" onclick="deleteCover('<%=coverPhoto.cover_photo%>')" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove image"><i class="fas fa-close"></i></button>
                                     </div>
                                     
                                     <%}else{%>
-                                        <img 
-                                        src=""
-                                        id="cover-photo-view"
-                                        style="max-width: 400px; height:auto; margin: 10px;"
-                                    />    
+                                        <div id="null-cover" class="card vendor-item-image" style= "display:none">
+                                            <img 
+                                                src=""
+                                                id="cover-photo-view"
+                                                max-width="500px"
+                                                height="auto"
+                                            /> 
+                                            <button id="remove-imgcover" ></button>
+                                        </div>   
                                     <%}%>
                                 </div>
                             </article>
@@ -159,7 +163,7 @@
                         <div class="col-sm-12">
                             <article>
                                 <label class="form-check-label" for="images">Images (png, jpg, jpeg types only. maximum 3 images)</label>
-                                <input class="form-control" name="images"  id="images" type="file" multiple />
+                                <input class="form-control" name="images"  id="images" type="file" accept="image/png,image/jpg,image/jpeg" multiple />
                             </article>
                         </div>
                     </div>
@@ -169,6 +173,7 @@
                         <div class="col-sm-12">
                             <article>
                                 <div class="overflow-auto" style="min-height:50px; max-height:300px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
+                                    <div id ="upload-preview"></div>
                                     <output id="images-view" />
                                 </div>
                             </article>
@@ -186,11 +191,11 @@
                                         <img
                                             src="/uploads/<%= images[i].image_id %>"
                                             class=""
-                                            alt=""
+                                            alt="preview image<%= imageCount + 1%>"
                                             min-width="250px"
                                             height="auto"
                                         >
-                                        <button id="remove-imgx" type="button" class="btn btn-danger btn-circle" onclick="addToDelete('<%=images[i].image_id%>')"><i class="fas fa-close"></i></button>
+                                        <button id="remove-imgx" type="button" class="btn btn-danger btn-circle" onclick="addToDelete('<%=images[i].image_id%>')" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove image"><i class="fas fa-close"></i></button>
                                     </div>
                                     <%imageCount++}%>
                                 </div>
@@ -206,9 +211,9 @@
 
             <div class="mb-3">
               <div class="btn-group" role="group">
-                <button type="submit" class="btn btn-success" onclick="postValues()">Update</button>
-                <button id="discard-btn" type="button" class="btn btn-warning" onclick="discard()">Disacrd</button>
-                <button id="remove-btn" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <button type="submit" class="btn btn-success" onclick="postValues()" data-bs-toggle="tooltip" data-bs-placement="top" title="Update item changes">Update</button>
+                <button id="discard-btn" type="button" class="btn btn-warning" onclick="refresh()" data-bs-toggle="tooltip" data-bs-placement="top" title="Discard changes">Discard</button>
+                <button id="remove-btn" type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove item"><i class="fas fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -218,6 +223,7 @@
 
     <script>
         const initialImg = '<%=imageCount%>';
+        const hasCover = '<%=coverPhoto.cover_photo%>';
     </script>
     <%- include('partials/scripts.ejs') %>
     <script src="/javascript/editItem.js"></script>
@@ -227,12 +233,4 @@
 
 <!-- max limit disable 
 multer error handling
-preview  error 
-    - cover preview not showing when cover deleted-
-    
-    flash format
-     
-    edit-item-
-    edit-item-file-error
-
 ->

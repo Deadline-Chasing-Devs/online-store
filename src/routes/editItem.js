@@ -22,8 +22,8 @@ const handler = (pool) => {
             coverPhoto,
             images,
             updateSuccess: req.flash("update-success") || [],
-            editItemError: req.flash("editItemError") || [],
-            error: req.flash("error"),
+            editItemError: req.flash("edit-item-error") || [],
+            editItemFileError: req.flash("edit-item-file-error") || [],
             user: req.session.user
         });
     });
@@ -70,7 +70,7 @@ const handler = (pool) => {
                 const itemId = req.params.id;
                 if (err) {
                     console.log(err);
-                    req.flash("fileError", "File uploading error.");
+                    req.flash("edit-item-file-error", "File uploading error. Try again!");
                     res.redirect(`/edit-item/${itemId}`);
                     return;
                 } else {
@@ -102,7 +102,8 @@ const handler = (pool) => {
                 removeCoverPhoto= JSON.parse(req.body.deleteCoverPhoto);
             }
             catch(err){
-                req.flash("editItemError", "Error Occured. Try Again"); 
+                console.log(err);
+                req.flash("edit-item-error", "Error occured. Try again!"); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
             const coverPhotoId = await getItemCoverPhoto(pool,itemId);
@@ -138,7 +139,7 @@ const handler = (pool) => {
                         });
                     });
                 }
-                req.flash("fileErrorLimitExceed", "Only maximum of 3 preview images are allowed"); 
+                req.flash("edit-item-file-error", "Image limit exceeded!"); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
 
@@ -197,7 +198,7 @@ const handler = (pool) => {
 
         const availableOrderIds = await getOrderIdsIncludingItem(pool, itemId);
         if (availableOrderIds.length) {
-            req.flash("error", "Cannot delete this item: There are orders including this item.");
+            req.flash("edit-item-error", "Cannot delete this item: There are orders including this item.");
             res.status(400).send();
             return;
         }

@@ -38,12 +38,18 @@ article
     position: relative;
     width: 100%;
     max-width: 150px;
+
+    min-height: 30px; 
+    text-align: center; 
+    vertical-align: middle;
 }
 
 .vendor-item-image img{
     display: block;
     position: relative;
     width: 100%;
+    text-align: left;
+    font-size: 12px;
 }
 
 .vendor-item-image button{
@@ -60,4 +66,15 @@ article
     font-size: 15px;
     line-height: 0.428571429;
     border-radius: 15px;
+    margin: 2px
   }
+
+.preview-Upload-Reset{
+    position: absolute;
+    
+    float: right;
+    margin: 10px;
+    z-index: 1;
+    right: 0;
+    margin-right: 40px;
+}
