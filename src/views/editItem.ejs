@@ -22,17 +22,17 @@
                     message: updateSuccess[0]
                 }) %> 
         <% } %>
-        <% if (error[0]) { %>
-            <%- include("partials/errorFlashMessage.ejs",
-                { 
-                    message: error[0]
-                }) %> 
-        <% } var imageCount = 0; %>
-
         <% if (editItemError[0]) { %>
             <%- include("partials/errorFlashMessage.ejs",
                 { 
                     message: editItemError[0]
+                }) %> 
+        <% } var imageCount = 0; %>
+
+        <% if (editItemFileError[0]) { %>
+            <%- include("partials/errorFlashMessage.ejs",
+                { 
+                    message: editItemFileError[0]
                 }) %> 
         <% } %>
 
@@ -136,7 +136,7 @@
                                             src="/uploads/<%= coverPhoto.cover_photo %>"
                                             class=""
                                             id="cover-photo-view"
-                                            alt=""
+                                            alt="Cover Image"
                                             max-width="500px"
                                             height="auto"
                                         >
@@ -159,7 +159,7 @@
                         <div class="col-sm-12">
                             <article>
                                 <label class="form-check-label" for="images">Images (png, jpg, jpeg types only. maximum 3 images)</label>
-                                <input class="form-control" name="images"  id="images" type="file" multiple />
+                                <input class="form-control" name="images"  id="images" type="file" accept="image/png,image/jpg,image/jpeg" multiple />
                             </article>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                                         <img
                                             src="/uploads/<%= images[i].image_id %>"
                                             class=""
-                                            alt=""
+                                            alt="Preview Image <%=imageCount%>"
                                             min-width="250px"
                                             height="auto"
                                         >
@@ -230,9 +230,9 @@ multer error handling
 preview  error 
     - cover preview not showing when cover deleted-
     
-    flash format
+    flash format done !
      
-    edit-item-
+    edit-item-error
     edit-item-file-error
 
 ->
