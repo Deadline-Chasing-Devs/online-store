@@ -38,6 +38,10 @@ article
     position: relative;
     width: 100%;
     max-width: 150px;
+
+    min-height: 100px; 
+    text-align: center; 
+    vertical-align: middle;
 }
 
 .vendor-item-image img{
@@ -61,3 +65,8 @@ article
     line-height: 0.428571429;
     border-radius: 15px;
   }
+
+.preview-Upload-Reset{
+    float: right;
+    margin: 10px;
+}
