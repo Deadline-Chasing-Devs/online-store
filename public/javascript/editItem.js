@@ -1,7 +1,6 @@
 let toDelList = [];
 let toDelCover = [];
 window.onload = function () {
-
     const removeItemBtn = document.getElementById("remove-btn");
     removeItemBtn.addEventListener("click", () => {
         const confirm = window.confirm(
@@ -26,7 +25,7 @@ window.onload = function () {
         filesInput.addEventListener("change", function (event) {
             var files = event.target.files; //FileList object
             var output = document.getElementById("images-view");
-            document.getElementById("upload-preview").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle preview-Upload-Reset\" onclick=\"refresh()\" data-bs-toggle=\"tooltip\" data-bs-placement=\"top\" title=\"Reset\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
+            document.getElementById("upload-preview").innerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle preview-Upload-Reset\" onclick=\"refresh()\" data-bs-toggle=\"tooltip\" data-bs-placement=\"top\" title=\"Reset\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
             output.innerHTML = "";
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -55,10 +54,17 @@ window.onload = function () {
     } else {
         console.log("Your browser does not support File API");
     }
+    if (initialImg >=3) {
+        document.getElementById("images").disabled = true;
+    }
 };
 
 function showCoverPhoto(event) {
     if (event.target.files.length == 1 && event.target.files[0].type.match("image")) {
+        if(hasCover==""){
+            document.getElementById("null-cover").style = "";
+        }
+        
         let src = URL.createObjectURL(event.target.files[0]);
         let preview = document.getElementById("cover-photo-view");
         preview.src = src;
@@ -75,6 +81,7 @@ function deleteCover(coverId){
 function addToDelete(image){
     document.getElementById(image).outerHTML = "";
     toDelList.push(image); // push image id to deleted list
+    document.getElementById("images").disabled = false;
     
 }
 
@@ -85,10 +92,6 @@ function postValues(){
     const preview = document.getElementById("images");
     document.getElementById("newCoverCount").value = cover.files.length; // no  of uploaded cover images (max = 1)
     document.getElementById("newPreviewCount").value = preview.files.length; // no of uploaded preview images (0 - 3)
-}
-
-function discard(){
-    window.location.href = "/dashboard";
 }
 
 function refresh(){
