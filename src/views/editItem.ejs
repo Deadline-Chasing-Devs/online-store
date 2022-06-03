@@ -182,11 +182,11 @@
                                 <div class="overflow-auto" style="min-height:250px; max-height:500px; border-style: solid; border-color: rgb(189, 189, 189); border-radius: .25rem; border-width:1px ; background-color: white;">
 
                                     <%for(i=0; i<images.length; i++){ if(images[i].image_id == coverPhoto.cover_photo)continue;%>
-                                    <div id="<%=images[i].image_id%>" class="card vendor-item-image">
+                                    <div id="<%=images[i].image_id%>" class="card vendor-item-image" style="min-height: 100px; text-align: center;">
                                         <img
                                             src="/uploads/<%= images[i].image_id %>"
                                             class=""
-                                            alt="Preview Image <%=imageCount%>"
+                                            alt="Preview \n <%='Image ' + imageCount + 1%>"
                                             min-width="250px"
                                             height="auto"
                                         >
