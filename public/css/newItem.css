@@ -48,6 +48,8 @@ article
     display: block;
     position: relative;
     width: 100%;
+    text-align: left;
+    font-size: 12px;
 }
 
 .vendor-item-image button{
@@ -74,5 +76,5 @@ article
     margin: 10px;
     z-index: 1;
     right: 0;
-    margin-right: 32px;
+    margin-right: 40px;
 }
