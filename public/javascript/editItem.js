@@ -23,26 +23,20 @@ window.onload = function () {
     //Check File API support
     if (window.File && window.FileList && window.FileReader) {
         var filesInput = document.getElementById("images");
-
         filesInput.addEventListener("change", function (event) {
             var files = event.target.files; //FileList object
             var output = document.getElementById("images-view");
-
+            output.innerHTML = "";
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-
                 //Only pics
                 if (!file.type.match("image")) continue;
-
                 var picReader = new FileReader();
-
                 picReader.addEventListener("load", function (event) {
                     var picFile = event.target;
-
                     var div = document.createElement("div");
-
                     div.className = "col-sm-3";
-
+                    div.innerHTML = "";
                     div.innerHTML =
                         "<img class='thumbnail col-sm-3' style='height : 200px; width : auto; background-size: cover; background-repeat: no-repeat; background-position:center;' src='" +
                         picFile.result +
@@ -53,7 +47,6 @@ window.onload = function () {
 
                     output.insertBefore(div, null);
                 });
-
                 //Read the image
                 picReader.readAsDataURL(file);
             }
@@ -111,7 +104,7 @@ input.addEventListener("change", (e) => {
     var maxAllowed = parseInt(initialImg) + files.length - delCount;
     // Check files count
     if (maxAllowed > 3) {
-        alert("Only maximum of 3 preview images are allowed");
+        alert("Image limit exceeded!");
         location.reload();
     }
 });
