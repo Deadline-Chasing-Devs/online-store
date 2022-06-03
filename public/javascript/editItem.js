@@ -26,6 +26,7 @@ window.onload = function () {
         filesInput.addEventListener("change", function (event) {
             var files = event.target.files; //FileList object
             var output = document.getElementById("images-view");
+            document.getElementById("upload-preview").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle preview-Upload-Reset\" onclick=\"refresh()\" data-bs-toggle=\"tooltip\" data-bs-placement=\"top\" title=\"Reset\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
             output.innerHTML = "";
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -35,10 +36,10 @@ window.onload = function () {
                 picReader.addEventListener("load", function (event) {
                     var picFile = event.target;
                     var div = document.createElement("div");
-                    div.className = "col-sm-3";
+                    div.className = "card vendor-item-image";
                     div.innerHTML = "";
                     div.innerHTML =
-                        "<img class='thumbnail col-sm-3' style='height : 200px; width : auto; background-size: cover; background-repeat: no-repeat; background-position:center;' src='" +
+                        "<img class='' min-width=\"250px\" height=\"auto\" src='" +
                         picFile.result +
                         "'" +
                         "title='" +
@@ -62,7 +63,7 @@ function showCoverPhoto(event) {
         let preview = document.getElementById("cover-photo-view");
         preview.src = src;
         preview.style.display = "block";
-        document.getElementById("remove-imgcover").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle\" onclick=\"refresh()\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
+        document.getElementById("remove-imgcover").outerHTML = "<button id=\"remove-imgcover\" type=\"button\" class=\"btn btn-success btn-circle\" onclick=\"refresh()\" data-bs-toggle=\"tooltip\" data-bs-placement=\"top\" title=\"Reset\"><i class=\"fa-solid fa-arrows-rotate\"></i></button>";
     }
 }
 
