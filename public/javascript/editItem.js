@@ -1,6 +1,8 @@
 let toDelList = [];
 let toDelCover = [];
+let isCoverNull;
 window.onload = function () {
+    isCoverNull = (hasCover=="");
     const removeItemBtn = document.getElementById("remove-btn");
     removeItemBtn.addEventListener("click", () => {
         const confirm = window.confirm(
@@ -61,7 +63,7 @@ window.onload = function () {
 
 function showCoverPhoto(event) {
     if (event.target.files.length == 1 && event.target.files[0].type.match("image")) {
-        if(hasCover==""){
+        if(isCoverNull){
             document.getElementById("null-cover").style = "";
         }
         
@@ -76,13 +78,15 @@ function showCoverPhoto(event) {
 function deleteCover(coverId){
     document.getElementById(coverId).outerHTML = "";
     toDelCover.push(coverId);  // push cover image to deletedcover list
+    const vass = "<div id=\"null-cover\" class=\"card vendor-item-image\" style=\"display:none\"><img src=\"\" id=\"cover-photo-view\" max-width=\"500px\" height=\"auto\"><button id=\"remove-imgcover\"></button></div>";
+    document.getElementById("cover-photo-container-div").innerHTML=vass;
+    isCoverNull = true;
 }
 
 function addToDelete(image){
     document.getElementById(image).outerHTML = "";
     toDelList.push(image); // push image id to deleted list
     document.getElementById("images").disabled = false;
-    
 }
 
 function postValues(){
