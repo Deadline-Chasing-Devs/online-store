@@ -30,7 +30,6 @@ article
 
 .vendor-item-image{
     width: 200px; 
-    /* height: 100px; */
     float:left;
     margin:10px;
  
@@ -69,12 +68,17 @@ article
     margin: 2px
   }
 
-.preview-Upload-Reset{
-    position: absolute;
-    
+#upload-preview{
+    position: sticky;
+    position:-webkit-sticky;
+    top: 10px;
     float: right;
     margin: 10px;
-    z-index: 1;
-    right: 0;
-    margin-right: 40px;
+    z-index: 2;
+    padding: 2px;
+}
+
+#images-view{
+    position:relative;
+    width: calc(100% - 55px);
 }
