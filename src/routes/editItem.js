@@ -14,7 +14,6 @@ const handler = (pool) => {
         const item = await getItemById(pool, itemId);
         const images = await getImageIdsByItemId(pool, itemId);
         const coverPhoto = await getItemCoverPhoto(pool,itemId);
-        // console.log(coverPhoto);
 
         if (!item) res.redirect("/dashboard");
         else res.render("editItem", {
@@ -142,8 +141,6 @@ const handler = (pool) => {
                 req.flash("edit-item-file-error", "Image limit exceeded!"); 
                 return res.redirect(`/edit-item/${itemId}`); 
             }
-
-            // console.log("item ID    old Cover ID    new Cover ID \n", itemId, coverPhotoId.cover_photo,"-",removeCoverPhoto[0], coverPhotoPath);
 
             // Deleting Cover Photo when no file is uploaded to cover photo input
             if (removeCoverPhoto[0] == coverPhotoId.cover_photo && coverPhotoPath ==null && removeCoverPhoto[0] != null) {
