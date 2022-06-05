@@ -8,7 +8,7 @@ const handler = (pool) => {
 
     loginRouter.get("", sessionChecker, (req, res) => {
         // Show login page
-        res.render("login", { loginError: req.flash("loginError") });
+        res.render("login", { loginError: req.flash("login-error") });
     });
 
     loginRouter.post("", async (req, res) => {
@@ -17,7 +17,7 @@ const handler = (pool) => {
         const user = await getUserByUsername(pool, username);
 
         if (!user || !user.isValidPassword(password)) {
-            req.flash("loginError", "Invalid username or password");
+            req.flash("login-error", "Invalid username or password");
             res.redirect("/login");
         } else {
             req.session.user = sessionizeUser(user);

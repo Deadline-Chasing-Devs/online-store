@@ -137,3 +137,6 @@ ALTER TABLE `order_item`
   ADD CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`);
 COMMIT;
 
+-- Add test vendor
+-- username: test, password: 'password123'
+INSERT INTO `vendor` VALUES ('test', '$2b$10$yOhIC0ip5gMqNvGGV1GaGus7PUXZSvtV2g/xOmqkaP0hQBMaKJ4bq');

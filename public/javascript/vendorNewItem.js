@@ -6,7 +6,7 @@ window.onload = function () {
         filesInput.addEventListener("change", function (event) {
             var files = event.target.files; //FileList object
             var output = document.getElementById("images-view");
-
+            output.innerHTML = "";
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
 
@@ -54,4 +54,5 @@ function showCoverPhoto(event) {
 function clearForm() {
     document.getElementById("new-item-form").reset();
     document.getElementById("cover-photo-view").setAttribute("src", "");
+    document.getElementById("images-view").innerHTML = "";
 }

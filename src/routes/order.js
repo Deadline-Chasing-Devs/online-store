@@ -8,7 +8,6 @@ const handler = (pool) => {
     // handle route
 
     orderRouter.get("/fail", async (req, res) => {
-        console.log("here fail");
         res.render("orderFail");
     });
 
@@ -20,7 +19,7 @@ const handler = (pool) => {
             return;
         }
         const orderItems = await getItemsByOrderId(pool, orderId);
-        res.render("order", { user: req.session.user, order, orderItems, success: req.flash("success") });
+        res.render("order", { user: req.session.user, order, orderItems, success: req.flash("order-success") });
     });
 
     orderRouter.post("/:order_id", authChecker, async (req, res) => {
@@ -39,7 +38,7 @@ const handler = (pool) => {
         }
 
         await updateOrderStatus(pool, orderId, orderStatus);
-        req.flash("success", "Order status updated successfully");
+        req.flash("order-success", "Order status updated successfully");
         res.redirect(`/order/${orderId}`);
     });
 

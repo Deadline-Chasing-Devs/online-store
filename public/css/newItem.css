@@ -29,7 +29,56 @@ article
 }
 
 .vendor-item-image{
-    width: 100px; 
+    width: 200px; 
     float:left;
     margin:10px;
+ 
+
+    position: relative;
+    width: 100%;
+    max-width: 150px;
+
+    min-height: 30px; 
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.vendor-item-image img{
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+}
+
+.vendor-item-image button{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.btn-circle {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 15px;
+    line-height: 0.428571429;
+    border-radius: 15px;
+    margin: 2px
+  }
+
+#upload-preview{
+    position: sticky;
+    position:-webkit-sticky;
+    top: 10px;
+    float: right;
+    margin: 10px;
+    z-index: 2;
+    padding: 2px;
+}
+
+#images-view{
+    position:relative;
+    width: calc(100% - 55px);
 }
