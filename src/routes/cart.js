@@ -25,6 +25,24 @@ const handler = (pool) => {
         quantity: {
             isInt: {
                 options: { min: 1 },
+                errorMessage: "Quantity must be an integer greater than 0.",
+            },
+            custom: {
+                options: (value, { req }) => {
+                    if (
+                        req.session.cart !== undefined &&
+                        ((req.session.cart.items[req.body.itemId] &&
+                            req.session.cart.items[req.body.itemId].qty +
+                                parseInt(value) >
+                                20) ||
+                            parseInt(value) > 20)
+                    ) {
+                        throw new Error(
+                            "You cannot add more than 20 of the same item to the cart."
+                        );
+                    }
+                    return true;
+                },
             },
         },
     };
@@ -33,9 +51,10 @@ const handler = (pool) => {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
+            console.log(errors.array());
             return res.status(400).json({
                 success: false,
-                message: "Invalid input.",
+                message: errors.array()[0].msg,
             });
         }
 
@@ -91,7 +110,7 @@ const handler = (pool) => {
     cartRouter.delete("", (req, res) => {
         req.session.cart = new Cart({});
         res.status(200).json({
-            success: true
+            success: true,
         });
     });
     return cartRouter;
