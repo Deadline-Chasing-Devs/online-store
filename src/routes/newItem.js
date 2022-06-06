@@ -21,20 +21,32 @@ const handler = (pool) => {
     const newItemSchema = {
         name: {
             notEmpty: true,
+            errorMessage: "Name cannot be empty.",
+            isLength: {
+                errorMessage: "Max length of the name is 50 characters.",
+                options: {
+                    max: 50,
+                }
+            }
         },
         description: {
             notEmpty: true,
+            errorMessage: "Description cannot be empty.",
         },
         price: {
             notEmpty: true,
+            errorMessage: "Price cannot be empty.",
             isFloat: {
+                errorMessage: "Price must be a float between 0 and 99999999.99.",
                 options: {
-                    min: 0
+                    min: 0,
+                    max: 99999999.99,
                 }
             },
         },
         availability: {
-            notEmpty: true
+            notEmpty: true,
+            errorMessage: "Availability cannot be empty.",
         }
     };
 
@@ -75,7 +87,7 @@ const handler = (pool) => {
                         });
                     });
                 }
-                req.flash("new-item-validation-error", errors.array()[0]);
+                req.flash("new-item-validation-error", errors.array());
                 res.redirect("/new-item");
                 return;
             }
