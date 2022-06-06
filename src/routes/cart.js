@@ -30,12 +30,12 @@ const handler = (pool) => {
             custom: {
                 options: (value, { req }) => {
                     if (
-                        req.session.cart !== undefined &&
-                        ((req.session.cart.items[req.body.itemId] &&
+                        (req.session.cart !== undefined &&
+                            req.session.cart.items[req.body.itemId] &&
                             req.session.cart.items[req.body.itemId].qty +
                                 parseInt(value) >
                                 20) ||
-                            parseInt(value) > 20)
+                        parseInt(value) > 20
                     ) {
                         throw new Error(
                             "You cannot add more than 20 of the same item to the cart."
