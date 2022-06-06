@@ -51,7 +51,6 @@ const handler = (pool) => {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            console.log(errors.array());
             return res.status(400).json({
                 success: false,
                 message: errors.array()[0].msg,
@@ -71,7 +70,6 @@ const handler = (pool) => {
         itemId: {
             custom: {
                 options: (value, { req }) => {
-                    console.log(req.session.cart.items);
                     // eslint-disable-next-line no-prototype-builtins
                     if (
                         !req.session.cart ||

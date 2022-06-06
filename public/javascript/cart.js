@@ -21,7 +21,6 @@ window.onload = function () {
     }
 
     async function clearCart() {
-        console.log("clicked");
         const res = await fetch("/cart", {
             method: "DELETE",
         });
