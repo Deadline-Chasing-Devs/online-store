@@ -13,13 +13,20 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
+        <!-- <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        /> -->
         <link rel="stylesheet" href="/css/checkout.css" />
         <title>Checkout</title>
     </head>
 
     <body>
         <!--navbar start-->
-        <%- include("partials/customerNavBar", { searchBar: false, active: "" }); %>
+        <%- include("partials/customerNavBar", { searchBar: false, active: ""
+        }); %>
         <!--navbar end-->
 
         <!--customer details start-->
@@ -41,6 +48,11 @@
                 autocomplete="off"
             >
                 <h2>Customer Details</h2>
+                <!-- <% if (checkoutErrors.length > 0) {%> <%-
+                include("partials/errorFlashMessage", { message: checkoutErrors[0].msg}) %> <% } %> -->
+                <% if (checkoutErrors.length > 0) {%> 
+                    <div class="error">Error: <%= checkoutErrors[0].msg %></div>
+                <% } %>
                 <label for="name" style="margin-top: 40px">Name:</label>
                 <input
                     id="name"
@@ -120,7 +132,9 @@
                     <tr>
                         <td><button id="cancel">Cancel</button></td>
                         <td>
-                            <button type="submit" form="checkout-form">Order now</button>
+                            <button type="submit" form="checkout-form">
+                                Order now
+                            </button>
                         </td>
                     </tr>
                 </table>
