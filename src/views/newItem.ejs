@@ -17,10 +17,10 @@
     <%-include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
-        <% if (validationError[0]) { %>
+        <% if (validationError.length) { %>
             <%- include("partials/errorFlashMessage.ejs",
                 { 
-                    message: validationError[0].msg + " : " + validationError[0].param
+                    message: validationError[0].msg
                 }) %> 
         <% } %>
         <% if (success[0]) { %>

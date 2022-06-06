@@ -16,6 +16,12 @@
     <%- include('partials/sidebar.ejs') %>
 
     <div id="second" class="sub-division">
+        <% if (editItemValidationErrors.length) { %>
+            <%- include("partials/errorFlashMessage.ejs",
+                { 
+                    message: editItemValidationErrors[0].msg
+                }) %> 
+        <% } %>
         <% if (updateSuccess[0]) { %>
             <%- include("partials/successFlashMessage.ejs",
                 { 

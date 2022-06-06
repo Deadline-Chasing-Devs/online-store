@@ -10,7 +10,10 @@ const handler = (pool) => {
     // handle route
     checkoutRouter.get("", (req, res) => {
         if (req.session.cart && Object.entries(req.session.cart.items).length) {
-            res.render("checkout", { cart: req.session.cart });
+            res.render("checkout", {
+                cart: req.session.cart,
+                checkoutErrors: req.flash("checkout-error"),
+            });
         } else {
             res.redirect("/");
         }
@@ -19,24 +22,54 @@ const handler = (pool) => {
     const checkoutSchema = {
         name: {
             notEmpty: true,
+            errorMessage: "Name cannot be empty.",
+            isLength: {
+                errorMessage: "Max length of the name is 50 characters.",
+                options: {
+                    max: 50,
+                },
+            },
         },
         contactNumber: {
             notEmpty: true,
+            errorMessage: "Contact number cannot be empty.",
+            isNumeric: {
+                errorMessage: "Contact number must be numeric."
+            },
+            isLength: {
+                errorMessage: "Max length of the contact number is 15 characters.",
+                options: {
+                    max: 15,
+                },
+            },
         },
         address: {
             notEmpty: true,
+            errorMessage: "Address cannot be empty.",
+            isLength: {
+                errorMessage: "Max length of address is 100 characters.",
+                options: {
+                    max: 100,
+                },
+            },
         },
         email: {
             notEmpty: true,
+            errorMessage: "Email cannot be empty.",
+            isLength: {
+                errorMessage: "Max length of the email is 50 characters.",
+                options: {
+                    max: 50,
+                },
+            },
         },
     };
 
     checkoutRouter.post("", checkSchema(checkoutSchema), (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.status(400).json({
-                error: "Invalid input.",
-            });
+            req.flash("checkout-error", errors.errors);
+            res.redirect("/checkout");
             return;
         }
 
@@ -45,7 +78,7 @@ const handler = (pool) => {
             !Object.entries(req.session.cart.items).length
         ) {
             res.status(400).json({
-                error: "Cart is empty."
+                error: "Cart is empty.",
             });
             return;
         }
@@ -96,7 +129,7 @@ const handler = (pool) => {
             req.session.cart = new Cart({});
             res.status(200).json({
                 success: true,
-                orderId
+                orderId,
             });
         } catch (error) {
             console.log(error.message);
