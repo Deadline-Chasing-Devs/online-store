@@ -32,6 +32,12 @@ const handler = (pool) => {
         description: {
             notEmpty: true,
             errorMessage: "Description cannot be empty.",
+            isLength: {
+                errorMessage: "Max length of the description is 65535 characters.",
+                options: {
+                    max: 65535,
+                }
+            }
         },
         price: {
             notEmpty: true,
